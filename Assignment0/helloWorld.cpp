@@ -17,6 +17,7 @@
 
 using namespace std; //simplifies code throughout the program
 
-int main() {
+int main (int argc, char** argv) {
 	cout << "Hello World!\n"; // '\n' prints an extra line after the statement
+	return 0;
 }
