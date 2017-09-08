@@ -8,9 +8,38 @@
 
 */
 
-#include "assign1.h"
+//#include "assign1.h"
 
 #include <iostream>
 #include <math.h>
-#include <ofstream>
-#include <ifstream>
+#include <fstream>
+
+using namespace std;
+
+int main(int argc, char** argv) {
+	while( true ) {
+		string filepath;
+		cout << "What is the file path of the .txt file you want to use?" << endl;
+		cin >> filepath;
+		ifstream inFile;
+
+		inFile.open(filepath.c_str());
+
+		cout << inFile.rdbuf();
+
+		inFile.close();
+
+		cout << "Would you like to process another list? (Y/N)" << endl;
+		string input;
+		cin >> input;
+
+		if ((input == "n")||(input == "N")) {
+			return 0;
+		}
+		else
+			continue;
+
+	}
+	cout << "Don't Panic' -Hitchhikers Guide to the Galaxy" << endl;
+	return 0;
+}
