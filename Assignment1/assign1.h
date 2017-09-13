@@ -5,13 +5,24 @@
 using namespace std;
 
 class dnaProcess {
+	private:
+		string dna;
+		int countLine;
+		double nucleoCount;
+		double mean;
+		double standDev;
+		double nucleoTotal;
+		double probOfA;
+		double probOfC;
+		double probOfT;
+		double probOfG;
+
 	public:
 		dnaProcess();	//Constructor
 		~dnaProcess();	//Deconstructor
-		int nucleoSum(); //Sum of the Nucleotides
-		int dnaVariance(); //Varience of the DNA strings
-		int dnaStringMean(); //Mean of the length of DNA strings
-		int dnaStandDev(); //Standard Deviation of DNA strings
-		int nucleoProbability(string file); //Relative Probability of each Nucleotide
-		int nucleoProbabilityPairs(string file); //Probability of each Nucleotide Bigram
+
+		void dnaSetString(ifstream& inStream);
+		void fileComputations(ofstream& outStream);
+		void nucleoProbability(ofstream& outStream);
+		void guassianDistribution(ofstream& outStream);
 };

@@ -12,17 +12,21 @@
 #include <iostream>
 #include <math.h>
 #include <fstream>
+#include <stdlib.h>
 
 using namespace std;
 
 int main(int argc, char** argv) {
-	ofstream outFile ("ZachJagoda.out");
-	if(outFile.is_open()) {
-		outFile << "Zach Jagoda \n" << endl;
-		outFile << "Student ID: 2274813 \n" << endl;
-		outFile << "Student Email: jagod101@mail.chapman.edu \n" << endl;
-		outFile << "CPSC 350-02 \n" <<  endl;
-		outFile << "Assignment 1: C++ Review \n" << endl;
+	ofstream out;
+	ifstream in;
+
+	out.open("ZachJagoda.out");
+	if(out.is_open()) {
+		out << "\nZach Jagoda";
+		out << "\nStudent ID: 2274813";
+		out << "\nStudent Email: jagod101@mail.chapman.edu";
+		out << "\nCPSC 350-02";
+		out << "\nAssignment 1: C++ Review";
 	}
 	else {
 		cout << "Unable to open file" << endl;
@@ -32,25 +36,18 @@ int main(int argc, char** argv) {
 		string filepath;
 		cout << "What is the file path of the .txt file you want to use?" << endl;
 		cin >> filepath;
-		ifstream inFile; //File input stored as inFile
 
-		inFile.open(filepath.c_str());
-		string file;
-		inFile >> file;
+		in.open(filepath.c_str());
 
-		cout << inFile.rdbuf();
+		dnaProcess a;
 
-//		dnaAssignment a;
+		a.dnaSetString(in);
+		a.fileComputations(out);
+		a.nucleoProbability(out);
+//		a.guassianDistribution(out);
 
-//		a.nucleoSum(DNA);
-//		a.dnaVariance(DNA);
-//		a.dnaStringMean(DNA);
-//		a.dnaStandDev(DNA);
-//		a.nucleoProbability(file);
-//		a.nucleoProbabilityPairs(file);
-
-		inFile.close();
-		outFile.close();
+		in.close();
+		out.close();
 
 		cout << "Would you like to process another list? (Y/N)" << endl;
 		string input;
