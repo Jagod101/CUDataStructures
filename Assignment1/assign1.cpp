@@ -11,7 +11,9 @@ dnaProcess::dnaProcess() {
 	string dna;
 	int countLine;
 	double nucleoCount = 0.0;
+	double sum = 0.0;
 	double mean = 0.0;
+	double variance = 0.0;
 	double standDev = 0.0;
 	double nucleoTotal = 0.0;
 	double probOfA = 0;
@@ -38,8 +40,6 @@ void dnaProcess::dnaSetString(ifstream& inStream) {
 
 void dnaProcess::fileComputations(ofstream& outStream) {
 	int count = 0;
-	double sum = 0.0;
-	double variance = 0.0;
 	double nucleoCount = 0;
 
 	for(int i = 0; i < dna.size(); ++i) {
@@ -217,4 +217,9 @@ void dnaProcess::guassianDistribution(ofstream& outStream) {
 		}
 		outStream << "\n";
 	}
+	//Reset Probabilities of Singular Nucleotides for if user runs another file
+	probOfA = 0;
+	probOfC = 0;
+	probOfT = 0;
+	probOfG = 0;
 }

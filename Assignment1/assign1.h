@@ -9,7 +9,9 @@ class dnaProcess {
 		string dna;
 		int countLine;
 		double nucleoCount;
+		double sum;
 		double mean;
+		double variance;
 		double standDev;
 		double nucleoTotal;
 		double probOfA;
