@@ -76,7 +76,7 @@ void dnaProcess::fileComputations(ofstream& outStream) {
 	}
 
 	outStream << "\nVariance: " << variance;
-	outStream << "\nStandard Deviation: " << standDev;
+	outStream << "\nStandard Deviation: " << standDev << "\n";
 }
 
 void dnaProcess::nucleoProbability(ofstream& outStream) {
@@ -84,83 +84,111 @@ void dnaProcess::nucleoProbability(ofstream& outStream) {
 	double probOfCA = 0, probOfCC = 0, probOfCT = 0, probOfCG = 0;
 	double probOfTA = 0, probOfTC = 0, probOfTT = 0, probOfTG = 0;
 	double probOfGA = 0, probOfGC = 0, probOfGT = 0, probOfGG = 0;
-	int count = 0;
-/*
+
 	for(int i = 0; i < dna.size();  ++i) {
-		probOfA++;
-*/
-	for(int i = 0; i <= dna.size(); ++i) {
-		string comp;
-		comp += tolower(dna[i]);
-		comp += tolower(dna[i+1]);
-
-		if(!comp.compare("aa")) {
-			probOfAA++;
+		if((dna[i] == 'a')||(dna[i] == 'A')) {
+			probOfA += 1;
+			if(dna[i+1] != '\n') {
+				nucleoCount += 1;
+				if((dna[i+1] == 'a')||(dna[i+1] == 'A')) {
+					probOfAA += 1;
+				}
+				else if((dna[i+1] == 'c')||(dna[i+1] == 'C')) {
+					probOfAC += 1;
+				}
+				else if((dna[i+1] == 't')||(dna[i+1] == 'T')) {
+					probOfAT += 1;
+				}
+				else if((dna[i+1] == 'g')||(dna[i+1] == 'G')) {
+					probOfAG += 1;
+				}
+			}
 		}
-		else if(!comp.compare("ac")) {
-			probOfAC++;
-		}
-		else if(!comp.compare("at")) {
-			probOfAT++;
-		}
-		else if(!comp.compare("ag")) {
-			probOfAG++;
-		}
-		else if(!comp.compare("ca")) {
-			probOfCA++;
-		}
-		else if(!comp.compare("cc")) {
-			probOfCC++;
-		}
-		else if(!comp.compare("ct")) {
-			probOfCT++;
-		}
-		else if(!comp.compare("cg")) {
-			probOfCG++;
-		}
-		else if(!comp.compare("ta")) {
-			probOfTA;
-		}
-		else if(!comp.compare("tc")) {
-			probOfTC;
-		}
-		else if(!comp.compare("tt")) {
-			probOfTT;
-		}
-		else if(!comp.compare("tg")) {
-			probOfTG;
-		}
-		else if(!comp.compare("ga")) {
-			probOfGA++;
-		}
-		else if(!comp.compare("gc")) {
-			probOfGC++;
-		}
-		else if(!comp.compare("gt")) {
-			probOfGT++;
-		}
-		else if(!comp.compare("gg")) {
-			probOfGG++;
-		}
+                else if((dna[i] == 'c')||(dna[i] == 'C')) {
+                        probOfC += 1;
+                        if(dna[i+1] != '\n') {
+                                nucleoCount += 1;
+                                if((dna[i+1] == 'a')||(dna[i+1] == 'A')) {
+                                        probOfCA += 1;
+                                }
+                                else if((dna[i+1] == 'c')||(dna[i+1] == 'C')) {
+                                        probOfCC += 1;
+                                }
+                                else if((dna[i+1] == 't')||(dna[i+1] == 'T')) {
+                                        probOfCT += 1;
+                                }
+                                else if((dna[i+1] == 'g')||(dna[i+1] == 'G')) {
+                                        probOfCG += 1;
+                                }
+                        }
+                }
+                else if((dna[i] == 't')||(dna[i] == 'T')) {
+                        probOfT += 1;
+                        if(dna[i+1] != '\n') {
+                                nucleoCount += 1;
+                                if((dna[i+1] == 'a')||(dna[i+1] == 'A')) {
+                                        probOfTA += 1;
+                                }
+                                else if((dna[i+1] == 'c')||(dna[i+1] == 'C')) {
+                                        probOfTC += 1;
+                                }
+                                else if((dna[i+1] == 't')||(dna[i+1] == 'T')) {
+                                        probOfTT += 1;
+                                }
+                                else if((dna[i+1] == 'g')||(dna[i+1] == 'G')) {
+                                        probOfTG += 1;
+                                }
+                        }
+                }
+                else if((dna[i] == 'g')||(dna[i] == 'G')) {
+                        probOfG += 1;
+                        if(dna[i+1] != '\n') {
+                                nucleoCount += 1;
+                                if((dna[i+1] == 'a')||(dna[i+1] == 'A')) {
+                                        probOfGA += 1;
+                                }
+                                else if((dna[i+1] == 'c')||(dna[i+1] == 'C')) {
+                                        probOfGC += 1;
+                                }
+                                else if((dna[i+1] == 't')||(dna[i+1] == 'T')) {
+                                        probOfGT += 1;
+                                }
+                                else if((dna[i+1] == 'g')||(dna[i+1] == 'G')) {
+                                        probOfGG += 1;
+                                }
+                        }
+                }
 	}
+	probOfA = (probOfA/nucleoCount)*100;
+	probOfC = (probOfC/nucleoCount)*100;
+	probOfT = (probOfT/nucleoCount)*100;
+	probOfG = (probOfG/nucleoCount)*100;
 
-	outStream << "\nThe relative probability of AA is: " << probOfAA/((float)count/*lineCount*/) << "\n";
-//	cout << "\nThe relative probability of AC is: " << probOfAC/((float)count/*lineCount*/) << "\n";
-//	cout << "\nThe relative probability of AT is: " << probOfAT/((float)count/*lineCount*/) << "\n";
-//	cout << "\nThe relative probability of AG is: " << probOfAG/((float)count/*lineCount*/) << "\n";
-//	cout << "\nThe relative probability of CA is: " << probOfCA/((float)count/*lineCount*/) << "\n";
-//	cout << "\nThe relative probability of CC is: " << probOfCC/((float)count/*lineCount*/) << "\n";
-//	cout << "\nThe relative probability of CT is: " << probOfCT/((float)count/*lineCount*/) << "\n";
-//	cout << "\nThe relative probability of CG is: " << probOfCG/((float)count/*lineCount*/) << "\n";
-//	cout << "\nThe relative probability of TA is: " << probOfTA/((float)count/*lineCount*/) << "\n";
-//	cout << "\nThe relative probability of TC is: " << probOfTC/((float)count/*lineCount*/) << "\n";
-//	cout << "\nThe relative probability of TT is: " << probOfTT/((float)count/*lineCount*/) << "\n";
-//	cout << "\nThe relative probability of TG is: " << probOfTG/((float)count/*lineCount*/) << "\n";
-//	cout << "\nThe relative probability of GA is: " << probOfGA/((float)count/*lineCount*/) << "\n";
-//	cout << "\nThe relative probability of GC is: " << probOfGC/((float)count/*lineCount*/) << "\n";
-//	cout << "\nThe relative probability of GT is: " << probOfGT/((float)count/*lineCount*/) << "\n";
-//	cout << "\nThe relative probability of GG is: " << probOfGG/((float)count/*lineCount*/) << "\n";
+	probOfAA = (probOfAA/nucleoCount)*100;
+	probOfAC = (probOfAC/nucleoCount)*100;
+	probOfAT = (probOfAT/nucleoCount)*100;
+	probOfAG = (probOfAG/nucleoCount)*100;
 
+	probOfCA = (probOfCA/nucleoCount)*100;
+	probOfCC = (probOfCC/nucleoCount)*100;
+	probOfCT = (probOfCT/nucleoCount)*100;
+	probOfCG = (probOfCG/nucleoCount)*100;
+
+	probOfTA = (probOfTA/nucleoCount)*100;
+	probOfTC = (probOfTC/nucleoCount)*100;
+	probOfTT = (probOfTT/nucleoCount)*100;
+	probOfTG = (probOfTG/nucleoCount)*100;
+
+	probOfGA = (probOfGA/nucleoCount)*100;
+	probOfGC = (probOfGC/nucleoCount)*100;
+	probOfGT = (probOfGT/nucleoCount)*100;
+	probOfGG = (probOfGG/nucleoCount)*100;
+
+	outStream << "\nSingular Nucleotides" << "\nA: " << probOfA << "%\nC: " << probOfC << "%\nT: " << probOfT << "%\nG: " << probOfG << "%";
+	outStream << "\nNucleotide Pairs (A)" << "\nAA: " << probOfAA << "%\nAC: " << probOfAC << "%\nAT: " << probOfAT << "%\nAG: " << probOfAG << "%";
+        outStream << "\nNucleotide Pairs (C)" << "\nCA: " << probOfCA << "%\nCC: " << probOfCC << "%\nCT: " << probOfCT << "%\nCG: " << probOfCG << "%";
+        outStream << "\nNucleotide Pairs (T)" << "\nTA: " << probOfTA << "%\nTC: " << probOfTC << "%\nTT: " << probOfTT << "%\nTG: " << probOfTG << "%";
+        outStream << "\nNucleotide Pairs (G)" << "\nGA: " << probOfGA << "%\nGC: " << probOfGC << "%\nGT: " << probOfGT << "%\nGG: " << probOfGG << "%\n";
 }
 
 void dnaProcess::guassianDistribution(ofstream& outStream) {

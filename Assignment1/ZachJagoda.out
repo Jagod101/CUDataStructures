@@ -4,8 +4,34 @@ Student ID: 2274813
 Student Email: jagod101@mail.chapman.edu
 CPSC 350-02
 Assignment 1: C++ Review
+
 Sum: 26
 Mean: 5.2
 Variance: 1.10769
 Standard Deviation: 1.05247
-The relative probability of AA is: inf
+
+Singular Nucleotides
+A: 42.8571%
+C: 33.3333%
+T: 23.8095%
+G: 23.8095%
+Nucleotide Pairs (A)
+AA: 19.0476%
+AC: 9.52381%
+AT: 0%
+AG: 4.7619%
+Nucleotide Pairs (C)
+CA: 14.2857%
+CC: 4.7619%
+CT: 4.7619%
+CG: 4.7619%
+Nucleotide Pairs (T)
+TA: 0%
+TC: 4.7619%
+TT: 4.7619%
+TG: 9.52381%
+Nucleotide Pairs (G)
+GA: 0%
+GC: 9.52381%
+GT: 4.7619%
+GG: 4.7619%

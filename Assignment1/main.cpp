@@ -26,7 +26,7 @@ int main(int argc, char** argv) {
 		out << "\nStudent ID: 2274813";
 		out << "\nStudent Email: jagod101@mail.chapman.edu";
 		out << "\nCPSC 350-02";
-		out << "\nAssignment 1: C++ Review";
+		out << "\nAssignment 1: C++ Review\n";
 	}
 	else {
 		cout << "Unable to open file" << endl;
