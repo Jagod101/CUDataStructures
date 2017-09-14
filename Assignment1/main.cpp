@@ -44,16 +44,16 @@ int main(int argc, char** argv) {
 		a.dnaSetString(in);
 		a.fileComputations(out);
 		a.nucleoProbability(out);
-//		a.guassianDistribution(out);
+		a.guassianDistribution(out);
 
 		in.close();
-		out.close();
 
 		cout << "Would you like to process another list? (Y/N)" << endl;
 		string input;
 		cin >> input;
 
 		if ((input == "n")||(input == "N")) {
+			out.close();
 			return 0;
 		}
 		else

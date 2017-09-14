@@ -159,31 +159,32 @@ void dnaProcess::nucleoProbability(ofstream& outStream) {
                         }
                 }
 	}
+	//Singular Nucleotides
 	probOfA = (probOfA/nucleoCount)*100;
 	probOfC = (probOfC/nucleoCount)*100;
 	probOfT = (probOfT/nucleoCount)*100;
 	probOfG = (probOfG/nucleoCount)*100;
-
+	//Nucleotides of A
 	probOfAA = (probOfAA/nucleoCount)*100;
 	probOfAC = (probOfAC/nucleoCount)*100;
 	probOfAT = (probOfAT/nucleoCount)*100;
 	probOfAG = (probOfAG/nucleoCount)*100;
-
+	//Nucleotides of C
 	probOfCA = (probOfCA/nucleoCount)*100;
 	probOfCC = (probOfCC/nucleoCount)*100;
 	probOfCT = (probOfCT/nucleoCount)*100;
 	probOfCG = (probOfCG/nucleoCount)*100;
-
+	//Nucleotides of T
 	probOfTA = (probOfTA/nucleoCount)*100;
 	probOfTC = (probOfTC/nucleoCount)*100;
 	probOfTT = (probOfTT/nucleoCount)*100;
 	probOfTG = (probOfTG/nucleoCount)*100;
-
+	//Nucleotides of G
 	probOfGA = (probOfGA/nucleoCount)*100;
 	probOfGC = (probOfGC/nucleoCount)*100;
 	probOfGT = (probOfGT/nucleoCount)*100;
 	probOfGG = (probOfGG/nucleoCount)*100;
-
+	//Printing the percentage values to outStream (ZachJagoda.out)
 	outStream << "\nSingular Nucleotides" << "\nA: " << probOfA << "%\nC: " << probOfC << "%\nT: " << probOfT << "%\nG: " << probOfG << "%";
 	outStream << "\nNucleotide Pairs (A)" << "\nAA: " << probOfAA << "%\nAC: " << probOfAC << "%\nAT: " << probOfAT << "%\nAG: " << probOfAG << "%";
         outStream << "\nNucleotide Pairs (C)" << "\nCA: " << probOfCA << "%\nCC: " << probOfCC << "%\nCT: " << probOfCT << "%\nCG: " << probOfCG << "%";
@@ -192,5 +193,28 @@ void dnaProcess::nucleoProbability(ofstream& outStream) {
 }
 
 void dnaProcess::guassianDistribution(ofstream& outStream) {
+	double a = ((double) rand() / (RAND_MAX));
+	double b = ((double) rand() / (RAND_MAX));
 
+	double c = (sqrt(-2*log(a)))*(cos(2*(M_PI)*b));
+	double d = (standDev * c) + mean;
+
+	for(int i = 0; i < 1000; ++i) {
+		for(int j = 0; j < d; ++j) {
+			double range = rand() % 100;
+			if(range <= probOfA) {
+				outStream << "A";
+			}
+			else if(range <= (probOfC + probOfA)) {
+				outStream << "C";
+			}
+			else if(range <= (probOfT + probOfC + probOfA)) {
+				outStream << "T";
+			}
+			else if(range <= 100) {
+				outStream << "G";
+			}
+		}
+		outStream << "\n";
+	}
 }
