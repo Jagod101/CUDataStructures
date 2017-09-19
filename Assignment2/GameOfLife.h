@@ -23,4 +23,4 @@ class Game {
         void mirrorMode(); //Mirror Game Mode
 
         void createBoard(); //Create Game Board
-}
+};
