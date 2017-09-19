@@ -17,10 +17,10 @@ class Game {
         Game(); //Constructor
         ~Game(); //Deconstructor
 
-        selectMode(); //Select Game Mode
-        classicMode(); //Classic Game Mode
-        donutMode(); //Donut Game Mode
-        mirrorMode(); //Mirror Game Mode
+        void selectMode(); //Select Game Mode
+        void classicMode(); //Classic Game Mode
+        void donutMode(); //Donut Game Mode
+        void mirrorMode(); //Mirror Game Mode
 
-        createBoard(); //Create Game Board
+        void createBoard(); //Create Game Board
 }

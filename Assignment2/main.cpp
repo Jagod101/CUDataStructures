@@ -11,7 +11,7 @@
 using namespace std;
 
 int main(int argc, char** argv) {
-    GameOfLife g;
+    Game g;
 
     g.createBoard();
 
