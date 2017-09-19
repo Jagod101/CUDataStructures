@@ -13,6 +13,7 @@ using namespace std;
 int main(int argc, char** argv) {
     Game g;
 
+    g.selectMode();
     g.createBoard();
 
     return 0;
