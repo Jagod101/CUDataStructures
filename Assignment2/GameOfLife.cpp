@@ -21,12 +21,12 @@ Game::~Game() {
 
 void Game::selectMode() {
     string mode = "";
-    bool contunieOn = true;
+    bool continueOn = true;
 
     while ( continueOn == true ) {
 
         cout << "Select Game Mode\n1. Classic\n2. Donut\n3. Mirror\n";
-        cin >> string;
+        cin >> mode;
 
         if ((mode == "classic")||(mode == "Classic")) {
             classicMode();
@@ -52,17 +52,14 @@ void Game::selectMode() {
 
 void Game::classicMode() {
     cout << "Classic Mode\n";
-    return 0;
 }
 
 void Game::donutMode() {
     cout << "Donut Mode\n";
-    return 0;
 }
 
 void Game::mirrorMode() {
-    cout << "Mirror Mode";
-    return 0;
+    cout << "Mirror Mode\n";
 }
 
 void Game::createBoard() {
