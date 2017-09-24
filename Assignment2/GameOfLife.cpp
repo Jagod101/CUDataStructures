@@ -65,12 +65,12 @@ void Game::createFileBoard(ifstream& inputFile) {
 
 void Game::selectMode() {
     string mode = "";
-    bool contunieOn = true;
+    bool continueOn = true;
 
     while ( continueOn == true ) {
 
         cout << "Select Game Mode\n1. Classic\n2. Donut\n3. Mirror\n";
-        cin >> string;
+        cin >> mode;
 
         if ((mode == "classic")||(mode == "Classic")) {
             classicMode();
@@ -116,7 +116,7 @@ void Game::donutMode() {
 }
 
 void Game::mirrorMode() {
-    cout << "Mirror Mode";
+    cout << "Mirror Mode\n";
 }
 
 void Game::selectSettings() {
