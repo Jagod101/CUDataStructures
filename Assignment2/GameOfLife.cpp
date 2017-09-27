@@ -1,66 +1,113 @@
-/*  Zachary Jagoda
-    Student ID: 2274813
-    Student Email: jagod101@mail.chapman.edu
+/*  Ashley Wood and Zachary Jagoda
+    Student ID: 2271425 and Student ID: 2274813
+    Student Emails: wood198@mail.chapman.edu jagod101@mail.chapman.edu
     CPSC 350-02
     Assignment 2 (The Game of Life)
 */
-#include "GameOfLife.h"
+
 #include <iostream>
+#include "GameOfLife.h"
 #include <string>
 #include <cstdlib>
+#include <fstream>
+#include <math.h>
+#include <time.h>
 
 using namespace std;
 
 Game::Game() {
     string outputType = "";
+    string outString = "";
+    ofstream outputFile;
 }
-
 Game::~Game() {
+
 }
-
-void Game::createRandomBoard() {
-    int boardLength = 0;
-    int boardWidth = 0;
+//creates a board that will be used when the user wants a random board
+void Game::createRandomBoard(int& boardLength, int& boardWidth, double& densityNumber){
     double densityNumber = 0.0;
-    int numOfCells = 0;
     bool correctInput = false;
+    int numOfCells = 0;
+    int randLength = 0;
+    int randWidth = 0;
 
-    cout << "What is the length of your board? \n" << endl;
+    //Ask the User for Board Length (Rows)
+    cout << "\nWhat is the length of your board? " << endl;
     cin >> boardLength;
 
-    cout << "What is the width of your board? \n" << endl;
+    //If the User inputs a number less than or equal to One, ask for a greater number
+    while (boardLength <= 1) {
+        cout << "\nPlease Enter a Number Greater Than One: ";
+        cin >> boardLength;
+    }
+
+    //Ask the User for Board Width (Columns)
+    cout << "\nWhat is the width of your board? " << endl;
     cin >> boardWidth;
+    
+    //If the User inputs a number less than or equal to One, ask for a greater number
+    while (boardWidth <= 1) {
+        cout << "\nPlease Enter a Number Greater Than One: ";
+        cin >> boardWidth;
+    }
 
-    while (correctInput == false) {
-        cout << "Give me a number between 0 and 1 \n" << endl;
+    //Ask the User for Density with Invalid Input Catch 
+    while (correctInput == false){
+        cout << "\nEnter the density of the board (between 0 and 1): " << endl;
         cin >> densityNumber;
-
-        if ((densityNumber >= 0.0) && (densityNumber <= 1.0)) {
+        if((densityNumber >= 0.0) && (densityNumber <= 1.0)){
             correctInput = true;
         }
         else {
+            cout << "\nPlease Enter a Valid Number";
             correctInput = false;
         }
     }
 
-    numOfCells = (boardLength * boardWidth) * densityNumber;
+    //Declare Board Dimensions for Array 'board'
+    char board[boardLength][boardWidth];
+    //Declare numOfCells for later calculation of Cell Population
+    numOfCells = round((boardLength*boardWidth)*densityNumber);
 
-    for (int i = 0; i < boardLength; i++) {
-        for (int j = 0; j < boardWidth; j++) {
-            char board[i][j] = {{-}};
+    //Initialize board with Blank Spaces
+    for (int i = 0; i < boardLength; i++){
+        for (int j = 0; j < boardWidth; j++){
+            board[i][j] = '-';
         }
     }
 
-    for (int k = 0; k < numOfCells; k++) {
+    srand(time(NULL));
 
+    for (int k = 0; k < numOfCells; k++){
+        
+        randLength = rand() % (boardLength);
+        randWidth = rand() % (boardWidth);
+        int numCells = 1;
+
+        while(numCells > 0){
+            if(board[randLength][randWidth] == '-'){
+                board[randLength][randWidth] = 'X';
+                numCells--;
+            }else{
+                randLength = rand() % (boardLength);
+                randWidth = rand() % (boardWidth);
+            }
+        }   
     }
+    selectMode();
+    // for (int l = 0; l < boardLength; l++){
+    //  for (int m = 0; m < boardWidth; m++){
+    //      cout << board[l][m];
+    //  }
+    //  cout << "\n";
+    // }    
 }
 
-void Game::createFileBoard(ifstream& inputFile) {
+void Game::createFileBoard(ifstream& inputfile){
     int boardLength = 0;
     int boardWidth = 0;
+    
 
-    //Assign Items from File to Variables
 }
 
 void Game::selectMode() {
@@ -89,14 +136,15 @@ void Game::selectMode() {
 
         else {
             cout << "Please Enter a Valid Option Using the Spelling as Listed\n";
-            continue;
+            continueOn = true;
         }
     }
 }
-
+//asks the user if they want a random board or to submit a map
+//choose how you want the game to be printed (in a file, with a pause, or by enter key)
 void Game::printOptions() {
     if ((outputType == "pause")||(outputType == "Pause")||(outputType == "1")) {
-        system("pause");
+        sleep(1);
     }
     else if ((outputType == "enter")||(outputType == "Enter")||(outputType == "2")) {
         cout << "Please Press ENTER to Continue\n";
@@ -107,16 +155,250 @@ void Game::printOptions() {
     }
 }
 
-void Game::classicMode() {
-    cout << "Classic Mode\n";
+int Game::classicMode() {
+//Need to Create Second Board to Base Off First Board
+    for (int i = 0; i < boardLength; ++i) {
+        for (int j = 0; j < boardWidth; ++j) {
+            int count = 0;
+            if (i == 0 && j == 0) {
+                if (board[i+1][j] == 'X') count++;
+                if (board[i][j+1] == 'X') count++;
+                if (board[i+1][j+1] == 'X') count++;
+            }
+            else if (i == 0 && j == (boardWidth - 1)) {
+                if (board[i+1][j] == 'X') count++;
+                if (board[i][j-1] == 'X') count++;
+                if (board[i+1][j-1] == 'X') count++;
+            }
+            else if (i == (boardLength - 1) && j == 0) {
+                if (board[i-1][j] == 'X') count++;
+                if (board[i][j+1] == 'X') count++;
+                if (board[i-1][j+1] == 'X') count++;
+            }
+            else if (i == (boardLength - 1) && j == (boardWidth - 1)) {
+                if (board[i-1][j] == 'X') count++;
+                if (board[i][j-1] == 'X') count++;
+                if (board[i-1][j-1] == 'X') count++;
+            }
+            //Checks the Sides of the Board
+            else if (i == 0) {
+                if (board[i+1][j] == 'X') count++;
+                if (board[i][j+1] == 'X') count++;
+                if (board[i+1][j+1] == 'X') count++;
+                if (board[i][j-1] == 'X') count++;
+                if (board[i+1][j-1] == 'X') count++;
+            }
+            else if (j == 0) {
+                if (board[i-1][j] == 'X') count++;
+                if (board[i+1][j] == 'X') count++;
+                if (board[i][j+1] == 'X') count++;
+                if (board[i+1][j+1] == 'X') count++;
+                if (board[i-1][j+1] == 'X') count++;
+            }
+            else if (i == (boardLength - 1)) {
+                if (board[i-1][j] == 'X') count++;
+                if (board[i][j+1] == 'X') count++;
+                if (board[i-1][j+1] == 'X') count++;
+                if (board[i][j-1] == 'X') count++;
+                if (board[i-1][j-1] == 'X') count++;
+            }
+            else if(j == (boardWidth - 1)) {
+                if (board[i-1][j] == 'X') count++;
+                if (board[i+1][j] == 'X') count++;
+                if (board[i][j-1] == 'X') count++;
+                if (board[i+1][j-1] == 'X') count++;
+                if (board[i-1][j-1] == 'X') count++;
+            }
+            else {
+				if(board[i+1][j] == 'X') count++;
+				if(board[i][j+1] == 'X') count++;
+				if(board[i+1][j+1] == 'X') count++;
+				if(board[i][j-1] =='X') count++;
+				if(board[i-1][j] == 'X') count++;
+				if(board[i-1][j-1] == 'X') count++;
+				if(board[i+1][j-1] =='X') count++;
+				if(board[i-1][j+1] == 'X') count++;
+			}
+        }
+    }
 }
 
-void Game::donutMode() {
-    cout << "Donut Mode\n";
+int Game::donutMode() {
+    for(int i = 0; i < boardLength; ++i){
+		for(int j = 0; j < boardWidth; ++j){
+			int count = 0; 								
+			if (i == 0 && j == 0) { 						
+				if(board[i+1][j] == 'X') count++; 		
+				if(board[i][j+1] == 'X') count++;
+				if(board[i+1][j+1] == 'X') count++;
+				if(board[boardLength-1][j] == 'X') count++; //Bottom of Row (boardLength), same Column (boardWidth)
+				if(board[boardLength-1][j+1] == 'X') count++; //Bottom Row (boardLength) Bottom Column+1 (boardWidth+1)
+				if(board[boardLength-1][boardWidth-1] == 'X') count++; //Opposite Corner
+				if(board[i][boardWidth-1] == 'X') count++; //Opposite Side
+				if(board[i+1][boardWidth-1] == 'X') count++; //Opposite Side and Down One
+			}
+			else if (i == 0 && j == (boardWidth - 1)) {
+				if(board[i+1][j] == 'X') count++;
+				if(board[i][j-1] == 'X') count++;
+				if(board[i+1][j-1] == 'X') count++;
+				if(board[boardLength-1][j] == 'X') count++;
+				if(board[boardLength-1][j-1] == 'X') count++;
+				if(board[boardLength-1][0] == 'X') count++;
+				if(board[i][0] == 'X') count++; //Opposite Corner
+				if(board[i+1][0] == 'X') count++;
+			}
+			else if (i == (boardLength - 1 ) && j == (boardWidth - 1)) {
+				if(board[i-1][j] == 'X') count++;
+				if(board[i][j-1] == 'X') count++;
+				if(board[i-1][j-1] == 'X') count++;
+				if(board[0][j-1] == 'X') count++;
+				if(board[0][j] == 'X') count++;
+				if(board[0][0] == 'X') count++;
+				if(board[i][0] == 'X') count++;
+				if(board[i-1][0] == 'X') count++;
+			}
+			else if (i == (boardLength - 1) && j == 0) {
+				if(board[i-1][j] == 'X') count++;
+				if(board[i][j+1] == 'X') count++;
+				if(board[i-1][j+1] == 'X') count++;
+				if(board[0][j] == 'X') count++;
+				if(board[0][j+1] == 'X') count++;
+				if(board[0][boardWidth-1] == 'X') count++;
+				if(board[i-1][boardWidth-1] == 'X') count++;
+				if(board[i][boardWidth-1] == 'X') count++;
+			}
+			else if (j == 0) { 							
+				if(board[i-1][j] == 'X') count++;
+				if(board[i+1][j] == 'X') count++;
+				if(board[i][j+1] == 'X') count++;
+				if(board[i+1][j+1] == 'X') count++;
+				if(board[i-1][j+1] == 'X') count++;
+				if(board[i-1][boardWidth-1] == 'X') count++;
+				if(board[i][boardWidth-1] == 'X') count++;
+				if(board[i+1][boardWidth-1] == 'X') count++;
+			}
+			else if (i == 0) {
+				if(board[i+1][j] == 'X') count++;
+				if(board[i][j+1] == 'X') count++;
+				if(board[i+1][j+1] == 'X') count++;
+				if(board[i][j-1] =='X') count++;
+				if(board[i+1][j-1] == 'X') count++;
+				if(board[boardLength-1][j-1] == 'X') count++;
+				if(board[boardLength-1][j] == 'X') count++;
+				if(board[boardLength-1][j+1] == 'X') count++;
+            }
+            else if (i == (boardLength - 1)) {
+				if(board[i-1][j] == 'X') count++;
+				if(board[i][j+1] == 'X') count++;
+				if(board[i-1][j+1] == 'X') count++;
+				if(board[i][j-1] =='X') count++;
+				if(board[i-1][j-1] == 'X') count++;
+				if(board[0][j-1] == 'X') count++;
+				if(board[0][j] == 'X') count++;
+				if(board[0][j+1] == 'X') count++;
+			}
+			else if (j == (boardWidth - 1)) {
+				if(board[i-1][j] == 'X') count++;
+				if(board[i+1][j] == 'X') count++;
+				if(board[i][j-1] == 'X') count++;
+				if(board[i+1][j-1] == 'X') count++;
+				if(board[i-1][j-1] == 'X') count++;
+				if(board[i-1][0] == 'X') count++;
+				if(board[i][0] == 'X') count++;
+				if(board[i+1][0] == 'X') count++;
+			}
+			else {
+				if(board[i+1][j] == 'X') count++;
+				if(board[i][j+1] == 'X') count++;
+				if(board[i+1][j+1] == 'X') count++;
+				if(board[i][j-1] =='X') count++;
+				if(board[i-1][j] == 'X') count++;
+				if(board[i-1][j-1] == 'X') count++;
+				if(board[i+1][j-1] =='X') count++;
+				if(board[i-1][j+1] == 'X') count++;
+			}
+        }
+    }
 }
 
-void Game::mirrorMode() {
-    cout << "Mirror Mode\n";
+int Game::mirrorMode() {
+    for(int i = 0; i < boardLength; ++i){
+		for(int j = 0; j < boardWidth; ++j){
+            int count = 0; 	
+            						
+            /* If count is ++ there is a singular neighbor with no reflection
+             * If count is += 2 this accounts for the neighbor and the reflection of neighbor
+             * If count is += 3 this accounts for own reflection in the corner
+             */
+
+			if (i == 0 && j == 0) { 						
+				if(board[i+1][j] == 'X') count+=2; 		
+				if(board[i][j+1] == 'X') count+=2;
+				if(board[i+1][j+1] == 'X') count++;
+				if(board[i][j] == 'X') count+=3;
+			}
+			else if (i == 0 && j == (boardWidth - 1)) {
+				if(board[i+1][j] == 'X') count+=2;
+				if(board[i][j-1] == 'X') count+=2;
+				if(board[i+1][j-1] == 'X') count++;
+				if(board[i][j] == 'X') count+=3;
+			}
+			else if (i == (boardLength - 1 ) && j == (boardWidth - 1)) {
+				if(board[i-1][j] == 'X') count+=2;
+				if(board[i][j-1] == 'X') count+=2;
+				if(board[i-1][j-1] == 'X') count++;
+				if(board[i][j] == 'X') count+=3;
+			}
+			else if (i == (boardLength - 1) && j == 0) {
+				if(board[i-1][j] == 'X') count+=2;
+				if(board[i][j+1] == 'X') count+=2;
+				if(board[i-1][j+1] == 'X') count++;
+				if(board[i][j] == 'X') count+=3;
+            }
+            else if (i == 0) {
+				if(board[i+1][j] == 'X') count++;
+				if(board[i][j+1] == 'X') count+=2;
+				if(board[i+1][j+1] == 'X') count++;
+				if(board[i][j-1] =='X') count+=2;
+				if(board[i+1][j-1] == 'X') count++;
+				if(board[i][j] == 'X') count++;
+            }
+			else if (j == 0) { 							
+				if(board[i-1][j] == 'X') count+=2;
+				if(board[i+1][j] == 'X') count+=2;
+				if(board[i][j+1] == 'X') count++;
+				if(board[i+1][j+1] == 'X') count++;
+				if(board[i-1][j+1] == 'X') count++;
+				if(board[i][j] == 'X') count++;
+			}
+            else if (i == (boardLength - 1)) {
+				if(board[i-1][j] == 'X') count++;
+				if(board[i][j+1] == 'X') count+=2;
+				if(board[i-1][j+1] == 'X') count++;
+				if(board[i][j-1] =='X') count+=2;
+				if(board[i-1][j-1] == 'X') count++;
+				if(board[i][j] == 'X') count++;
+			}
+			else if (j == (boardWidth - 1)) {
+				if(board[i-1][j] == 'X') count+=2;
+				if(board[i+1][j] == 'X') count+=2;
+				if(board[i][j-1] == 'X') count++;
+				if(board[i+1][j-1] == 'X') count++;
+				if(board[i-1][j-1] == 'X') count++;
+				if(board[i][j] == 'X') count++;
+			}
+			else {
+				if(board[i+1][j] == 'X') count++;
+				if(board[i][j+1] == 'X') count++;
+				if(board[i+1][j+1] == 'X') count++;
+				if(board[i][j-1] =='X') count++;
+				if(board[i-1][j] == 'X') count++;
+				if(board[i-1][j-1] == 'X') count++;
+				if(board[i+1][j-1] =='X') count++;
+				if(board[i-1][j+1] == 'X') count++;
+            }
+        }
+    }
 }
 
 void Game::selectSettings() {

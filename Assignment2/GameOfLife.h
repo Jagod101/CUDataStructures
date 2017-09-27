@@ -1,6 +1,6 @@
-/*  Zachary Jagoda
-    Student ID: 2274813
-    Student Email: jagod101@mail.chapman.edu
+/*  Ashley Wood and Zachary Jagoda
+    Student ID: 2271425 and Student ID: 2274813
+    Student Emails: wood198@mail.chapman.edu jagod101@mail.chapman.edu
     CPSC 350-02
     Assignment 2 (The Game of Life)
 */
@@ -17,11 +17,11 @@ class Game {
         ~Game(); //Deconstructor
 
         void selectSettings();
-
         void selectMode(); //Select Game Mode
-        void classicMode(); //Classic Game Mode
-        void donutMode(); //Donut Game Mode
-        void mirrorMode(); //Mirror Game Mode
+        
+        int classicMode(); //Classic Game Mode
+        int donutMode(); //Donut Game Mode
+        int mirrorMode(); //Mirror Game Mode
 
         void createRandomBoard(); //Create Game Board
         void createFileBoard();
