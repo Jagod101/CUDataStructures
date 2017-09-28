@@ -155,8 +155,14 @@ void Game::printOptions() {
     }
 }
 
-int Game::classicMode() {
-//Need to Create Second Board to Base Off First Board
+int Game::classicMode(int boardLength, int boardWidth, char**& board) {
+    //Creates Secondary Board based off of the First Board Dimensions
+    char** nextGen = new char*[boardLength];
+
+    for (int i = 0; i < boardLength; ++i) {
+        nextGen[i] = new char[boardWidth];
+    }
+
     for (int i = 0; i < boardLength; ++i) {
         for (int j = 0; j < boardWidth; ++j) {
             int count = 0;
@@ -220,10 +226,46 @@ int Game::classicMode() {
 				if(board[i-1][j+1] == 'X') count++;
 			}
         }
+        if (count < 2) {
+            //If there are One of Fewer Neighbors --> Death
+            nextGen[i][j] = '-';
+        }
+        else if (count == 2) {
+            //If there are exactly Two Neighbors --> No Change (Stablized)
+            nextGen[i][j] = board[i][j];
+        }
+        else if (count == 3) {
+            //If there are Three Neighbors + Empty Cell --> Birth of Cell
+            nextGen[i][j] = 'X';
+        }
+        else if (count > 3) {
+            //If there are Four or More Neighbors --> Death
+            nextGen[i][j] = '-';
+        }
+    }
+
+    for (int i = 0; i < boardLength; ++i) {
+        for (int j = 0; j < boardWidth; ++j) {
+            if (nextGen[i][j] == board[i][j]) {
+                cout << "\nThe World is Stable - there are no further changes";
+                return 1;
+            }
+            else {
+                board[i][j] = nextGen[i][j];
+                return 0;
+            }
+        }
     }
 }
 
 int Game::donutMode() {
+    //Creates Secondary Board based off of the First Board Dimensions
+    char** nextGen = new char*[boardLength];
+    
+        for (int i = 0; i < boardLength; ++i) {
+            nextGen[i] = new char[boardWidth];
+        }
+    
     for(int i = 0; i < boardLength; ++i){
 		for(int j = 0; j < boardWidth; ++j){
 			int count = 0; 								
@@ -318,10 +360,46 @@ int Game::donutMode() {
 				if(board[i-1][j+1] == 'X') count++;
 			}
         }
+        if (count < 2) {
+            //If there are One of Fewer Neighbors --> Death
+            nextGen[i][j] = '-';
+        }
+        else if (count == 2) {
+            //If there are exactly Two Neighbors --> No Change (Stablized)
+            nextGen[i][j] = board[i][j];
+        }
+        else if (count == 3) {
+            //If there are Three Neighbors + Empty Cell --> Birth of Cell
+            nextGen[i][j] = 'X';
+        }
+        else if (count > 3) {
+            //If there are Four or More Neighbors --> Death
+            nextGen[i][j] = '-';
+        }
+    }
+
+    for (int i = 0; i < boardLength; ++i) {
+        for (int j = 0; j < boardWidth; ++j) {
+            if (nextGen[i][j] == board[i][j]) {
+                cout << "\nThe World is Stable - there are no further changes";
+                return 1;
+            }
+            else {
+                board[i][j] = nextGen[i][j];
+                return 0;
+            }
+        }
     }
 }
 
 int Game::mirrorMode() {
+    //Creates Secondary Board based off of the First Board Dimensions
+    char** nextGen = new char*[boardLength];
+    
+        for (int i = 0; i < boardLength; ++i) {
+            nextGen[i] = new char[boardWidth];
+        }
+    
     for(int i = 0; i < boardLength; ++i){
 		for(int j = 0; j < boardWidth; ++j){
             int count = 0; 	
@@ -396,6 +474,35 @@ int Game::mirrorMode() {
 				if(board[i-1][j-1] == 'X') count++;
 				if(board[i+1][j-1] =='X') count++;
 				if(board[i-1][j+1] == 'X') count++;
+            }
+        }
+        if (count < 2) {
+            //If there are One of Fewer Neighbors --> Death
+            nextGen[i][j] = '-';
+        }
+        else if (count == 2) {
+            //If there are exactly Two Neighbors --> No Change (Stablized)
+            nextGen[i][j] = board[i][j];
+        }
+        else if (count == 3) {
+            //If there are Three Neighbors + Empty Cell --> Birth of Cell
+            nextGen[i][j] = 'X';
+        }
+        else if (count > 3) {
+            //If there are Four or More Neighbors --> Death
+            nextGen[i][j] = '-';
+        }
+    }
+
+    for (int i = 0; i < boardLength; ++i) {
+        for (int j = 0; j < boardWidth; ++j) {
+            if (nextGen[i][j] == board[i][j]) {
+                cout << "\nThe World is Stable - there are no further changes";
+                return 1;
+            }
+            else {
+                board[i][j] = nextGen[i][j];
+                return 0;
             }
         }
     }

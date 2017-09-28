@@ -12,8 +12,6 @@ using namespace std;
 
 int main(int argc, char** argv) {
     Game g;
-
-    int boardLength, boardWidth;
     
     g.selectSettings();
     
