@@ -3,6 +3,7 @@
 #include <fstream>
 #include <cstdlib>
 #include <unistd.h>
+#include <math.h>
 #include "GameOfLife.h"
 
 using namespace std;
