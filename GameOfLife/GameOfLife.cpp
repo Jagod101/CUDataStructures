@@ -43,7 +43,7 @@ void Game::gameSettings(string& inputFile, int& boardLength, int& boardWidth) {
             cout << "What is the name of the .txt file you want to use\n";
             cin >> inputFile;
             
-            createBoard(inputFile.c_str())
+            createBoard(inputFile.c_str(), boardLength, boardWidth)
 
             char** currentBoard = new char*[boardLength];
             for(int i = 0; i < boardLength; ++i) {
@@ -106,6 +106,8 @@ void Game::createBoard(string inputFile, int& boardLength, int& boardWidth) {
 }
 
 void Game::setBoard(int boardLength, int boardWidth, double density, char**& board) {
+    int numOfCells = round((boardLength*boardWidth)*density);
+
     for (int i = 0; i < boardLength; ++i) {
         for (int j = 0; j < boardWidth; ++j) {
             board[i][j] = '-';
