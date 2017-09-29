@@ -8,9 +8,7 @@ class Game {
 	private:
         int count, randLength, randWidth, boardLength, boardWidth;
         string file;
-        ifstream file;
-        ofstream file;
-        
+
     public:
         //Constructor
         Game();
