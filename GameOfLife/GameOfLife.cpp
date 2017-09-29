@@ -654,7 +654,7 @@ void Game::startGame(int& boardLength, int& boardWidth, char**& board) {
             }
 
             outFile << "Gen " << gen << endl;
-            printBoardOut(int boardLength, int boardWidth, char** board, ofstream& outputFile);
+            printBoardOut(int boardLength, int boardWidth, char** board, ofstream& file);
             gen++;
         }
     }
@@ -672,8 +672,8 @@ void Game::printBoardIn(int boardLength, int boardWidth, char** board) {
 void Game::printBoardOut(int boardLength, int boardWidth, char** board, ofstream& file) {
     for (int i = 0; i < boardLength; ++i) {
         for (int j = 0; j < boardWidth; ++i) {
-            outputFile << board[i][j];
+            file << board[i][j];
         }
-        outputFile << endl;
+        file << endl;
     }
 }

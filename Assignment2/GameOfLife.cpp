@@ -12,10 +12,12 @@
 #include <fstream>
 #include <math.h>
 #include <time.h>
+#include <unistd.h>
 
 using namespace std;
 
 Game::Game() {
+    int boardLength, boardWidth;
     string outputType = "";
     string outString = "";
     ofstream outputFile;
@@ -24,7 +26,9 @@ Game::~Game() {
 
 }
 //creates a board that will be used when the user wants a random board
-void Game::createRandomBoard(int& boardLength, int& boardWidth, double& densityNumber){
+void Game::createRandomBoard(int& boardLength, int& boardWidth, char**& board) {
+    int boardLength = 0;
+    int boardWidth = 0;
     double densityNumber = 0.0;
     bool correctInput = false;
     int numOfCells = 0;
@@ -64,8 +68,6 @@ void Game::createRandomBoard(int& boardLength, int& boardWidth, double& densityN
         }
     }
 
-    //Declare Board Dimensions for Array 'board'
-    char board[boardLength][boardWidth];
     //Declare numOfCells for later calculation of Cell Population
     numOfCells = round((boardLength*boardWidth)*densityNumber);
 
@@ -80,8 +82,8 @@ void Game::createRandomBoard(int& boardLength, int& boardWidth, double& densityN
 
     for (int k = 0; k < numOfCells; k++){
         
-        randLength = rand() % (boardLength);
-        randWidth = rand() % (boardWidth);
+        int randLength = rand() % (boardLength);
+        int randWidth = rand() % (boardWidth);
         int numCells = 1;
 
         while(numCells > 0){
@@ -142,7 +144,7 @@ void Game::selectMode() {
 }
 //asks the user if they want a random board or to submit a map
 //choose how you want the game to be printed (in a file, with a pause, or by enter key)
-void Game::printOptions() {
+void Game::printOptions(int boardLength, int boardWidth, char** board, ofstream outputFile) {
     if ((outputType == "pause")||(outputType == "Pause")||(outputType == "1")) {
         sleep(1);
     }
@@ -243,7 +245,6 @@ int Game::classicMode(int boardLength, int boardWidth, char**& board) {
             nextGen[i][j] = '-';
         }
     }
-
     for (int i = 0; i < boardLength; ++i) {
         for (int j = 0; j < boardWidth; ++j) {
             if (nextGen[i][j] == board[i][j]) {
@@ -258,7 +259,7 @@ int Game::classicMode(int boardLength, int boardWidth, char**& board) {
     }
 }
 
-int Game::donutMode() {
+int Game::donutMode(int boardLength, int boardWidth, char**& board) {
     //Creates Secondary Board based off of the First Board Dimensions
     char** nextGen = new char*[boardLength];
     
@@ -392,7 +393,7 @@ int Game::donutMode() {
     }
 }
 
-int Game::mirrorMode() {
+int Game::mirrorMode(int boardLength, int boardWidth, char**& board) {
     //Creates Secondary Board based off of the First Board Dimensions
     char** nextGen = new char*[boardLength];
     
@@ -518,7 +519,7 @@ void Game::selectSettings() {
         cout << "1. Pause\n 2. Enter\n 3. File\n";
         cin >> outputType;
 
-        if ((outputType == "pause")||(outputType == "Pause")|| (outputType == "1")) {
+        if ((outputType == "pause")||(outputType == "Pause")||(outputType == "1")) {
             wrongChoice = false;
         }
         else if ((outputType == "enter")||(outputType == "Enter")||(outputType == "2")) {
@@ -538,7 +539,7 @@ void Game::selectSettings() {
         cin >> setting;
     
         if ((setting == "random") || (setting == "Random")) {
-            createRandomBoard();
+            createRandomBoard(boardLength, boardWidth, board);
             correctAnswer = true;
         }
         else if ((setting == "file")||(setting == "File")) {

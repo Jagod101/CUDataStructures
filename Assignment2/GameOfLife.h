@@ -11,7 +11,11 @@ using namespace std;
 
 class Game {
     private:
-
+        int boardLength, boardWidth;
+        string outputType = "";
+        string outString = "";
+        ofstream outputFile;
+        
     public:
         Game(); //Constructor
         ~Game(); //Deconstructor
@@ -19,12 +23,12 @@ class Game {
         void selectSettings();
         void selectMode(); //Select Game Mode
         
-        int classicMode(); //Classic Game Mode
-        int donutMode(); //Donut Game Mode
-        int mirrorMode(); //Mirror Game Mode
+        int classicMode(int boardLength, int boardWidth, char**& board); //Classic Game Mode
+        int donutMode(int boardLength, int boardWidth, char**& board); //Donut Game Mode
+        int mirrorMode(int boardLength, int boardWidth, char**& board); //Mirror Game Mode
 
-        void createRandomBoard(); //Create Game Board
-        void createFileBoard();
+        void createRandomBoard(int& boardLength, int& boardWidth, char**& board); //Create Game Board
+        void createFileBoard(ifstream& inputFile, char**& board);
 
         void printOptions(); 
 };
