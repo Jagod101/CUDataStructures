@@ -35,10 +35,11 @@ class Game {
         //Mirror Mode
 		int mirrorMode(int boardLength, int boardWidth, char**& board);
 
+        void startGame(int& boardLength, int& boardWidth, char**& board);
         //Prints the Board in the Terminal
         void printBoardIn(int boardLength, int boardWidth, char** board);
         //Prints the Board OUT to a File
         void printBoardOut(int boardLength, int boardWidth, char** board, ofstream& file);
 
-        void startGame(int& boardLength, int& boardWidth, char**& board);
+        
 };

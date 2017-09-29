@@ -40,7 +40,6 @@ void Game::gameSettings(string& file, int& boardLength, int& boardWidth) {
             correctAnswer = true;
         }
         else if ((setting == "file") || (setting == "File")) {
-            string file;
             cout << "What is the name of the .txt file you want to use\n";
             cin >> file;
             
@@ -161,9 +160,7 @@ int Game::classicMode(int boardLength, int boardWidth, char**& board) {
     char** nextGen = new char*[boardLength];
     
     for (int i = 0; i < boardLength; ++i) {
-        for (int j = 0; j < boardWidth; ++j) {
-            nextGen[i][j];
-        }
+        nextGen[i] = new char[boardWidth];
     }
 
     for (int i = 0; i < boardLength; ++i) {
@@ -277,9 +274,7 @@ int Game::donutMode(int boardLength, int boardWidth, char**& board) {
     char** nextGen = new char*[boardLength];
     
     for (int i = 0; i < boardLength; ++i) {
-        for (int j = 0; j < boardWidth; ++j) {
-            nextGen[i][j];
-        }
+        nextGen[i] = new char[boardWidth];
     }
     
     for(int i = 0; i < boardLength; ++i){
@@ -424,9 +419,7 @@ int Game::mirrorMode(int boardLength, int boardWidth, char**& board) {
     char** nextGen = new char*[boardLength];
     
     for (int i = 0; i < boardLength; ++i) {
-        for (int j = 0; j < boardWidth; ++j) {
-            nextGen[i][j];
-        }
+        nextGen[i] = new char[boardWidth];
     }
     
     for(int i = 0; i < boardLength; ++i){
@@ -658,7 +651,7 @@ void Game::startGame(int& boardLength, int& boardWidth, char**& board) {
             }
 
             outFile << "Gen " << gen << endl;
-            printBoardOut(int boardLength, int boardWidth, char** board, ofstream& file);
+            printBoardOut(boardLength, boardWidth, board, outFile);
             gen++;
         }
     }

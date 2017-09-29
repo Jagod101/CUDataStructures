@@ -7,14 +7,13 @@
 
 using namespace std;
 
-int main (int argc, char** argv) {
-    int boardLength;
-    int boardWidth;
-
-    string file;
-
+int main () {
     Game g;
 
+    int boardLength;
+    int boardWidth;
+    string file;
+    
     g.gameSettings(file, boardLength, boardWidth);
 
     return 0;
