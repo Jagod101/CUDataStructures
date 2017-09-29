@@ -11,11 +11,11 @@ int main (int argc, char** argv) {
     int boardLength;
     int boardWidth;
 
-    string inputFile;
+    string file;
 
     Game g;
 
-    g.gameSettings(inputFile, boardLength, boardWidth);
+    g.gameSettings(file, boardLength, boardWidth);
 
     return 0;
 }

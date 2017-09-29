@@ -15,7 +15,7 @@ Game::~Game() {
 
 }
 
-void Game::gameSettings(string& inputFile, int& boardLength, int& boardWidth) {
+void Game::gameSettings(string& file, int& boardLength, int& boardWidth) {
     string setting = "";
     bool correctAnswer = false;
 
@@ -39,18 +39,18 @@ void Game::gameSettings(string& inputFile, int& boardLength, int& boardWidth) {
             correctAnswer = true;
         }
         else if ((setting == "file") || (setting == "File")) {
-            string inputFile;
+            string file;
             cout << "What is the name of the .txt file you want to use\n";
-            cin >> inputFile;
+            cin >> file;
             
-            createBoard(inputFile.c_str(), boardLength, boardWidth)
+            createBoard(file.c_str(), boardLength, boardWidth);
 
             char** currentBoard = new char*[boardLength];
             for(int i = 0; i < boardLength; ++i) {
                 currentBoard[i] = new char[boardWidth];
             }
 
-            setBoard(inputFile.c_str(), currentBoard);
+            setBoard(file.c_str(), currentBoard);
             startGame(boardLength, boardWidth, currentBoard);
 
             correctAnswer = true;
@@ -63,6 +63,8 @@ void Game::gameSettings(string& inputFile, int& boardLength, int& boardWidth) {
 }
 
 void Game::createBoard(int& boardLength, int& boardWidth, double& density) {
+    bool correctInput = false;
+
     //Ask the User for Board Length (Rows)
     cout << "\nWhat is the length of your board? " << endl;
     cin >> boardLength;
@@ -86,9 +88,9 @@ void Game::createBoard(int& boardLength, int& boardWidth, double& density) {
     //Ask the User for Density with Invalid Input Catch 
     while (correctInput == false){
         cout << "\nEnter the density of the board (between 0 and 1): " << endl;
-        cin >> densityNumber;
+        cin >> density;
 
-        if((densityNumber >= 0.0) && (densityNumber <= 1.0)){
+        if((density >= 0.0) && (density <= 1.0)){
             correctInput = true;
         }
         else {
@@ -98,9 +100,9 @@ void Game::createBoard(int& boardLength, int& boardWidth, double& density) {
     }
 }
 
-void Game::createBoard(string inputFile, int& boardLength, int& boardWidth) {
+void Game::createBoard(string file, int& boardLength, int& boardWidth) {
     ifstream inputStream;
-	inputStream.open(inputFile.c_str());
+	inputStream.open(file.c_str());
 	inputStream >> boardLength >> boardWidth;
 	inputStream.close();
 }
@@ -135,12 +137,12 @@ void Game::setBoard(int boardLength, int boardWidth, double density, char**& boa
     }
 }
 
-void Game::setBoard(string inputFile, char**& board) {
+void Game::setBoard(string file, char**& board) {
     int a, z; //a (ashley) == boardLength AND z (zach) == boardWidth
     char c;
 
     ifstream inputStream;
-    inputStream.open(inputFile.c_str());
+    inputStream.open(file.c_str());
     inputStream >> a >> z;
 
     for (int i = 0; i < a; ++i) {
@@ -631,7 +633,7 @@ void Game::startGame(int& boardLength, int& boardWidth, char**& board) {
     }
 
     else if ((outputType == "file")||(outputType == "File")||(outputType == "3")) {
-        ofstream outputFile("GameOfLife.txt");
+        ofstream outFile("GameOfLife.txt");
         int stable = 0;
         int gen = 1;
 
@@ -651,7 +653,7 @@ void Game::startGame(int& boardLength, int& boardWidth, char**& board) {
                 break;
             }
 
-            outputFile << "Gen " << gen << endl;
+            outFile << "Gen " << gen << endl;
             printBoardOut(int boardLength, int boardWidth, char** board, ofstream& outputFile);
             gen++;
         }
@@ -667,7 +669,7 @@ void Game::printBoardIn(int boardLength, int boardWidth, char** board) {
     }
 }
 
-void Game::printBoardOut(int boardLength, int boardWidth, char** board, ofstream& outputFile) {
+void Game::printBoardOut(int boardLength, int boardWidth, char** board, ofstream& file) {
     for (int i = 0; i < boardLength; ++i) {
         for (int j = 0; j < boardWidth; ++i) {
             outputFile << board[i][j];
