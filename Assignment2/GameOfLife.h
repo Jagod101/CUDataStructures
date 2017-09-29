@@ -6,29 +6,34 @@
 */
 
 #include <iostream>
+#include <fstream>
 
 using namespace std;
 
 class Game {
     private:
-        int boardLength, boardWidth;
-        string outputType = "";
-        string outString = "";
-        ofstream outputFile;
-        
+        string outputType;
+        int countGen;
+        string outString2;
+        string outFileName;
+
     public:
-        Game(); //Constructor
-        ~Game(); //Deconstructor
+        Game();
+        ~Game();
 
         void selectSettings();
-        void selectMode(); //Select Game Mode
+        void selectMode(int& boardLength, int& boardWidth, char**& board);
         
-        int classicMode(int boardLength, int boardWidth, char**& board); //Classic Game Mode
-        int donutMode(int boardLength, int boardWidth, char**& board); //Donut Game Mode
-        int mirrorMode(int boardLength, int boardWidth, char**& board); //Mirror Game Mode
+        //Game Modes (include File I/O)
+        int mirrorMode(int boardLength, int boardWidth, char**& board);
+        int donutMode(int boardLength, int boardWidth, char**& board);
+        int classicMode(int boardLength, int boardWidth, char**& board);
+        
+        //Creates Board from File Import
+        void createFileBoard(string inputfile);
+        //Creates Board from Variables
+        void createRandomBoard(int& boardLength, int& boardWidth);
 
-        void createRandomBoard(int& boardLength, int& boardWidth, char**& board); //Create Game Board
-        void createFileBoard(ifstream& inputFile, char**& board);
-
-        void printOptions(); 
+        //Print Board out to Terminal
+        void printOptions(string outputType, int countGen, char**& board, int boardLength, int boardWidth);
 };

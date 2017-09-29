@@ -571,7 +571,7 @@ void Game::startGame(int& boardLength, int& boardWidth, char**& board) {
     
     while(wrongChoice == true) {
         cout << "How would you like your data to be printed?\n";
-        cout << "1. Pause\n 2. Enter\n 3. File\n";
+        cout << "1. Pause\n2. Enter\n3. File\n";
         cin >> outputType;
 
         if ((outputType == "pause")||(outputType == "Pause")||(outputType == "1")) {

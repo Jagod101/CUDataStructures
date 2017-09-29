@@ -14,8 +14,6 @@ int main(int argc, char** argv) {
     Game g;
     
     g.selectSettings();
-    
-    g.createBoard();
 
     return 0;
 }
