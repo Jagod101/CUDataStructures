@@ -161,7 +161,9 @@ int Game::classicMode(int boardLength, int boardWidth, char**& board) {
     char** nextGen = new char*[boardLength];
     
     for (int i = 0; i < boardLength; ++i) {
-        nextGen[i] = new char[boardWidth];
+        for (int j = 0; j < boardWidth; ++j) {
+            nextGen[i][j];
+        }
     }
 
     for (int i = 0; i < boardLength; ++i) {
@@ -275,7 +277,9 @@ int Game::donutMode(int boardLength, int boardWidth, char**& board) {
     char** nextGen = new char*[boardLength];
     
     for (int i = 0; i < boardLength; ++i) {
-        nextGen[i] = new char[boardWidth];
+        for (int j = 0; j < boardWidth; ++j) {
+            nextGen[i][j];
+        }
     }
     
     for(int i = 0; i < boardLength; ++i){
@@ -420,7 +424,9 @@ int Game::mirrorMode(int boardLength, int boardWidth, char**& board) {
     char** nextGen = new char*[boardLength];
     
     for (int i = 0; i < boardLength; ++i) {
-        nextGen[i] = new char[boardWidth];
+        for (int j = 0; j < boardWidth; ++j) {
+            nextGen[i][j];
+        }
     }
     
     for(int i = 0; i < boardLength; ++i){
