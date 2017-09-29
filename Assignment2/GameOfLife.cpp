@@ -228,23 +228,24 @@ int Game::classicMode(int boardLength, int boardWidth, char**& board) {
 				if(board[i-1][j+1] == 'X') count++;
 			}
         }
-        if (count < 2) {
-            //If there are One of Fewer Neighbors --> Death
-            nextGen[i][j] = '-';
-        }
-        else if (count == 2) {
-            //If there are exactly Two Neighbors --> No Change (Stablized)
-            nextGen[i][j] = board[i][j];
-        }
-        else if (count == 3) {
-            //If there are Three Neighbors + Empty Cell --> Birth of Cell
-            nextGen[i][j] = 'X';
-        }
-        else if (count > 3) {
-            //If there are Four or More Neighbors --> Death
-            nextGen[i][j] = '-';
-        }
     }
+    if (count < 2) {
+        //If there are One of Fewer Neighbors --> Death
+        nextGen[i][j] = '-';
+    }
+    else if (count == 2) {
+        //If there are exactly Two Neighbors --> No Change (Stablized)
+        nextGen[i][j] = board[i][j];
+    }
+    else if (count == 3) {
+        //If there are Three Neighbors + Empty Cell --> Birth of Cell
+        nextGen[i][j] = 'X';
+    }
+    else if (count > 3) {
+        //If there are Four or More Neighbors --> Death
+        nextGen[i][j] = '-';
+    }
+    
     for (int i = 0; i < boardLength; ++i) {
         for (int j = 0; j < boardWidth; ++j) {
             if (nextGen[i][j] == board[i][j]) {
