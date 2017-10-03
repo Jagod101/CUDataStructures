@@ -4,7 +4,7 @@
 using namespace std;
 
 int main (int argc, char** argv) {
-    genstack<int> g(5);
+    genstack<string> g(5);
 
     g.push("r");
     g.push("r");
