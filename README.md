@@ -10,19 +10,19 @@ Chapman Universities Data Structures and Algorithms (C++) course work
 - [Linked Lists](In-Class/LinkedLists/)
 
 ## Assignments List
-- [Hello World!](Assignment0/) (0)
+0. [Hello World!](Assignment0/)
 	- Individual Project
 
-- [C++ Review (DNA & Nucleotides)](Assignment1/) (1)
+1. [C++ Review (DNA & Nucleotides)](Assignment1/)
 	- Individual Project
 	- [Assignment 1 Instructions](Assignment1/assign1spec.pdf)
 
-- [The Game of Life](Assignment2/) (2)
+2. [The Game of Life](Assignment2/)
 	- Collaborative Project
 	- Partner: Ashley Wood
 	- [Assignment 2 Instructions](Assignment2/assign2_Life.pdf)
 
-- [Syntax Checker](Assignment3/) (3)
+3. [Syntax Checker](Assignment3/)
 	- Individual Project
 	- [Assignment 3 Instructions](Assignment3/assign3.pdf)
 
