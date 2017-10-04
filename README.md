@@ -37,15 +37,15 @@ cd <Insert Directory Name>
 ```
 Helpful Git/Terminal Commands
 ```
-mkdir <Directory/Folder Name>	[Creates a Folder]
-touch <FileName.FileEnding>		[Creates a File]
-cat <File> 						[Prints Contents of File to the Screen]
-mv <File> <Folder>				[Moves a File to a Specified Folder]
+mkdir <Directory/Folder Name>					[Creates a Folder]
+touch <FileName.FileEnding>					[Creates a File]
+cat <File>					[Prints Contents of File to the Screen]
+mv <File> <Folder>					[Moves a File to a Specified Folder]
 ```
 Git Specific Commands
 ```
 git status						[Check the Status on Local]
-git commit -m "<Message>"		[Commit Local Changes for Repo]
+git commit -m "<Message>"				[Commit Local Changes for Repo]
 git push						[Push Local Changes to Repo]
 ```
 
