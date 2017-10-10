@@ -42,7 +42,7 @@ GenStack<T>::GenStack(int maxsize) {
     myArray = new T[maxsize];
     max = maxsize;
     top = -1;
-    tempArray = new T[max]
+    tempArray = new T[max];
 }
 
 template <class T>
@@ -103,7 +103,7 @@ void GenStack<T>::increaseSize() {
         tempArray[i] = myArray[i];
     }
 
-    max += 10;
+    max += 1;
     myArray = new T[max];
 
     for (int i = top; i > -1; --i) {

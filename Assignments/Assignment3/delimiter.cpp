@@ -12,6 +12,7 @@
 #include <stack>
 #include <string>
 #include "delimiter.h"
+#include "GenStack.h"
 
 using namespace std;
 
@@ -41,8 +42,10 @@ void delimiter::filePath() {
     checkBrackets(inFile);
 }
 
-void delimiter::checkBrackets(ifstream& file) {
+int delimiter::checkBrackets(ifstream& file) {
     bool continued = true;
+
+    ifstream inFile;
 
     GenStack<char> s(10);
 
@@ -50,10 +53,10 @@ void delimiter::checkBrackets(ifstream& file) {
         string fullCode;
         int lineNum = 0;
 
-        while (inFile >> fullCode) {
+        while (file >> fullCode) {
             for (int i = 0; i < fullCode.size(); ++i) {
                 if ((fullCode[i] == '(')||(fullCode[i] == ')')||(fullCode[i] == '[')||(fullCode[i] == ']')||(fullCode[i] == '{')||(fullCode[i] == '}')) {
-                    if ((s.peek() == '(')&&(fullCode[i] == ')') {
+                    if ((s.peek() == '(')&&(fullCode[i] == ')')) {
                         s.pop();
                     }
                     else if ((s.peek() == '[')&&(fullCode[i] == ']')) {
@@ -102,4 +105,5 @@ void delimiter::checkBrackets(ifstream& file) {
             }
         }
     }
+    return 0;
 }

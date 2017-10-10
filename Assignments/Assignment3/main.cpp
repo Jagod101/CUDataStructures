@@ -17,7 +17,9 @@
 using namespace std;
 
 int main(int argc, char** argv) {
-    s.filePath();
+    delimiter d;
+
+    d.filePath();
 
     return 0;
 }
