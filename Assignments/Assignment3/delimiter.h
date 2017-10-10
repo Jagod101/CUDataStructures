@@ -8,16 +8,18 @@
  */
 
 #include <iostream>
-#include <fstream>
 #include <stack>
 #include <string>
-#include "GenStack.h"
-#include "delimiter.h"
-
+#include <fstream>
 using namespace std;
 
-int main(int argc, char** argv) {
-    s.filePath();
+class delimiter {
+    private:
 
-    return 0;
+    public:
+        delimiter();
+        ~delimiter();
+
+        void filePath();
+        void checkBrackets(ifstream& file);
 }
