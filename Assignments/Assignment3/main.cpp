@@ -24,7 +24,7 @@ int main(int argc, char** argv) {
     }
     else if (argc >= 2) {
         string file = argv[1];
-        d.filePath(file);
+        d.checkBrackets(file);
     }
 
     return 0;

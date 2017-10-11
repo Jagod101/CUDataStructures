@@ -29,8 +29,6 @@ int delimiter::checkBrackets(string file) {
 
     GenStack<char> s(10);
 
-    string file;
-
     while (continued) {
         string fullCode;
         int lineNum = 0;
