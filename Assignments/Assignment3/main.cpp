@@ -19,7 +19,13 @@ using namespace std;
 int main(int argc, char** argv) {
     delimiter d;
 
-    d.filePath();
+    if (argc < 2) {
+        cout << "ERROR: Please Enter Valid File Input" << endl;
+    }
+    else if (argc >= 2) {
+        string file = argv[1];
+        d.filePath(file);
+    }
 
     return 0;
 }

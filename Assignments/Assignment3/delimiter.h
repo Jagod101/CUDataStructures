@@ -20,6 +20,5 @@ class delimiter {
         delimiter();
         ~delimiter();
 
-        void filePath();
-        int checkBrackets(ifstream& file);
+        int checkBrackets(string file);
 };

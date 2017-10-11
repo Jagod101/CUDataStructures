@@ -24,34 +24,17 @@ delimiter::~delimiter() {
 
 }
 
-void delimiter::filePath() {
-    ifstream inFile;
-
-    cout << "Please Enter the Path for the File you would like to Evaluate" << flush;
-
-    while ( true ) {
-        string file;
-        getline(cin, file);
-
-        inFile.open(file.c_str());
-        if (inFile) {
-            break;
-        }
-        cout << "INVALID FILE: Please Enter a Valid File" << flush;
-    }
-    checkBrackets(inFile);
-}
-
-int delimiter::checkBrackets(ifstream& file) {
+int delimiter::checkBrackets(string file) {
     bool continued = true;
-
-    ifstream inFile;
 
     GenStack<char> s(10);
 
     while (continued) {
         string fullCode;
         int lineNum = 0;
+
+        ifstream inputStream;
+        inputStream.open(file.c_str());
 
         while (file >> fullCode) {
             for (int i = 0; i < fullCode.size(); ++i) {
