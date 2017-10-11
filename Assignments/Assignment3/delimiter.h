@@ -17,8 +17,8 @@ class delimiter {
     private:
 
     public:
-        delimiter();
-        ~delimiter();
+        delimiter(); //Constructor
+        ~delimiter(); //Destructor
 
-        int checkBrackets(string file);
+        int checkBrackets(string file); //checkBrackets takes in string file from main.cpp
 };

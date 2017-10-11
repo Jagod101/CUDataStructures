@@ -18,8 +18,8 @@ class GenStack {
     private:
 
     public:
-        GenStack(int maxsize);
-        ~GenStack();
+        GenStack(int maxsize); //Constructor
+        ~GenStack(); //Destructor
 
         void push(T data);
         T pop();
@@ -37,24 +37,27 @@ class GenStack {
         T *tempArray;
 };
 
+//Constructor
 template <class T>
 GenStack<T>::GenStack(int maxsize) {
-    myArray = new T[maxsize];
-    max = maxsize;
+    myArray = new T[maxsize]; 
+    max = maxsize; 
     top = -1;
-    tempArray = new T[max];
+    tempArray = new T[max]; 
 }
 
+//Destructor
 template <class T>
 GenStack<T>::~GenStack() {
     delete []myArray;
-    delete []tempArray;
+    delete []tempArray; 
 
     cout << "Object Destroyed: program exiting..." << endl;
 }
 
 template <class T>
 void GenStack<T>::push(T data) {
+    //if isFull returns as true (1)
     if (isFull() == 1) {
         increaseSize();
         push(data);
@@ -66,6 +69,7 @@ void GenStack<T>::push(T data) {
 
 template <class T>
 T GenStack<T>::pop() {
+    //if isEmpty returns as true (1)
     if (isEmpty() == 1) {
         cout << "ERROR: current stack is empty\n" << endl;
         return 0;
