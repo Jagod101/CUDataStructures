@@ -50,7 +50,7 @@ GenStack<T>::~GenStack() {
     delete []myArray;
     delete []tempArray;
 
-    cout << "Object Destroyed\n" << endl;
+    cout << "Object Destroyed: program exiting..." << endl;
 }
 
 template <class T>

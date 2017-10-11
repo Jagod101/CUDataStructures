@@ -20,7 +20,7 @@ int main(int argc, char** argv) {
     delimiter d;
 
     if (argc < 2) {
-        cout << "ERROR: Please Enter Valid File Input" << endl;
+        cout << "ERROR: Please Enter Valid File Input\n" << endl;
     }
     else if (argc >= 2) {
         string file = argv[1];

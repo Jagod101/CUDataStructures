@@ -49,15 +49,15 @@ int delimiter::checkBrackets(string file) {
                         s.pop();
                     }
                     else if ((s.peek() == '(')&&(fullCode[i] == ']' || fullCode[i] == '}')) {
-                        cout << "ERROR: Line " << lineNum << ": ')' expected and found '" << fullCode[i] << "' instead\n" << endl;
+                        cout << "ERROR: Line " << lineNum << ": ')' expected and found '" << fullCode[i] << "' instead" << endl;
                         return 0;
                     }
                     else if ((s.peek() == '[')&&(fullCode[i] == ')' || fullCode[i] == '}')) {
-                        cout << "ERROR: Line " << lineNum << ": ']' expected and found '" << fullCode[i] << "' instead\n" << endl;
+                        cout << "ERROR: Line " << lineNum << ": ']' expected and found '" << fullCode[i] << "' instead" << endl;
                         return 0;
                     }
                     else if ((s.peek() == '{')&&(fullCode[i] == ']' || fullCode[i] == ')')) {
-                        cout << "ERROR: Line " << lineNum << ": '}' expected and found '" << fullCode[i] << "' instead\n" << endl;
+                        cout << "ERROR: Line " << lineNum << ": '}' expected and found '" << fullCode[i] << "' instead" << endl;
                         return 0;
                     }
                     else if ((fullCode[i] == '(')||(fullCode[i] == '[')||(fullCode[i] == '{')) {
@@ -75,12 +75,13 @@ int delimiter::checkBrackets(string file) {
         else if (s.isEmpty() == 1) {
             char repeat;
 
-            cout << "Procesing Complete: no errors. \nCheck another File [Y/N]\n" << endl;
+            cout << "Procesing Complete: no errors \nCheck another File [Y/N]" << endl;
             cin >> repeat;
 
-            if ((repeat == 'Y')||(repeat == 'y')) {
-                cout << "Name of New File?\n" << endl;
+            if ((repeat == 'Y')||(repeat == 'y')||(repeat == 'yes')||(repeat == 'Yes')||(repeat == 'YES')) {
+                cout << "Name of New File? ";
                 cin >> file;
+                cout << "\n" << endl;
                 continue;
             }
             else {
