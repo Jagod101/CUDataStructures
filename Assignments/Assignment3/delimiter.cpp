@@ -31,7 +31,7 @@ int delimiter::checkBrackets(string file) {
 
     while (continued) {
         string fullCode;
-        int lineNum = 0;
+        int lineNum = 1;
 
         ifstream inputStream;
         inputStream.open(file.c_str());
