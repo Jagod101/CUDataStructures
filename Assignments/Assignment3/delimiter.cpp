@@ -78,7 +78,7 @@ int delimiter::checkBrackets(string file) {
             cout << "Procesing Complete: no errors \nCheck another File [Y/N]" << endl;
             cin >> repeat;
 
-            if ((repeat == 'Y')||(repeat == 'y')||(repeat == 'yes')||(repeat == 'Yes')||(repeat == 'YES')) {
+            if ((repeat == 'Y')||(repeat == 'y')) {
                 cout << "Name of New File? ";
                 cin >> file;
                 cout << "\n" << endl;
