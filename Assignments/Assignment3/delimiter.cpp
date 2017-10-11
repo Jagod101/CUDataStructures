@@ -70,11 +70,11 @@ int delimiter::checkBrackets(ifstream& file) {
                         return 0;
                     }
                     else if ((s.peek() == '[')&&(fullCode[i] == ')' || fullCode[i] == '}')) {
-                        cout << "ERROR: Line " << lineNum << ": ')' expected and found '" << fullCode[i] << "' instead" << endl;
+                        cout << "ERROR: Line " << lineNum << ": ']' expected and found '" << fullCode[i] << "' instead" << endl;
                         return 0;
                     }
                     else if ((s.peek() == '{')&&(fullCode[i] == ']' || fullCode[i] == ')')) {
-                        cout << "ERROR: Line " << lineNum << ": ')' expected and found '" << fullCode[i] << "' instead" << endl;
+                        cout << "ERROR: Line " << lineNum << ": '}' expected and found '" << fullCode[i] << "' instead" << endl;
                         return 0;
                     }
                     else if ((fullCode[i] == '(')||(fullCode[i] == '[')||(fullCode[i] == '{')) {
@@ -93,7 +93,7 @@ int delimiter::checkBrackets(ifstream& file) {
         else if (s.isEmpty() == 1) {
             char repeat;
 
-            cout << "Procesing Complete - No Errors. \nProcess another File [Y/N]" << endl;
+            cout << "Procesing Complete - No Errors. \Check another File [Y/N]" << endl;
             cin >> repeat;
 
             if ((repeat == 'Y')||(repeat == 'y')) {
