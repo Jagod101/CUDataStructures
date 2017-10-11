@@ -50,7 +50,7 @@ GenStack<T>::~GenStack() {
     delete []myArray;
     delete []tempArray;
 
-    cout << "Object Destroyed" << endl;
+    cout << "Object Destroyed\n" << endl;
 }
 
 template <class T>
@@ -67,7 +67,7 @@ void GenStack<T>::push(T data) {
 template <class T>
 T GenStack<T>::pop() {
     if (isEmpty() == 1) {
-        cout << "ERROR: current stack is empty" << endl;
+        cout << "ERROR: current stack is empty\n" << endl;
         return 0;
     }
     else {
