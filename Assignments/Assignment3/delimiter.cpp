@@ -36,7 +36,7 @@ int delimiter::checkBrackets(string file) {
         ifstream inputStream;
         inputStream.open(file.c_str());
 
-        while (file >> fullCode) {
+        while (inputStream >> fullCode) {
             for (int i = 0; i < fullCode.size(); ++i) {
                 if ((fullCode[i] == '(')||(fullCode[i] == ')')||(fullCode[i] == '[')||(fullCode[i] == ']')||(fullCode[i] == '{')||(fullCode[i] == '}')) {
                     if ((s.peek() == '(')&&(fullCode[i] == ')')) {
@@ -75,7 +75,7 @@ int delimiter::checkBrackets(string file) {
         else if (s.isEmpty() == 1) {
             char repeat;
 
-            cout << "Procesing Complete - No Errors. \Check another File [Y/N]\n" << endl;
+            cout << "Procesing Complete: no errors. \nCheck another File [Y/N]\n" << endl;
             cin >> repeat;
 
             if ((repeat == 'Y')||(repeat == 'y')) {
