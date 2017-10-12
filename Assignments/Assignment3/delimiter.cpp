@@ -5,6 +5,8 @@
  CPSC 350-02
 
  Assignment 3: Syntax Checker
+
+ Purpose: take input in the form of a file and check for all Brackets throughout it
  */
 
 #include <iostream>

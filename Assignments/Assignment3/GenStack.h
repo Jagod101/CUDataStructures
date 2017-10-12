@@ -5,6 +5,8 @@
  CPSC 350-02
 
  Assignment 3: Syntax Checker
+
+ Purpose: declare class GenStack and it's methods used in delimiter.cpp (using template class)
  */
 
 #include <iostream>

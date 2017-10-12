@@ -5,6 +5,8 @@
  CPSC 350-02
 
  Assignment 3: Syntax Checker
+
+ Purpose: declare the delimiter class and it's methods for delimiter.cpp
  */
 
 #include <iostream>

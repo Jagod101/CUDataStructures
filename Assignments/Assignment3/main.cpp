@@ -5,6 +5,8 @@
  CPSC 350-02
 
  Assignment 3: Syntax Checker
+
+ Purpose: take file input and close when program completes (links to all other files)
  */
 
 #include <iostream>
