@@ -41,7 +41,7 @@ int delimiter::checkBrackets(string file) {
         ifstream inputStream; 
         inputStream.open(file.c_str());
 
-        while (inputStream >> fullCode) {
+        while (getline(inputStream, fullCode) != NULL) {
             for (int i = 0; i < fullCode.size(); ++i) {
                 if ((fullCode[i] == '(')||(fullCode[i] == ')')||(fullCode[i] == '[')||(fullCode[i] == ']')||(fullCode[i] == '{')||(fullCode[i] == '}')) {
                     //If statement looking for '(' and ')' Brackets
