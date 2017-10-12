@@ -52,7 +52,8 @@ git push						[Push Local Changes to Repo]
 ## In-Class Work/Examples
 - [Stacks](In-Class/Stacks/)
 - [Queues](In-Class/Queues/)
-- [Linked Lists](In-Class/LinkedLists/)
+- [Linked Lists](In-Class/LinkedLists/LinkedList.cpp)
+- [Doubly Linked Lists](In-Class/LinkedLists/DoublyLinkedList.cpp)
 
 ## Assignments List
 0. [Hello World!](Assignments/Assignment0/)
