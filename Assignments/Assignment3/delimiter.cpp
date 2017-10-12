@@ -87,13 +87,12 @@ int delimiter::checkBrackets(string file) {
         else if (s.isEmpty() == 1) {
             char repeat;
 
-            cout << "Procesing Complete: no errors \nCheck another File [Y/N]" << endl;
+            cout << "Procesing Complete: no errors \nCheck another File [Y/N] ";
             cin >> repeat;
 
             if ((repeat == 'Y')||(repeat == 'y')) {
                 cout << "Name of New File? ";
                 cin >> file;
-                cout << "\n" << endl;
                 continue;
             }
             else {

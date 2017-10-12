@@ -15,7 +15,9 @@ example.h
 Runtime Errors: No known errors at this time
 
 References:
-Data Structures and Algorithms in C (Section 5.1.7 Matching Parentheses and HTML Tags)
+- Data Structures and Algorithms in C (Section 5.1.7 Matching Parentheses and HTML Tags)
+- https://stackoverflow.com/
+- http://www.cplusplus.com/
 
 Instructions:
 1. Navigate within the folder (using cd)
