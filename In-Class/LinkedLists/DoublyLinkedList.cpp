@@ -46,6 +46,7 @@ class DoublyLinkedList {
 
         int deletePos(int pos); //Remove at Specified Position
         int find(int value); //Find Value within LinkedList
+        int remove(int key);
 
         bool inserAfter(int pos, int val);
         bool isEmpty(); //Checks to see if Empty
@@ -98,7 +99,25 @@ void DoublyLinkedList::insertBack(int d) {
 }
 
 int DoublyLinkedList::removeFront() {
-    
+    ListNode *node = front;
+
+    //Only Node in List
+    if(front->next == NULL) {
+        back = NULL;
+    }
+    //More than One
+    else {
+        front->next->prev = NULL;
+    }
+
+    front = front->next;
+    node->next = NULL;
+
+    int temp = node->data;
+
+    delete node;
+    --size;
+    return temp;
 }
 
 int DoublyLinkedList::removeBack() {
@@ -115,4 +134,40 @@ void DoublyLinkedList::deletePos(int pos) {
 
 void DoublyLinkedList::find(int value) {
     
+}
+
+int DoublyLinkedList::remove(int key) {
+    ListNode *curr = front;
+
+    //Looks for Node
+    while(curr->data != key) {
+        curr = curr->next;
+
+        if(curr == NULL) {
+            return NULL;
+        }
+    }
+
+    //Found Node
+    if(curr == front) {
+        front = curr->next;
+    }
+    else {
+        curr->prev->next = curr->next;
+    }
+
+    if(curr == back) {
+        back = curr->prev;
+    }
+    else {
+        curr->next->prev = curr->prev;
+    }
+
+    curr->next = NULL;
+    curr->prev = NULL;
+
+    int temp = curr->data;
+    delete curr;
+    --size;
+    return temp;
 }
