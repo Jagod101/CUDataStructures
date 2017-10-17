@@ -54,6 +54,7 @@ git push						[Push Local Changes to Repo]
 - [Queues](In-Class/Queues/)
 - [Linked Lists](In-Class/LinkedLists/LinkedList.cpp)
 - [Doubly Linked Lists](In-Class/LinkedLists/DoublyLinkedList.cpp)
+- [Trees](In-Class/Trees/)
 
 ## Assignments List
 0. [Hello World!](Assignments/Assignment0/)
