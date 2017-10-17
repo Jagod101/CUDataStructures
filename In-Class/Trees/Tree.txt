@@ -1,0 +1,30 @@
+Trees
+- consists of nodes with a parent-child relationship
+
+Tree Terminology
+- Root: node without a parent
+- Internal nodes: node with at least one child
+- External nodes (leaf): a node with no children
+- Death of a node: number of ancestors
+- Height: max depth of any node
+
+Binary Search Tree (BST)
+- a tree that allows for efficent sorting and searching
+    1) insert
+
+Rules of BST
+- Each node (vertex) must have exactly one path (edge) to another node
+    1) If it doesn't, then it's a graph
+- Each node consists of a key value
+    1) Key to sort
+- Data entries are sorted
+    1) Values smaller than the root, go left
+    2) Values greater than the root, go right
+- Internal: node that has two children
+- External: one or fewer children
+    1) leaf = no children
+- Node Degree: the number of children of a given node
+
+Balance/Unbalanced Trees
+- A tree is "perfectly" height-balanced if the left and right subtrees of any node are the same height
+    1) A tree is balanced if the height of the left and right is within 1
