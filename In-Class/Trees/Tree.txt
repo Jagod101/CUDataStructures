@@ -5,7 +5,7 @@ Tree Terminology
 - Root: node without a parent
 - Internal nodes: node with at least one child
 - External nodes (leaf): a node with no children
-- Death of a node: number of ancestors
+- Depth of a node: number of ancestors
 - Height: max depth of any node
 
 Binary Search Tree (BST)
@@ -28,3 +28,76 @@ Rules of BST
 Balance/Unbalanced Trees
 - A tree is "perfectly" height-balanced if the left and right subtrees of any node are the same height
     1) A tree is balanced if the height of the left and right is within 1
+
+Tree Traversal
+- In-Order
+- Pre-Order
+- Post-Order
+
+In Order Traversal
+- A node is visited after it's left subtree and before it's right subtree
+- Print the nodes of a tree
+
+- Example Code: 
+    inOrder(TreeNode* n) {
+        if(n != NULL) {
+            inOrder(n->left);
+            cout << n->key << n->data << endl;
+            inOrder(n->right);
+        }
+    }
+
+Pre Order Traversal
+- A node is visited BEFORE it's descendants or children
+- Print some structured document 
+
+- Example Code: 
+    preOrder(TreeNode* n) {
+        if(n != NULL) {
+            cout << n->key << n->data << endl;
+            preOrder(n->left);
+            preOrder(n->right);
+        }
+    }
+
+Post Order Traversal
+- A node is visited AFTER it's descendants or children
+- Print some directories/sub-directories
+
+- Example Code: 
+    postOrder(TreeNode* n) {
+        if(n != NULL) {
+            postOrder(n->left);
+            postOrder(n->right);
+            cout << n->key << n->data << endl;
+        }
+    }
+
+
+Psuedo Code Examples for Tree Traversal: 
+
+Get Minimum Value in a Tree
+    getMin() {
+        TreeNode c = root;
+        while(c->left != NULL) {
+            c = c->left;
+        }
+
+        return c;
+    }
+
+Get Maximum Value in a Tree
+    getMax() {
+        TreeNode c = root;
+        while(c->right != NULL) {
+            c = c->right;
+        }
+
+        return c;
+    }
+
+Insert a Value into a Tree (a "failed search")
+1) Create a New Node (leaf)
+2) Evaluate wheter it is greater than or less than the root
+    a) Determine left or right
+3) Once you reach a Leaf Node, found the location
