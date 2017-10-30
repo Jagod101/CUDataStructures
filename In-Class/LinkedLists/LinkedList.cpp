@@ -1,25 +1,29 @@
 #include <iostream>
 
+template <class T>
 class ListNode {
     public:
-        int data;
+        T data;
         ListNode *next;
 
         ListNode(); //Constructor
-        ListNode(int data);
+        ListNode(T data);
         ~ListNode(); //Destructor
 };
 
-ListNode::ListNode() {
+template <class T>
+ListNode<T>::ListNode() {
 
 }
 
-ListNode::ListNode(int d) {
+template <class T>
+ListNode<T>::ListNode(int d) {
     data = d;
     next = NULL;
 }
 
-ListNode::~ListNode() {
+template <class T>
+ListNode<T>::~ListNode() {
     if(next != NULL) {
         delete next;
     }
