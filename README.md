@@ -73,4 +73,8 @@ git push						[Push Local Changes to Repo]
 	- Individual Project
 	- [Assignment 3 Instructions](Assignments/Assignment3/assign3.pdf)
 
+4. [Registrar’s Office Simulation](Assignments/Assignment4/)
+	- Collaborative Project
+	- [Assignment 4 Instructions](Assignments/Assignment4/assign4spec.pdf)
+
 - **To Be Added**
