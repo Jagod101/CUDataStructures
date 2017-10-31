@@ -82,18 +82,17 @@ template <class T>
 void DoublyLinkedList<T>::insertFront(int d) {
     ListNode *node = new ListNode(d);
     
-        //Empty
-        if(size == 0) {
-            back = node;
-        }
-        //Not Empty
-        else {
-            front->prev = node;
-            node->next = front;
-        }
-    
-        front = node;
-        size++;
+    if(size == 0) {
+        back = node;
+    }
+
+    else {
+        front->prev = node;
+        node->next = front;
+    }
+
+    front = node;
+    size++;
 }
 
 template <class T>
@@ -142,8 +141,8 @@ int DoublyLinkedList<T>::removeBack() {
     ListNode *node = back;
 
     //Only Node in List
-    if(back->prev == NULL) {
-        front = NULL;
+    if(front->next == NULL) {
+        front = back;
     }
     //More than One
     else {
@@ -164,10 +163,9 @@ template <class T>
 void DoublyLinkedList<T>::printList() {
     ListNode *curr = front;
 
-    //Iterates through Nodes and prints each out until empty
     while(curr == true) {
-        cout << curr->data << endl; //Prints out curr value in ListNode
-        curr = curr->next; //Makes curr the next node 
+        cout << curr->data << endl;
+        curr = curr->next;
     }
 }
 
@@ -178,11 +176,11 @@ void DoublyLinkedList<T>::deletePos(int pos) {
 
 template <class T>
 void DoublyLinkedList<T>::find(int value) {
-    int idx = -1; //idx -> index
+    int idx = -1;
     
     ListNode *curr = front;
 
-    while(curr != NULL) { //start searching for the value
+    while(curr != NULL) {
         ++idx;
 
         if(curr->data == value) {
@@ -320,4 +318,14 @@ int GenQueue<T>::isEmpty() {
 template <class T>
 int GenQueue<T>::getSize() {
     return numElements;
+}
+
+//<--------------------WINDOWS----------------------->
+template <class T>
+class Windows {
+    private:
+
+    public:
+        Windows(); //Constructor
+        ~Windows();
 }
