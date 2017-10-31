@@ -7,35 +7,36 @@ class TreeNode {
     private:
 
     public:
-        int key;
-        int value;
-        int pos;
+        T value;
+        T key; //Key can be Value
 
         TreeNode *left;
         TreeNode *right;
 
         TreeNode();
-        TreeNode(int key, int value, int pos);
-        ~TreeNode();
+        TreeNode(T key, T value);
+        virtual ~TreeNode();
 };
 
 template <class T>
 TreeNode<T>::TreeNode() {
-
-}
-
-template <class T>
-TreeNode<T>::TreeNode(int k, int v, int p) {
-    key = k;
-    value = v;
-    pos = p;
+    key = 0;
+    value = 0;
     left = NULL;
     right = NULL;
 }
 
 template <class T>
-TreeNode<T>::~TreeNode() {
+TreeNode<T>::TreeNode(int k, int v) {
+    key = k;
+    value = v;
+    left = NULL;
+    right = NULL;
+}
 
+template <class T>
+virtual TreeNode<T>::~TreeNode() {
+    //Build some character
 }
 
 template <class T>
@@ -44,6 +45,8 @@ class BST {
         TreeNode *root;
 
     public:
+        int pos;
+
         BST(); //Constructor
         ~BST(); //Destructor
 
@@ -123,12 +126,16 @@ int BST<T>::put(int key, int value) {
 
 template <class T>
 int BST<T>::erase(int key) {
-    
+    if(root == NULL) {
+        return false;
+    }
 }
 
 template <class T>
 int BST<T>::erase(int pos) {
-    
+    if(root == NULL) {
+        return false;
+    }
 }
 
 template <class T>
