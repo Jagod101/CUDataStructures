@@ -1,47 +1,25 @@
+/*
+Ashley Wood and Zachary Jagoda
+Student ID: 2271425 and Student ID: 2274813
+Student Emails: wood198@mail.chapman.edu jagod101@mail.chapman.edu
+CPSC 350-02
+Assignment 4 - Registrar’s Office Simulation 
+*/
+
 #include <iostream>
+#include <fstream>
+#include <string>
+#include <time.h>
 
 using namespace std;
-
-//<----------------LIST IMPLEMENTATION-------------------->
-template <class T>
-class ListNode {
-    private:
-
-    public:
-        T data;
-        GenList *next;
-        GenList *prev;
-
-        ListNode(); //Constructor
-        ListNode(T data);
-        ~ListNode(); //Destructor
-};
-
-template <class T>
-ListNode<T>::ListNode() {
-
-}
-
-template <class T>
-ListNode<T>::ListNode(int d) {
-    data = d;
-    next = NULL;
-    prev = NULL;
-}
-
-template <class T>
-ListNode<T>::~ListNode() {
-    next = NULL;
-    prev = NULL;
-}
 
 //<--------------------LIST INTERFACE--------------------->
 template <class T>
 class DoublyLinkedList {
     private:
         unsigned int size;
-        ListNode *front;
-        ListNode *back;
+        ListNode<T> *front;
+        ListNode<T> *back;
 
     public:
         DoublyLinkedList(); //Constructor
@@ -80,7 +58,7 @@ DoublyLinkedList<T>::~DoublyLinkedList() {
 
 template <class T>
 void DoublyLinkedList<T>::insertFront(int d) {
-    ListNode *node = new ListNode(d);
+    ListNode<T> *node = new ListNode(d);
     
     if(size == 0) {
         back = node;
@@ -97,7 +75,7 @@ void DoublyLinkedList<T>::insertFront(int d) {
 
 template <class T>
 void DoublyLinkedList<T>::insertBack(int d) {
-    ListNode *node = new ListNode(d);
+    ListNode<T> *node = new ListNode(d);
     
     //Empty
     if(size == 0) {
@@ -115,7 +93,7 @@ void DoublyLinkedList<T>::insertBack(int d) {
 
 template <class T>
 int DoublyLinkedList<T>::removeFront() {
-    ListNode *node = front;
+    ListNode<T> *node = front;
     
     //Only Node in List
     if(front->next == NULL) {
@@ -138,7 +116,7 @@ int DoublyLinkedList<T>::removeFront() {
 
 template <class T>
 int DoublyLinkedList<T>::removeBack() {
-    ListNode *node = back;
+    ListNode<T> *node = back;
 
     //Only Node in List
     if(front->next == NULL) {
@@ -161,7 +139,7 @@ int DoublyLinkedList<T>::removeBack() {
 
 template <class T>
 void DoublyLinkedList<T>::printList() {
-    ListNode *curr = front;
+    ListNode<T> *curr = front;
 
     while(curr == true) {
         cout << curr->data << endl;
@@ -178,7 +156,7 @@ template <class T>
 void DoublyLinkedList<T>::find(int value) {
     int idx = -1;
     
-    ListNode *curr = front;
+    ListNode<T> *curr = front;
 
     while(curr != NULL) {
         ++idx;
@@ -191,7 +169,7 @@ void DoublyLinkedList<T>::find(int value) {
     }
 
     if(curr == NULL)
-        idx = -1;
+    idx = -1;
     return idx;
 
     //Should check for Nodes and other things (Add in own time)
@@ -199,7 +177,7 @@ void DoublyLinkedList<T>::find(int value) {
 
 template <class T>
 int DoublyLinkedList<T>::remove(int key) {
-    ListNode *curr = front;
+    ListNode<T> *curr = front;
     
     //Looks for Node
     while(curr->data != key) {
@@ -232,100 +210,4 @@ int DoublyLinkedList<T>::remove(int key) {
     delete curr;
     --size;
     return temp;
-}
-
-//<------------------------QUEUE-------------------------->
-template <class T>
-class GenQueue {
-    private:
-
-    public: 
-        GenQueue(int maxSize);
-        ~GenQueue();
-
-        void insert(T data);
-        T remove();
-        T peek();
-
-        int isFull();
-        int isEmpty();
-        int getSize();
-
-        int head;
-        int tail;
-        int max;
-
-        T *myQueue;
-};
-
-template <class T>
-GenQueue<T>::GenQueue(int maxSize) {
-    myQueue = new char[maxSize];
-    head = 0;
-    tail = -1;
-    max = maxSize;
-    numElements = 0;
-}
-
-template <class T>
-GenQueue<T>::~GenQueue() {
-    cout << "Object Destroyed" << endl;
-}
-
-template <class T>
-void GenQueue<T>::insert(T data) {
-    //ADD INSERT CHECKS
-
-    //Circular Queue
-    if(tail == max-1) {
-        tail = -1;
-    }
-    
-    myQueue[++tail] = data;
-    ++numElements;
-}
-
-template <class T>
-T GenQueue<T>::remove() {
-    char c = '\0';
-    c = myQueue[head];
-    ++head;
-
-    //Circular Queue
-    if(head == max) {
-        head = 0;
-    }
-
-    --numElements;
-    return c;
-}
-
-template <class T>
-T GenQueue<T>::peek() {
-    return myQueue[head];
-}
-
-template <class T>
-int GenQueue<T>::isFull() {
-    return (numElements = max);
-}
-
-template <class T>
-int GenQueue<T>::isEmpty() {
-    return (numElements = 0);
-}
-
-template <class T>
-int GenQueue<T>::getSize() {
-    return numElements;
-}
-
-//<--------------------WINDOWS----------------------->
-template <class T>
-class Windows {
-    private:
-
-    public:
-        Windows(); //Constructor
-        ~Windows();
 }
