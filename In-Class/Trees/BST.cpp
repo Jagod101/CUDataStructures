@@ -45,18 +45,19 @@ class BST {
         TreeNode *root;
 
     public:
-        int pos;
-
         BST(); //Constructor
-        ~BST(); //Destructor
+        virtual ~BST(); //Destructor
 
-        int find(int key);
-        int put(int key, int value);
-        int erase(int key);
-        int erase(int pos);
+        bool find(int value); //Contains
+        void put(int value); //Insert
+        bool erase(int value); //Delete
 
-        void begin();
-        void end();
+        TreeNode* getMin();
+        TreeNode* getMax();
+        TreeNode* getSuccessor();
+
+        void printTree();
+        bool isEmpty();
 };
 
 template <class T>
@@ -65,20 +66,21 @@ BST<T>::BST() {
 }
 
 template <class T>
-BST<T>::~BST() {
-
+virtual BST<T>::~BST() {
+    //Build character Once Again
+    //Iterate and Delete
 }
 
 template <class T>
-int BST<T>::find(int k) {
-    TreeNode *curr = root;
-
+bool BST<T>::find(int value) {
     if(root == NULL) {
         return false;
     }
     else {
-        while(curr->key != NULL) {
-            if(k < curr->key) {
+        TreeNode *curr = root;
+
+        while(curr->key != value) {
+            if(value < curr->key) {
                 curr = curr->left;
             }
             else {
@@ -94,19 +96,19 @@ int BST<T>::find(int k) {
 }
 
 template <class T>
-int BST<T>::put(int key, int value) {
-    TreeNode *node = new TreeNode(key, value);
-
-    TreeNode *curr = root;
-    TreeNode *parent;
+void BST<T>::put(int value) {
+    TreeNode *node = new TreeNode(value);
 
     if(root == NULL) {
         root = node;
     }
     else {
+        TreeNode *curr = root;
+        TreeNode *parent;
+
         while(true) {
             parent = curr;
-            if(value < parent->key) {
+            if(value < curr->key) {
                 curr = curr->left;
                 if(curr == NULL) {
                     parent->left = node;
@@ -114,10 +116,12 @@ int BST<T>::put(int key, int value) {
                 }
             }
             else {
-                curr = curr->right;
-                if(curr == NULL) {
-                    parent->right = node;
-                    break;
+                if (value > curr->key) {
+                    curr = curr->right;
+                    if(curr == NULL) {
+                        parent->right = node;
+                        break;
+                    }
                 }
             }
         }
@@ -125,25 +129,133 @@ int BST<T>::put(int key, int value) {
 }
 
 template <class T>
-int BST<T>::erase(int key) {
+bool BST<T>::erase(int value) {
     if(root == NULL) {
         return false;
     }
-}
 
-template <class T>
-int BST<T>::erase(int pos) {
-    if(root == NULL) {
-        return false;
+    TreeNode *curr = root;
+    TreeNode *parent = NULL;
+    bool isLeft = true;
+    
+    while(curr->key != value) {
+        parent = curr;
+
+        if(value < curr->key) {
+            isLeft = true;
+            curr->left;
+        }
+        else {
+            isLeft = false;
+            curr = curr->right;
+        }
+
+        if(curr == NULL) {
+            return false;
+        }
     }
+
+    if(curr->left == NULL && curr->right == NULL) {
+        if(curr == root) {
+            root = NULL;
+        }
+        else if(isLeft) {
+            parent->left = NULL;
+        }
+        else {
+            parent->right = NULL;
+        }
+    }
+    else if(curr->right == NULL) {
+        if(curr == root) {
+            root = curr->left;
+        }
+        else if(isLeft) {
+            parent->left = curr->left;
+        }
+        else {
+            parent->right = curr->left;
+        }
+    }
+    else if(curr->left == NULL) {
+        if(curr == root) {
+            root = curr->right;
+        }
+        else if(isLeft) {
+            parent->left = curr->right;
+        }
+        else {
+            parent->right = curr->right;
+        }
+    }
+    else {
+        TreeNode *successor = getSuccessor(curr);
+
+        if(curr = root) {
+            root = successor;
+        }
+        else if(isLeft) {
+            parent->left = successor;
+        }
+        else {
+            parent->right = successor;
+        }
+        successor->left = curr->left;
+    }
+    return true;
 }
 
 template <class T>
-BST<T>::begin() {
-    
+TreeNode* BST<T>::getMin() {
+    TreeNode* curr = root; //Start at root
+
+    if(root == NULL) {
+        return NULL;
+    }
+
+    while(curr->left != NULL) {
+        curr = curr->left;
+    }
+
+    return curr;
 }
 
 template <class T>
-BST<T>::end() {
-    
+TreeNode* BST<T>::getMax() {
+    TreeNode* curr = root;
+
+    if(root == NULL) {
+        return NULL;
+    }
+
+    while(curr->right != NULL) {
+        curr = curr->right;
+    }
+
+    return curr;
+}
+
+template <class T>
+TreeNode* BST<T>::getSuccessor(TreeNode *d) {
+    TreeNode *sp = d;
+    TreeNode *successor = d;
+    TreeNode *curr = d->right;
+
+    while(curr != NULL) {
+        sp = successor;
+        successor = curr;
+        curr = curr->left;
+    }
+
+    if(successor != d->right) {
+        sp->left = successor->right;
+        successor->right = d->right;
+    }
+
+    return successor;
+}
+
+template <class T>
+void BST<T>::printTree() {
+
 }
