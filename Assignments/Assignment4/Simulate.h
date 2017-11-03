@@ -17,5 +17,5 @@ class Operation {
         Operation();
         ~Operation();
 
-        int runSimulation();
+        int runSimulation(string file);
 };
