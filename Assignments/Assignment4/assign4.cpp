@@ -9,7 +9,7 @@ Assignment 4 - Registrar’s Office Simulation
 #include <iostream>
 #include <fstream>
 #include <string>
-#include <array>
+#include <queue>
 #include <algorithm>
 #include <sstream>
 #include "assign4.h"
