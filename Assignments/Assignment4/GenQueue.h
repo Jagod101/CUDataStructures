@@ -7,86 +7,118 @@ Assignment 4 - Registrar’s Office Simulation
 */
 
 #include <iostream>
-#include <fstream>
-#include <string>
-#include <time.h>
+#include "ListNode.h"
 
 using namespace std;
 
-//<------------------------QUEUE-------------------------->
+//<---------------------QUEUE IMPLEMNTATION-------------------------->
 template <class T>
 class GenQueue {
     private:
 
     public: 
-        GenQueue(int maxSize);
+        unsigned int numElements;
+        ListNode<T> *front;
+        ListNode<T> *back;
+
+        GenQueue();
         ~GenQueue();
 
-        void insert(T data);
-        T remove();
-        T peek();
+        void enqueue(T d);
+        void dequeue(T d);
 
-        int isFull();
-        int isEmpty();
-        int getSize();
+        T vFront(); 
+        T vBack();
 
-        int head;
-        int tail;
-        int max;
-
-        DoublyLinkedList<T> myQueue;
+        void printQ();
+        bool isEmpty();
+        unsigned int getSize();
 };
 
 template <class T>
 GenQueue<T>::GenQueue(int maxSize) {
-    DoublyLinkedList<T> myQueue = DoublyLinkedList<T>();
-    max = maxSize;
     numElements = 0;
+    front = NULL;
+    back = NULL;
 }
 
 template <class T>
-GenQueue<T>::~GenQueue() {
-    //cout << "Object Destroyed" << endl;
-}
+GenQueue<T>::~GenQueue() {}
 
 template <class T>
-void GenQueue<T>::insert(T data) {
-    if(numElements == max) {
-        cout << "Queue is Full" << endl;
-    }
-    else {
-        myQueue.insertBack(data);
-        ++numElements;
-    }
-}
+T GenQueue<T>::enqueue(T d) {
+    ListNode<T> *node = new ListNode<T>(d);
 
-template <class T>
-T GenQueue<T>::remove() {
     if(numElements == 0) {
-        cout << "Queue is Empty" << endl;
+        front = node;
     }
     else {
-        --numElements;
-        return myQueue.removeFront();
+        back->next = node;
+        node->prev = back;
+    }
+
+    back = node;
+    ++numElements;
+}
+
+template <class T>
+T GenQueue<T>::dequeue(T d) {
+    if(!isEmpty()) {
+        ListNode<T> *node = front;
+
+        T temp = node->data;
+
+        //Only Node in List
+        if(front->next == NULL) {
+            front = NULL;
+            back = NULL;
+        }
+        //More than One
+        else {
+            front->next->prev = NULL;
+            front = front->next;
+        }
+        
+        delete node;
+        --size;
+        return temp;
+    }
+    else {
+        return T();
     }
 }
 
 template <class T>
-T GenQueue<T>::peek() {
-    return myQueue[head];
+T GenQueue<T>::vFront() {
+    return front->data;
 }
 
 template <class T>
-int GenQueue<T>::isFull() {
-    return (numElements = max);
+T GenQueue<T>::vBack() {
+    return back->data;
 }
 
 template <class T>
-int GenQueue<T>::isEmpty() {
-    return (numElements = 0);
+void GenQueue<T>::printQ() {
+    ListNode<T> *curr = front;
+
+    while(true) {
+        if(curr != NULL) {
+            cout << curr->data << endl;
+            curr = curr->next;
+        }
+        else {
+            break;
+        }
+    }
 }
 
 template <class T>
-int GenQueue<T>::getSize() {
+bool GenQueue<T>::isEmpty() {
+    return (numElements == 0);
+}
+
+template <class T>
+unsigned int GenQueue<T>::getSize() {
     return numElements;
 }

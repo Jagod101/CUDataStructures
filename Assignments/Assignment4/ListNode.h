@@ -7,9 +7,6 @@ Assignment 4 - Registrar’s Office Simulation
 */
 
 #include <iostream>
-#include <fstream>
-#include <string>
-#include <time.h>
 
 using namespace std;
 
@@ -42,6 +39,11 @@ ListNode<T>::ListNode(int d) {
 
 template <class T>
 ListNode<T>::~ListNode() {
-    next = NULL;
-    prev = NULL;
+    if(next != NULL) {
+        next = NULL;
+        prev = NULL;
+
+        delete next;
+        delete prev;
+    }
 }

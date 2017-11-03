@@ -9,13 +9,13 @@ Assignment 4 - Registrar’s Office Simulation
 #include <iostream>
 #include <fstream>
 #include <string>
-#include "assign4.cpp"
+#include "Simulate.cpp"
 
 using namespace std;
 
 int main(int argc, char** argv) {
     //INSERT CONSTRUCTOR
-    ImportSettings code;
+    Operation o;
     
     //If no file specified when running a.out
     if(argc < 2) {
@@ -25,7 +25,7 @@ int main(int argc, char** argv) {
     //If file is specified when running a.out
     else if(argc >= 2) {
         string file = argv[1];
-        code.setVariables(string file);
+        o.runSimulation(string file);
     }
     return 0;
 }
