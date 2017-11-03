@@ -25,7 +25,7 @@ class GenQueue {
         ~GenQueue();
 
         void enqueue(T d);
-        void dequeue(T d);
+        T dequeue();
 
         T vFront(); 
         T vBack();
@@ -46,7 +46,7 @@ template <class T>
 GenQueue<T>::~GenQueue() {}
 
 template <class T>
-T GenQueue<T>::enqueue(T d) {
+void GenQueue<T>::enqueue(T d) {
     ListNode<T> *node = new ListNode<T>(d);
 
     if(numElements == 0) {
@@ -62,7 +62,7 @@ T GenQueue<T>::enqueue(T d) {
 }
 
 template <class T>
-T GenQueue<T>::dequeue(T d) {
+T GenQueue<T>::dequeue() {
     if(!isEmpty()) {
         ListNode<T> *node = front;
 
