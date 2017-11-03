@@ -36,7 +36,7 @@ class GenQueue {
 };
 
 template <class T>
-GenQueue<T>::GenQueue(int maxSize) {
+GenQueue<T>::GenQueue() {
     numElements = 0;
     front = NULL;
     back = NULL;

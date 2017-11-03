@@ -31,7 +31,7 @@ ListNode<T>::ListNode() {
 }
 
 template <class T>
-ListNode<T>::ListNode(int d) {
+ListNode<T>::ListNode(T d) {
     data = d;
     next = NULL;
     prev = NULL;
