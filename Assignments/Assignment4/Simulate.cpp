@@ -28,7 +28,7 @@ int Operation::runSimulation(string file) {
 
     bool running = true;
 
-    s.importFile(file)
+    s.importFile(file);
 
     while(running) {
         if(s.studentQueue.isEmpty()) {
