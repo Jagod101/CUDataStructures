@@ -42,47 +42,72 @@ bool Simulation::importFile(string file) {
     ifstream inputStream;
     inputStream.open(file.c_str());
     
-    while(getline(inputStream, line) != NULL) {
-        totalWindows = atoi(line.c_str());
+    try {
+        while(getline(inputStream, line) != NULL) {
+            totalWindows = atoi(line.c_str());
 
-        windowArray = new Students*[totalWindows];
+            windowArray = new Students*[totalWindows];
 
-        for(int i = 0; i < totalWindows; ++i) {
-            Students* student = new Students();
-            windowArray[i] = student;
+            for(int i = 0; i < totalWindows; ++i) {
+                Students* student = new Students();
+                windowArray[i] = student;
+            }
+
+            lineNum++;
         }
-
-        lineNum++;
+    }
+    catch(exception e) {
+        cout << "ERROR" << endl;
+        return false;
     }
 
     while(getline(inputStream, line)) {
         switch(type) {
             //Clock Ticks
             case(1): {
-                entryTime = atoi(line.c_str());
-                type++;
-                lineNum++;
+                try {
+                    entryTime = atoi(line.c_str());
+                    type++;
+                    lineNum++;
+                }
+                catch(exception e) {
+                    cout << "ERROR" << endl;
+                    return false;
+                }
                 break;
             }
             //Number of Students
             case(2): {
-                if(line != "") {
-                    NSECT = atoi(line.c_str());
+                try {
+                    if(line != "") {
+                        NSECT = atoi(line.c_str());
 
-                    for(int i = 0; i < NSECT; ++i) {
-                        getline(inputStream, line);
-                        lineNum++;
+                        for(int i = 0; i < NSECT; ++i) {
+                            getline(inputStream, line);
+                            lineNum++;
 
-                        timeAtWindow = atoi(line.c_str());
+                            try {
+                                timeAtWindow = atoi(line.c_str());
+                            }
+                            catch(exception e) {
+                                cout << "ERROR" << endl;
+                                return false;
+                            }
 
-                        totalStudents++;
+                            totalStudents++;
 
-                        Students* student = new Students(timeAtWindow, entryTime);
+                            Students* student = new Students(timeAtWindow, entryTime);
 
-                        studentQueue.enqueue(student);
+                            studentQueue.enqueue(student);
+                        }
+                        type--;
                     }
-                    type--;
                 }
+                catch(exception e) {
+                    cout << "ERROR" << endl;
+                    return false;
+                }
+
                 break;
             }
             default: {
@@ -90,6 +115,7 @@ bool Simulation::importFile(string file) {
             }
         }
     }
+    return true;
 }
 
 bool Simulation::timeTracker(int t) {
