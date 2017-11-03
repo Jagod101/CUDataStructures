@@ -94,9 +94,9 @@ bool Simulation::importFile(string file) {
 
 bool Simulation::timeTracker(int t) {
     for(int i = 0; i < totalWindows; ++i) {
-        if(windowArray[i]->timeAtWindow > 0) {
+        if(windowArray[i]->windowTime > 0) {
             //Decreases when Student at Window
-            windowArray[i]->timeAtWindow--;
+            windowArray[i]->windowTime--;
         }
         else {
             //Increases when Student NOT at Window
@@ -166,8 +166,8 @@ double Simulation::medianTime() {
             double d = 0;
             int a = 0;
 
-            temp = (MAEC/2) + 1;
-            d = medianArrary[temp];
+            a = (MAEC/2) + 1;
+            d = medianArrary[a];
 
             return d;
         }
