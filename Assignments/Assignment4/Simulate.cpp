@@ -35,7 +35,7 @@ int Operation::runSimulation(string file) {
             int temp = 0;
 
             for(int i = 0; i < s.totalWindows; ++i) {
-                if((s.windowArray[i]->timeAtWindow) < 1) {
+                if((s.windowArray[i]->windowTime) < 1) {
                     temp++;
                 }
             }
@@ -44,7 +44,7 @@ int Operation::runSimulation(string file) {
             }
         }
         for(int i = 0; i < s.totalWindows; ++i) {
-            if(s.windowArray[i]->timeAtWindow < 1) {
+            if(s.windowArray[i]->windowTime < 1) {
                 if(!s.studentQueue.isEmpty()) {
                     Students* student = s.studentQueue.vFront();
 
@@ -76,7 +76,7 @@ int Operation::runSimulation(string file) {
     cout << "Longest Student Wait Time: " << s.longestTime() << endl;
     cout << "Students Waiting Over Ten Minutes: " << s.overTenTime() << endl;
     cout << "\nWINDOW Calculations" << endl;
-    cout << "Mean Window Idle Time: " << s.idleTime() << endl;
+    cout << "Mean Window Idle Time: " << s.meanIdleTime() << endl;
     cout << "Longest Window Idle Time: " << s.longestIdleTime() << endl;
     cout << "Idle Time Over Five Minutes: " << s.idleOverFiveTime() << endl;
 
