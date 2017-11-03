@@ -105,7 +105,7 @@ bool Simulation::timeTracker(int t) {
     }
 
     if(!studentQueue.isEmpty()) {
-        ListNode<Students*> *curr = studentQueue.front();
+        ListNode<Students*> *curr = studentQueue.vFront();
 
         while(curr != NULL) {
             if(curr->data->entryTime < t) {
@@ -118,7 +118,7 @@ bool Simulation::timeTracker(int t) {
 }
 
 double Simulation::meanTime() {
-    ListNode<int> *curr = waitStats.front();
+    ListNode<int> *curr = waitStats.front;
 
     double mnWait = 0;
     double sum = 0;
@@ -137,7 +137,7 @@ double Simulation::meanTime() {
 }
 
 double Simulation::medianTime() {
-    ListNode<int> *curr = waitStats.front();
+    ListNode<int> *curr = waitStats.front;
 
     double medWait = 0;
     MAEC = 0;
@@ -152,7 +152,7 @@ double Simulation::medianTime() {
     }
     else {
         medianArrary = new int[MAEC];
-        curr = waitStats.front();
+        curr = waitStats.front;
 
         for(int i = 0; i < MAEC; ++i) {
             medianArrary[i] = curr->data;
@@ -216,7 +216,7 @@ int Simulation::overTenTime() {
 }
 
 double Simulation::meanIdleTime() {
-    ListNode<int> *curr = idleStats.front();
+    ListNode<int> *curr = idleStats.front;
 
     double mnIdle = 0;
     double sum = 0;
@@ -238,7 +238,7 @@ double Simulation::meanIdleTime() {
 }
 
 int Simulation::longestIdleTime() {
-    ListNode<int> *curr = idleStats.front();
+    ListNode<int> *curr = idleStats.front;
 
     IAEC = 0;
 
@@ -249,7 +249,7 @@ int Simulation::longestIdleTime() {
 
     idleArray = new int[IAEC];
 
-    curr = idleStats.front();
+    curr = idleStats.front;
 
     for(int i = 0; i < IAEC; ++i) {
         idleArray[i] = curr->data;
