@@ -105,7 +105,7 @@ bool Simulation::timeTracker(int t) {
     }
 
     if(!studentQueue.isEmpty()) {
-        ListNode<Students*> *curr = studentQueue.vFront();
+        ListNode<Students*> *curr = studentQueue->front;
 
         while(curr != NULL) {
             if(curr->data->entryTime < t) {
