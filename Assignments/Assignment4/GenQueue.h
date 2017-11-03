@@ -80,7 +80,7 @@ T GenQueue<T>::dequeue() {
         }
         
         delete node;
-        --size;
+        --numElements;
         return temp;
     }
     else {

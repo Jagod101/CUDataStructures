@@ -42,7 +42,7 @@ bool Simulation::importFile(string file) {
     inputStream.open(file.c_str());
     
     while(getline(inputStream, line) != NULL) {
-        totalWindows = stoi(line);
+        totalWindows = stoi(line.c_str());
 
         windowArray = new Students*[totalWindows];
 
@@ -58,7 +58,7 @@ bool Simulation::importFile(string file) {
         switch(type) {
             //Clock Ticks
             case(1): {
-                entryTime = stoi(line);
+                entryTime = stoi(line.c_str());
                 type++;
                 lineNum++;
                 break;
@@ -66,13 +66,13 @@ bool Simulation::importFile(string file) {
             //Number of Students
             case(2): {
                 if(line != "") {
-                    NSECT = stoi(line);
+                    NSECT = stoi(line.c_str());
 
                     for(int i = 0; i < NSECT; ++i) {
                         getline(inputStream, line);
                         lineNum++;
 
-                        timeAtWindow = stoi(line);
+                        timeAtWindow = stoi(line.c_str());
 
                         totalStudents++;
 
