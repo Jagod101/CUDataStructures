@@ -9,7 +9,7 @@ Assignment 4 - Registrar’s Office Simulation
 #include <iostream>
 #include <fstream>
 #include <string>
-#include <array>
+#include <vector>
 #include <algorithm>
 #include <sstream>
 #include "assign4.h"
@@ -105,7 +105,7 @@ bool Simulation::timeTracker(int t) {
     }
 
     if(!studentQueue.isEmpty()) {
-        ListNode<Students*> *curr = studentQueue->front;
+        ListNode<Students*> *curr = studentQueue.front;
 
         while(curr != NULL) {
             if(curr->data->entryTime < t) {
