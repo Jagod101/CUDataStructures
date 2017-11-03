@@ -216,7 +216,7 @@ int Simulation::overTenTime() {
 }
 
 double Simulation::meanIdleTime() {
-    ListNode<int> *curr = new idleStats.front;
+    ListNode<int> *curr = idleStats.front;
 
     double mnIdle = 0;
     double sum = 0;
