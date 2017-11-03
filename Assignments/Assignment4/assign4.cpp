@@ -11,7 +11,7 @@ Assignment 4 - Registrar’s Office Simulation
 #include <string>
 #include <array>
 #include <algorithm>
-#include <cstdlib>
+#include <sstream>
 #include "assign4.h"
 
 using namespace std;
