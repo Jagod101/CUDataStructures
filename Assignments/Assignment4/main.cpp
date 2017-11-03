@@ -25,7 +25,7 @@ int main(int argc, char** argv) {
     //If file is specified when running a.out
     else if(argc >= 2) {
         string file = argv[1];
-        o.runSimulation(string file);
+        o.runSimulation(file);
     }
     return 0;
 }
