@@ -20,8 +20,8 @@ Simulation::Simulation() {
     type = 1;
     entryTime = 0;
     timeAtWindow = 0;
-    NSECT = 0;
 
+    NSECT = 0;
     MAEC = 0;
     IAEC = 0;
 
@@ -30,9 +30,9 @@ Simulation::Simulation() {
 }
 
 Simulation::~Simulation() {
-    delete []windowArray;
-    delete []idleArray;
-    delete []medianArrary;
+    delete [] windowArray;
+    delete [] idleArray;
+    delete [] medianArrary;
 }
 
 bool Simulation::importFile(string file) {
@@ -43,18 +43,17 @@ bool Simulation::importFile(string file) {
     inputStream.open(file.c_str());
     
     try {
-        while(getline(inputStream, line) != NULL) {
-            totalWindows = atoi(line.c_str());
+        getline(inputStream, line);
+        totalWindows = atoi(line.c_str());
 
-            windowArray = new Students*[totalWindows];
+        windowArray = new Students*[totalWindows];
 
-            for(int i = 0; i < totalWindows; ++i) {
-                Students* student = new Students();
-                windowArray[i] = student;
-            }
-
-            lineNum++;
+        for(int i = 0; i < totalWindows; ++i) {
+            Students* student = new Students();
+            windowArray[i] = student;
         }
+
+        lineNum++;
     }
     catch(exception e) {
         cout << "ERROR" << endl;
@@ -110,9 +109,8 @@ bool Simulation::importFile(string file) {
 
                 break;
             }
-            default: {
+            default:
                 break;
-            }
         }
     }
     return true;

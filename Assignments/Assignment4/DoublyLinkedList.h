@@ -63,7 +63,7 @@ void DoublyLinkedList<T>::insertBack(T d) {
 
 template <class T>
 T DoublyLinkedList<T>::removeFront() {
-    if(!isEmpty) {
+    if(!isEmpty()) {
         ListNode<T> *node = front;
         //Only Node in List
         if(front->next == NULL) {
@@ -73,10 +73,10 @@ T DoublyLinkedList<T>::removeFront() {
         //More than One
         else {
             front->next->prev = NULL;
+            front = front->next;
         }
 
-        front = front->next;
-        node->next = NULL;
+        //node->next = NULL;
 
         T temp = node->data;
 
@@ -98,8 +98,8 @@ template <class T>
 void DoublyLinkedList<T>::printList() {
     ListNode<T> *curr = front;
 
-    while(curr == true) {
-        if(curr ->next == NULL) {
+    while(true) {
+        if(curr->next == NULL) {
             break;
         }
 

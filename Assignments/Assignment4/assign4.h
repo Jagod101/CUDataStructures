@@ -52,7 +52,6 @@ class Simulation {
         GenQueue<int> waitStats;
         GenQueue<int> idleStats;
 
-        int *meanArrary;
         int *medianArrary;
         int *idleArray;
 

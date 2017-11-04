@@ -32,7 +32,6 @@ class GenQueue {
 
         void printQ();
         bool isEmpty();
-        //void isFront();
         unsigned int getSize();
 };
 
@@ -44,7 +43,9 @@ GenQueue<T>::GenQueue() {
 }
 
 template <class T>
-GenQueue<T>::~GenQueue() {}
+GenQueue<T>::~GenQueue() {
+
+}
 
 template <class T>
 void GenQueue<T>::enqueue(T d) {
@@ -118,20 +119,7 @@ template <class T>
 bool GenQueue<T>::isEmpty() {
     return (numElements == 0);
 }
-/*
-template <class T>
-void GenQueue<T>::isFront() {
-    if(numElements == 0) {
-        front = node;
-    }
-    else if(numElements > 0) {
-        dequeue();
-    }
-    else {
-        front = NULL;
-    }
-}
-*/
+
 template <class T>
 unsigned int GenQueue<T>::getSize() {
     return numElements;
