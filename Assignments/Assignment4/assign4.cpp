@@ -188,10 +188,10 @@ double Simulation::medianTime() {
         //For Odd Numbers
         if(MAEC % 2 == 1) {
             double d = 0;
-            int a = 0;
+            int r = 0;
 
-            a = (MAEC/2) + 1;
-            d = medianArrary[a];
+            r = (MAEC/2) + 1;
+            d = medianArrary[r];
 
             return d;
         }

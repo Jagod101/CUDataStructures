@@ -7,6 +7,7 @@ Assignment 4 - Registrar’s Office Simulation
 */
 
 #include <iostream>
+#include <string>
 #include "Students.h"
 #include "GenQueue.h"
 

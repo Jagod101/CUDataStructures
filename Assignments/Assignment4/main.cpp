@@ -8,7 +8,7 @@ Assignment 4 - Registrar’s Office Simulation
 
 #include <iostream>
 #include <string>
-#include "assign4.cpp"
+#include "assign4.h"
 
 using namespace std;
 
