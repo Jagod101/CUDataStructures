@@ -27,8 +27,10 @@ class DoublyLinkedList {
         void insertBack(T data);
         T removeFront();
         T getFront();
+
         void printList();
         int deletePos(int pos);
+        
         bool isEmpty();
         unsigned int getSize();
 };
