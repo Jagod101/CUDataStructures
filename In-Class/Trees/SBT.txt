@@ -1,0 +1,45 @@
+Red Black Tree
+- First type of balanced tree is a red-black tree. This type of tree is identical to a BST tree, with one minor difference:
+    - Each node has a color associated with it - red or black
+
+- A Red Black Tree can also be defined as a BST that satifies the following properties
+    - Every node is either Red or Black
+    - The root is always Black
+    - If a Node is Red, its Childen must be Black
+    - Every Leaf Null Node is Black (see visualization*)
+    - Every path from the root to a lead, or to a null child, must have the same number of Black Nodes
+- A Null Child refers to a place where a child could be attached to a non-leaf node
+- Number of Black Nodes in a path from Root to Leaf is valled Black Height
+- A Node in a Red Black Tree requires a one bit to store color **
+
+Rule Violations
+- The only operations that could violate the above rules of a Red Black Tree are insert and delete operations
+- To fix these violations, we have 2 possible options:
+    - Color Flips
+        - Change a Red Node to a Black Node and vice-versa
+    - Rotations
+        - Alter the Tree's Structure by arranging subtrees
+        - Extremely complicated
+    - To balance a Tree, we may have to rearrange nodes in the tree. This is what Rotations are for
+    - Two Types of Rotations:
+        - Time Complexity O(1) for both Rotations
+        - Right Rotation
+        - Left Rotation
+
+        P (parent) <-- Q (grandparent) --> C (uncle)
+        A (child) <-- P (parent) --> B (child)
+
+Insertion
+- To Insert a Node
+    - Node starts Red and Color Flip when needed
+    - Walk down the Tree looking for the correct Insertion Point. Whenever you see a Black Node with two Red Children, perform a Color Flip (turn Red leaves into Black)
+    - The Color Flip could cause a Red-Red Violation
+    - Fix with a Double or Single Rotation as needed
+    - When you find the correct spot, insert the node
+    - After you insert the node, perform additional rotations as needed to make sure all rules are met
+
+Deletion
+- To Delete a Node
+    - All the complications of BST delete plus extra pain
+
+*VISUALIZATION website: https://www.cs.usfca.edu/~galles/visualization/RedBlack.html

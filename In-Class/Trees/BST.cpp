@@ -54,7 +54,7 @@ class BST {
 
         TreeNode* getMin();
         TreeNode* getMax();
-        TreeNode* getSuccessor();
+        TreeNode* getSuccessor(TreeNode *d); //TreeNode *d represents the node we are deleting
 
         void printTree();
         bool isEmpty();
@@ -135,7 +135,7 @@ bool BST<T>::erase(int value) {
     }
 
     TreeNode *curr = root;
-    TreeNode *parent = NULL;
+    TreeNode *parent = root;
     bool isLeft = true;
     
     while(curr->key != value) {
@@ -143,7 +143,7 @@ bool BST<T>::erase(int value) {
 
         if(value < curr->key) {
             isLeft = true;
-            curr->left;
+            curr = curr->left;
         }
         else {
             isLeft = false;
@@ -154,7 +154,9 @@ bool BST<T>::erase(int value) {
             return false;
         }
     }
+    //We have found the node we want to delete
 
+    //Delete a Node with No Children
     if(curr->left == NULL && curr->right == NULL) {
         if(curr == root) {
             root = NULL;
@@ -166,6 +168,7 @@ bool BST<T>::erase(int value) {
             parent->right = NULL;
         }
     }
+    //One Child (to the Left)
     else if(curr->right == NULL) {
         if(curr == root) {
             root = curr->left;
@@ -174,9 +177,10 @@ bool BST<T>::erase(int value) {
             parent->left = curr->left;
         }
         else {
-            parent->right = curr->left;
+            parent->right = curr->right;
         }
     }
+    //One Child (to the Right)
     else if(curr->left == NULL) {
         if(curr == root) {
             root = curr->right;
@@ -188,10 +192,11 @@ bool BST<T>::erase(int value) {
             parent->right = curr->right;
         }
     }
+    //Two Children
     else {
         TreeNode *successor = getSuccessor(curr);
 
-        if(curr = root) {
+        if(curr == root) {
             root = successor;
         }
         else if(isLeft) {
