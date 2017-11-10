@@ -75,6 +75,12 @@ git push						[Push Local Changes to Repo]
 
 4. [Registrar’s Office Simulation](Assignments/Assignment4/)
 	- Collaborative Project
+	- Partner: Ashley Wood
 	- [Assignment 4 Instructions](Assignments/Assignment4/assign4spec.pdf)
+
+5. [Building a Database with Binary Search Trees](Assignments/Assignment5/)
+	- Collaborative Project
+	- Partner: 
+	- [Assignment 5 Instructions](Assignments/Assignment5/assign5specb.pdf)
 
 - **To Be Added**
