@@ -1,0 +1,65 @@
+Hash Tables
+- A Data Structure used to create an Associative Array, or Dictionary
+    - A structure maps key to values
+    - Also known as a Hash Map
+- A Hash Table makes use of a Hash Function to compute the index into an Array, or Buckets
+    - This index is then used to find a value
+
+Hashing Functions
+- Transform Keys into Table Addresses, or Buckets
+    - Maps Keys of a given type to Integers in a fixed interval [0, N - 1]
+- This computation is relatively simple to implement
+    - h(x) = x mod N is a Hash Function for integer keys
+    - the integer h(x) is called a Hash Value of Key x
+- Need to proceed with caution to avoid common issues
+    - Hash Collision
+- There is no such thing as a "perfect" Hashing function, but we can follow some guidelines to help us create good Hash Functions
+
+Hash Functions
+- Properties of a good hash function:
+    - Determinism - for a given input, key, value, it must always generate the same hash value (ALWAYS)
+    - Uniformity - should map the expected inputs as evenly as possible over its output range
+    - Defined Range - output of a hash function should have a fixed size
+    - Non-Invertible - impossible to reverse engineer the input from the output of h(x)
+        - One-Way Hash
+- Following these Guidelines can still yield Hash Collisions
+    - Collision Resolution
+
+Hash Collisions
+- No Hash Function is perfect, hence we have Collisions
+- Separate Chaining
+    - Each Bucket is independent, each Cell in the Table points to a Linked List of entries that map there
+        - Popular approach due to simple implementations
+        - Requires additional memory outside of the Table
+- Time Complexity
+    - The Time for Hash Table Operations:
+        - Time to Find the Bucket (constant)
+        - Plus the List Operation
+        - Still very efficient
+
+Linear Probing
+- Perform a sequential search to find a free Bucket in the Hash Table
+- Accomplished using two values:
+    - One as a Starting Value
+    - Second as an Interval:
+        - Same for all Keys and known as the STEPSIZE
+        - Usually the stepsize is 1
+    - Repeatedly add the stepsize to the starting value until a free space, or Bucket, is found or the entire Hash Table is traversed
+- Performance degrades as the Hash Table increases in size
+- Important Statistic in Load Factor
+    - Load Factor --> N/K where N = Number of Elements and K = Number of Buckets
+    - As the Load Factor grows, the Hash Table becomes slower (or unusable)
+
+Big O Runtime
+- Search
+    - Average - O(1)
+    - Worst - O(n)
+- Insert
+    - Average - O(1)
+    - Worst - O(n)
+- Delete
+    - Average - O(1)
+    - Worst - O(n)
+
+
+VISUALIZATION Website: https://www.cs.usfca.edu/~galles/visualization/ClosedHash.html

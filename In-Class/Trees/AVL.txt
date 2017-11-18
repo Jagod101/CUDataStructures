@@ -1,0 +1,14 @@
+AVL Trees
+- Balanced Tree
+- Named after Adelson-Velskii and Landis
+- Rather than worrying about Color, we worry about Height of Left and Right Subtrees
+    - Make sure the difference is never more than 1
+    - This is called Height Balanced
+- We define AVL trees recursively
+
+Definition
+- An Empty Tree is Height-Balanced
+    - If T is non-empty binary tree with Tl and Tr as left and right subtrees, T is height balanced if and only if Tl and Tr are height balanced (balance factor) and abs(hl-hr)<=1
+    - Is either going to be left heavy or right heavy
+
+VISUALIZATION website: https://www.cs.usfca.edu/~galles/visualization/AVLtree.html

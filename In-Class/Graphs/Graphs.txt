@@ -1,0 +1,37 @@
+Graphs
+- A graph is a set of vertices (Nodes) and a set of edges that connect pairs of distinct values. That is, at most one edge connects any pair of vertices
+  - Note that graphs and trees have similar looks and feels. This is because trees are a specific type of graph (Undirected Graph)
+- Allow us to not only represent a collection of items, but the connections between them
+- The relationships applied by these connections lead to some natural questions:
+  - Is there a way to get from one item to another following connections?
+  - How many other items can be reached from a given item?
+  - What is the best way to get to one item from another item?
+- To model such situations, we need a very general data structure that can describe an arbitrary number of items and their connections
+- Graph Theory is rooted almost entirely in mathematics
+- Examples of the types of problems that make use of graphs:
+  - maps
+  - hypertexts
+  - circuits
+  - networks
+
+Graph Applications
+- Electronic Circuits
+  - Printed Circuit Board
+  - Integrated Circuit
+- Transportation Networks
+  - Highway Network
+  - Flight Network
+- Computer Networks
+  - Local Area Network
+  - Internet
+  - Web
+- Databases
+  - Entity-Relationship Diagram
+
+Graph Terminology
+- When there is an edge connecting 2 vertices, they are said to be ADJACENT. The edge is said to be "incident" on both vertices
+- The DEGREE of a vertex is the number of edges incident has
+- A PATH in a graph is a sequence of vertices in which each successive vertex is adjacent to its predecessor in the path
+- If every edge connects a distinct pair of vertices, then we sat that the graph is a SIMPLE GRAPH
+- A graph is a CONNECTED GRAPH if there is a path from every vertex to every other vertex. A graph that is not connected consists of a set of connected components, which are maximal connected subgraphs
+- A CYCLE is a path for which the first and last vertices are adjacent
