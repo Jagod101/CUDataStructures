@@ -55,6 +55,11 @@ git push						[Push Local Changes to Repo]
 - [Linked Lists](In-Class/LinkedLists/LinkedList.cpp)
 - [Doubly Linked Lists](In-Class/LinkedLists/DoublyLinkedList.cpp)
 - [Trees](In-Class/Trees/)
+	- [BST](In-Class/Trees/BST.cpp)
+	- [SBT](In-Class/Trees/SBT.txt)
+	- [AVL](In-Class/Trees/AVL.txt)
+- [Hash Tables](In-Class/HashTables/Hash.txt)
+- [Graphs](In-Class/Graphs/Graphs.txt)
 
 ## Assignments List
 0. [Hello World!](Assignments/Assignment0/)
@@ -83,4 +88,10 @@ git push						[Push Local Changes to Repo]
 	- Partner: 
 	- [Assignment 5 Instructions](Assignments/Assignment5/assign5specb.pdf)
 
-- **To Be Added**
+6. **TBA**
+
+## License
+Students (and other persons) are allowed to refer to and use the code contained within this repository, however, plagirism will not be tolerated. Please refer to the [Chapman Coding Standards](CourseInfo/ChapmanCodingStandards.pdf) for proper format in using for youw project.
+
+You may review the Full License on the Creative Commons Website http://creativecommons.org/licenses/by-nc-sa/3.0/ 
+Or you can review the following document for proper use of the material [LICENSE.md](LICENSE.md)
