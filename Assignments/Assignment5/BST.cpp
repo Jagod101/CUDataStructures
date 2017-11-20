@@ -21,7 +21,7 @@ class BST {
 
     TreeNode<T>* getMin();
     TreeNode<T>* getMax();
-    TreeNode<T>* getSuccessor(TreeNode *d); //TreeNode *d represents the node we are deleting
+    TreeNode<T>* getSuccessor(TreeNode<T> *d); //TreeNode *d represents the node we are deleting
 
     void printTree();
     void printNode(T value);
