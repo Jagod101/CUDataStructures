@@ -19,7 +19,7 @@ Menu::~Menu() {
 }
 
 void Menu::printMenu() {
-  int input;
+  int input = 0;
   bool running = true;
 
   while (running) {
