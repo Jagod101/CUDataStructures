@@ -21,7 +21,6 @@ Menu::~Menu() {
 void Menu::printMenu() {
   int input;
   bool running = true;
-  bool validInput = true;
 
   while (running) {
     cout << "<----------------- MENU ------------------>" << endl;
@@ -45,57 +44,56 @@ void Menu::printMenu() {
 
     if(cin.fail() || input < 0 || input > 14) {
       cout << "Glitch Within the Matrix - Please Enter a Valid Menu Option \n" << endl;
-      validInput = false;
       continue;
     }
+    //ADD ERROR CHECK TO MAKE SURE INPUT IS A NUMBER VALUE
+    //ALONG WITH BEING WITHIN OPTION RANGE 1-14
 
-    while (validInput == true) {
-      switch(input) {
-        case 1:
-          printAllStudents();
-          break;
-        case 2:
-          printAllFaculty();
-          break;
-        case 3:
-          printStudent();
-          break;
-        case 4:
-          printFaculty();
-          break;
-        case 5:
-          printAdvisor();
-          break;
-        case 6:
-          printAdvisee();
-          break;
-        case 7:
-          addStudent();
-          break;
-        case 8:
-          deleteStudent();
-          break;
-        case 9:
-          addFaculty();
-          break;
-        case 10:
-          deleteFaculty();
-          break;
-        case 11:
-          changeAdvisor();
-          break;
-        case 12:
-          removeAdvisee();
-          break;
-        case 13:
-          rollback();
-          break;
-        case 14:
-          exit();
-          return;
-        default:
-          continue;
-      }
+    switch(input) {
+      case 1:
+        printAllStudents();
+        break;
+      case 2:
+        printAllFaculty();
+        break;
+      case 3:
+        printStudent();
+        break;
+      case 4:
+        printFaculty();
+        break;
+      case 5:
+        printAdvisor();
+        break;
+      case 6:
+        printAdvisee();
+        break;
+      case 7:
+        addStudent();
+        break;
+      case 8:
+        deleteStudent();
+        break;
+      case 9:
+        addFaculty();
+        break;
+      case 10:
+        deleteFaculty();
+        break;
+      case 11:
+        changeAdvisor();
+        break;
+      case 12:
+        removeAdvisee();
+        break;
+      case 13:
+        rollback();
+        break;
+      case 14:
+        exit();
+        return;
+      default:
+        continue;
     }
   }
 }
