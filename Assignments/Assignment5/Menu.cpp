@@ -44,7 +44,7 @@ void Menu::printMenu() {
 
     if(!cin || input < 0 || input > 14) {
       cout << "Glitch Within the Matrix - Please Enter a Valid Menu Option \n" << endl;
-      break;
+      continue;
     }
 
     switch(input) {
