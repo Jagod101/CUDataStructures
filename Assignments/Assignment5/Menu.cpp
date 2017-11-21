@@ -96,6 +96,7 @@ void Menu::printMenu() {
         continue;
     }
   }
+  printMenu();
 }
 
 void Menu::printAllStudents() {
