@@ -15,5 +15,5 @@ int main(int argc, char** argv) {
 
   m.printMenu();
 
-  return;
+  return 0;
 }
