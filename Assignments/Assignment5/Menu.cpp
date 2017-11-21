@@ -19,7 +19,7 @@ Menu::~Menu() {
 }
 
 void Menu::printMenu() {
-  int input = 0;
+  int input;
   bool running = true;
 
   while (running) {
@@ -42,12 +42,10 @@ void Menu::printMenu() {
 
     cin >> input;
 
-    if(cin.fail() || input < 0 || input > 14) {
+    if(!cin || input < 0 || input > 14) {
       cout << "Glitch Within the Matrix - Please Enter a Valid Menu Option \n" << endl;
       break;
     }
-    //ADD ERROR CHECK TO MAKE SURE INPUT IS A NUMBER VALUE
-    //ALONG WITH BEING WITHIN OPTION RANGE 1-14
 
     switch(input) {
       case 1:
@@ -96,54 +94,95 @@ void Menu::printMenu() {
         continue;
     }
   }
-  printMenu();
 }
 
 void Menu::printAllStudents() {
+
+  //go through the tree printing all the students in order
 
 }
 
 void Menu::printAllFaculty() {
 
+  //go through the tree printing all the faculty in order
+
 }
 
 void Menu::printStudent() {
+
+  //find student in tree
+  //print their records from studentRecords
 
 }
 
 void Menu::printFaculty() {
 
+  //find faculty member in tree
+  //print their records from faculty facultyRecords
+
 }
 
 void Menu::printAdvisor() {
+
+  //find faculty member in tree
+  //print all their advisee's records from studentRecords
 
 }
 
 void Menu::printAdvisee() {
 
+  //find student in the tree
+  //print all their advisor's records from facultyRecords
+
 }
 
 void Menu::addStudent() {
+
+  //add the student to the tree
+  //record within studentRecords their new id NUMBER
+  //record within studentRecords their faculty member
 
 }
 
 void Menu::deleteStudent() {
 
+  //go into the tree
+  //find the id NUMBER
+  //delete the student from the tree and the facultyRecords
+
 }
 
 void Menu::addFaculty() {
+
+  //add the faculty member to the tree
+  //shift some students to the new member
+  //record within facultyRecords and studentRecords these changes
 
 }
 
 void Menu::deleteFaculty() {
 
+  //go into the tree
+  //find the id NUMBER
+  //delete the faculty member from the tree
+  //shift the students to new advisers
+  //record changes in studentRecords
+
 }
 
 void Menu::changeAdvisor() {
 
+  //find the students id
+  //go into records for that student and shift info to new Advisor
+  //go into tree and move the student to new Advisor
+
 }
 
 void Menu::removeAdvisee() {
+
+  //go into tree
+  //find the student and move them to new advisor
+  //change the records in studentRecords and facultyRecords
 
 }
 
