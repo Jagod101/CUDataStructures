@@ -19,21 +19,21 @@ Menu::~Menu() {
 }
 
 void Menu::printMenu() {
-  string input;
-  int numInput;
+  int input;
   bool running = true;
+  bool validInput = true;
 
   while (running) {
-    cout << "<-------------- MENU --------------->" << endl;
-    cout << 1 << ". Print (all) Student Info (by ascending ID)" << endl;
-    cout << 2 << ". Print (all) Faculty Info (by ascending ID)" << endl;
-    cout << 3 << ". Print Student Info (by student ID)" << endl;
-    cout << 4 << ". Print Faculty Info (by faculty ID)" << endl;
-    cout << 5 << ". Print Advisor Info (by student ID)" << endl;
-    cout << 6 << ". Print Advisee Info (by faculty ID)" << endl;
-    cout << 7 << ". Add New Student" << endl;
-    cout << 8 << ". Delete Student (by student ID)" << endl;
-    cout << 9 << ". Add New Faculty" << endl;
+    cout << "<----------------- MENU ------------------>" << endl;
+    cout << 1 << ".  Print (all) Student Info (by ascending ID)" << endl;
+    cout << 2 << ".  Print (all) Faculty Info (by ascending ID)" << endl;
+    cout << 3 << ".  Print Student Info (by student ID)" << endl;
+    cout << 4 << ".  Print Faculty Info (by faculty ID)" << endl;
+    cout << 5 << ".  Print Advisor Info (by student ID)" << endl;
+    cout << 6 << ".  Print Advisee Info (by faculty ID)" << endl;
+    cout << 7 << ".  Add New Student" << endl;
+    cout << 8 << ".  Delete Student (by student ID)" << endl;
+    cout << 9 << ".  Add New Faculty" << endl;
     cout << 10 << ". Delete Faculty (by faculty ID)" << endl;
     cout << 11 << ". Change Advisor (by student ID and faculty ID)" << endl;
     cout << 12 << ". Remove Advisee (by student ID and faculty ID)" << endl;
@@ -43,57 +43,59 @@ void Menu::printMenu() {
 
     cin >> input;
 
-    //ADD ERROR CHECK TO MAKE SURE INPUT IS A NUMBER VALUE
-    //ALONG WITH BEING WITHIN OPTION RANGE 1-14
+    if(cin.fail() || input < 0 || input > 14) {
+      cout << "Glitch Within the Matrix - Please Enter a Valid Menu Option \n" << endl;
+      validInput = false;
+      continue;
+    }
 
-    numInput = atoi(input.c_str());
-
-    switch(numInput) {
-      case 1:
-        printAllStudents();
-        break;
-      case 2:
-        printAllFaculty();
-        break;
-      case 3:
-        printStudent();
-        break;
-      case 4:
-        printFaculty();
-        break;
-      case 5:
-        printAdvisor();
-        break;
-      case 6:
-        printAdvisee();
-        break;
-      case 7:
-        addStudent();
-        break;
-      case 8:
-        deleteStudent();
-        break;
-      case 9:
-        addFaculty();
-        break;
-      case 10:
-        deleteFaculty();
-        break;
-      case 11:
-        changeAdvisor();
-        break;
-      case 12:
-        removeAdvisee();
-        break;
-      case 13:
-        rollback();
-        break;
-      case 14:
-        exit();
-        return;
-      default:
-        cout << "Glitch Within the Matrix - Please Try Again" << endl;
-        continue;
+    while (validInput == true) {
+      switch(input) {
+        case 1:
+          printAllStudents();
+          break;
+        case 2:
+          printAllFaculty();
+          break;
+        case 3:
+          printStudent();
+          break;
+        case 4:
+          printFaculty();
+          break;
+        case 5:
+          printAdvisor();
+          break;
+        case 6:
+          printAdvisee();
+          break;
+        case 7:
+          addStudent();
+          break;
+        case 8:
+          deleteStudent();
+          break;
+        case 9:
+          addFaculty();
+          break;
+        case 10:
+          deleteFaculty();
+          break;
+        case 11:
+          changeAdvisor();
+          break;
+        case 12:
+          removeAdvisee();
+          break;
+        case 13:
+          rollback();
+          break;
+        case 14:
+          exit();
+          return;
+        default:
+          continue;
+      }
     }
   }
 }
