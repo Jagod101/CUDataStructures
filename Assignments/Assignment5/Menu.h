@@ -36,4 +36,4 @@ class Menu {
     void rollback();
 
     void exit();
-}
+};
