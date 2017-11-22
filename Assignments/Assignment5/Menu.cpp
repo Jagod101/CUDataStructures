@@ -42,10 +42,9 @@ void Menu::printMenu() {
 
     cin >> input;
 
+    //FIX LOOPING ISSUE WITH CHARACTER INPUT
     if(!cin || input < 0 || input > 14) {
       cout << "Glitch Within the Matrix - Please Enter a Valid Menu Option \n" << endl;
-      cin.sync();
-      cin.clear();
       continue;
     }
 
@@ -99,15 +98,23 @@ void Menu::printMenu() {
 }
 
 void Menu::printAllStudents() {
-
-  //go through the tree printing all the students in order
-
+  //go through the tree printing all the students IN ORDER
+  if(studentBST.isEmpty()) {
+    cout << "Student Tree is Empty" << endl;
+  }
+  else {
+    studentBST.printTree();
+  }
 }
 
 void Menu::printAllFaculty() {
-
-  //go through the tree printing all the faculty in order
-
+  //go through the tree printing all the faculty IN ORDER
+  if(facultyBST.isEmpty()) {
+    cout << "Faculty Tree is Empty" << endl;
+  }
+  else {
+    facultyBST.printTree();
+  }
 }
 
 void Menu::printStudent() {

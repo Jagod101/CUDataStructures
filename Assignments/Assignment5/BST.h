@@ -6,7 +6,47 @@ CPSC 350-02
 */
 
 #include <iostream>
+#include <fstream>
+#include "studentRecords.h"
+#include "facultyRecords.h"
 
+//<-----------------------------TreeNode Class------------------------------->
+template <class T>
+class TreeNode {
+  private:
+
+  public:
+    T key; //Key can be Value, vice-versa
+
+    TreeNode<T> *left;
+    TreeNode<T> *right;
+
+    TreeNode();
+    TreeNode(T key);
+    virtual ~TreeNode();
+};
+
+template <class T>
+TreeNode<T>::TreeNode() {
+  key = 0;
+  left = NULL;
+  right = NULL;
+}
+
+template <class T>
+TreeNode<T>::TreeNode(T k) {
+  key = k;
+  left = NULL;
+  right = NULL;
+}
+
+template <class T>
+virtual TreeNode<T>::~TreeNode() {
+  delete left;
+  delete right;
+}
+
+//<-------------------------------BST Class-------------------------------->
 template <class T>
 class BST {
   private:
@@ -25,7 +65,14 @@ class BST {
 
     void printTree();
     void printNode(T value);
+    void printRecursive(TreeNode<T> *node);
+
     bool isEmpty();
+
+    void serializeRecursive(ofstream &output, TreeNode<T> *node);
+
+    void loadFile(string file);
+    void writeFile(string file);
 };
 
 template <class T>
@@ -48,14 +95,14 @@ T BST<T>::find(T value) {
 
     while(curr->key != value) {
       if(value < curr->key) {
-          curr = curr->left;
+        curr = curr->left;
       }
       else {
-          curr = curr->right;
+        curr = curr->right;
       }
 
       if(curr == NULL) {
-          return false;
+        return false;
       }
     }
     return true;
@@ -205,4 +252,102 @@ TreeNode<T>* BST<T>::getMax() {
   }
 
   return curr;
+}
+
+template <class T>
+TreeNode<T>* BST<T>::getSuccessor(TreeNode<T> *d) {
+  TreeNode<T> *sp = d;
+  TreeNode<T> *successor = d;
+  TreeNode<T> *curr = d->right;
+
+  while(curr != NULL) {
+    sp = successor;
+    successor = curr;
+    curr = curr->left;
+  }
+
+  if(successor != d->right) {
+    sp->left = successor->right;
+    successor->right = d->right;
+  }
+
+  return successor;
+}
+
+template <class T>
+void BST<T>::printTree() {
+  printRecursive(root);
+}
+
+template <class T>
+void BST<T>::printNode(T value) {
+  if(root == NULL) {
+    cout << "Node Not Found" << endl;
+  }
+  else {
+    TreeNode<T> *curr = root;
+
+    while(curr->key != value) {
+      if(value < curr->key) {
+        curr = curr->left;
+      }
+      else {
+        curr = curr->right;
+      }
+
+      if(curr == NULL) {
+        cout << "Node Not Found" << endl;
+      }
+    }
+    cout << curr->key;
+  }
+}
+
+template <class T>
+void BST<T>::printRecursive(TreeNode<T> *node) {
+  if(node == NULL) {
+    return;
+  }
+
+  printRecursive(node->left);
+  cout << node->key << endl;
+  printRecursive(node->right);
+}
+
+template <class T>
+bool BST<T>::isEmpty() {
+  return(root == NULL);
+}
+
+template <class T>
+void BST<T>::serializeRecursive(ofstream &output, TreeNode<T> *node) {
+  if(node == NULL) {
+    return;
+  }
+
+  output << node->key.serialize() << endl;
+  serializeRecursive(output, node->left);
+  serializeRecursive(output, node->right);
+}
+
+template <class T>
+void BST<T>::loadFile(string file) {
+  ifstream input;
+  string line;
+  input.open(file.c_str());
+
+  while(getline(input, line)) {
+    T node = T(line);
+    put(node);
+  }
+
+  input.close();
+}
+
+template <class T>
+void BST<T>::writeFile(string file) {
+  ofstream output;
+  output.open(file.c_str(), ofstream::out | ofstream::trunc);
+  serializeRecursive(output, root);
+  output.close();
 }

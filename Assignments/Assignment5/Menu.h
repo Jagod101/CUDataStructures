@@ -7,7 +7,7 @@ CPSC 350-02
 
 #include <iostream>
 #include <stdlib.h>
-//#include "BST.h"
+#include "BST.h"
 
 using namespace std;
 
