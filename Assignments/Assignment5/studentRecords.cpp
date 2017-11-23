@@ -47,7 +47,7 @@ StudentRecords::StudentRecords(string srSerialized){
 string StudentRecords::serialize(){
   ostringstream output;
 
-  output << srID << ', ' + name + ', ' + grade + ', ' + major + ', ' << gpa << ', ' << advisorID;
+  output << srID << ',' + name + ',' + grade + ',' + major + ',' << gpa << ',' << advisorID;
   return output.str();
 }
 
@@ -57,7 +57,7 @@ void StudentRecords::deserialize(string srSerialized) {
 
   stringstream input(srSerialized);
 
-  while(getline(input, value, ', ')) {
+  while(getline(input, value, ',')) {
     //ID input
     if(counter == 0) {
       srID = atoi(value.c_str());

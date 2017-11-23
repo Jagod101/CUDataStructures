@@ -13,8 +13,8 @@ template <class T>
 class ListNode {
     public:
         T data;
-        ListNode *next;
-        ListNode *prev;
+        ListNode<T> *next;
+        ListNode<T> *prev;
 
         ListNode(); //Constructor
         ListNode(T d);
@@ -43,10 +43,11 @@ template <class T>
 class DoublyLinkedList {
     private:
         unsigned int size;
-        ListNode *front;
         ListNode *back;
 
     public:
+        ListNode *front;
+        
         DoublyLinkedList(); //Constructor
         ~DoublyLinkedList(); //Destructor
 

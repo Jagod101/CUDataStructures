@@ -47,18 +47,18 @@ string FacultyRecords::serialize() {
 
   ostringstream output;
 
-  output << frID << ', ' + name + ', ' + level + ', ' + department + ', ';
+  output << frID << ',' + name + ',' + level + ',' + department + ',';
 
   //An Advisor can have MULTIPLE Advisee's, update node for printing
   if(node == NULL) {
     //All Advisors Have Advisee's, Error Catch Implementation if things mess up
-    output << 'No Advisee ';
+    output << ' ';
   }
   else {
     while(true) {
       output << node->data;
       if(node->next != NULL) {
-        output << ', ';
+        output << ',';
         node = node->next;
       }
       else {
@@ -76,7 +76,7 @@ void FacultyRecords::deserialize(string frSerialized) {
 
     stringstream input(frSerialized);
 
-    while(getline(input, value, ', ')) {
+    while(getline(input, value, ',')) {
       //ID input
       if(counter == 0) {
         frID = atoi(value.c_str());
