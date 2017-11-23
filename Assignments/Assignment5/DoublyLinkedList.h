@@ -192,11 +192,11 @@ bool DoublyLinkedList<T>::find(T d) {
 }
 
 template <class T>
-T DoublyLinkedList::remove(T d) {
+T DoublyLinkedList<T>::remove(T d) {
     ListNode<T> *curr = front;
 
     //Looks for Node
-    while(curr->data != key) {
+    while(curr->data != d) {
         curr = curr->next;
 
         if(curr == NULL) {
