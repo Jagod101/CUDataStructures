@@ -5,10 +5,13 @@ Student Emails: wood198@mail.chapman.edu jagod101@mail.chapman.edu
 CPSC 350-02
 */
 
-#include <iostream>
-#include <fstream>
 #include "studentRecords.h"
 #include "facultyRecords.h"
+
+#include <iostream>
+#include <fstream>
+
+using namespace std;
 
 //<-----------------------------TreeNode Class------------------------------->
 template <class T>
@@ -16,8 +19,7 @@ class TreeNode {
   private:
 
   public:
-    T key; //Key can be Value, vice-versa
-
+    T key;
     TreeNode<T> *left;
     TreeNode<T> *right;
 
@@ -28,7 +30,6 @@ class TreeNode {
 
 template <class T>
 TreeNode<T>::TreeNode() {
-  key = 0;
   left = NULL;
   right = NULL;
 }
@@ -51,21 +52,23 @@ template <class T>
 class BST {
   private:
     TreeNode<T> *root;
+
   public:
     BST();
     virtual ~BST();
 
-    T find(T value); //Contains
+    bool contains(T value); //Checks if Contains
+    T find(T value); //Find (same as Contain but different return type)
     void put(T value); //Insert
-    bool erase(T value); //Delete
+    bool erase(T k); //Delete
 
-    TreeNode<T>* getMin();
-    TreeNode<T>* getMax();
+    T* getMin();
+    T* getMax();
     TreeNode<T>* getSuccessor(TreeNode<T> *d); //TreeNode *d represents the node we are deleting
 
-    void printTree();
     void printNode(T value);
     void printRecursive(TreeNode<T> *node);
+    void printTree();
 
     bool isEmpty();
 
@@ -86,7 +89,7 @@ virtual BST<T>::~BST() {
 }
 
 template <class T>
-T BST<T>::find(T value) {
+bool BST<T>::contains(T value) {
   if(root == NULL) {
     return false;
   }
@@ -106,6 +109,30 @@ T BST<T>::find(T value) {
       }
     }
     return true;
+  }
+}
+
+template <class T>
+T BST<T>::find(T value) {
+  if(root == NULL) {
+    return T();
+  }
+  else {
+    TreeNode<T> *curr = root;
+
+    while(curr->key != value) {
+      if(value < curr->key) {
+        curr = curr->left;
+      }
+      else {
+        curr = curr->right;
+      }
+
+      if(curr == NULL) {
+        return T();
+      }
+    }
+    return curr->key;
   }
 }
 
@@ -143,7 +170,7 @@ void BST<T>::put(T value) {
 }
 
 template <class T>
-bool BST<T>::erase(T value) {
+bool BST<T>::erase(T k) {
   if(root == NULL) {
       return false;
   }
@@ -225,8 +252,8 @@ bool BST<T>::erase(T value) {
 }
 
 template <class T>
-TreeNode<T>* BST<T>::getMin() {
-  TreeNode<T>* curr = root; //Start at root
+T* BST<T>::getMin() {
+  TreeNode<T> *curr = root; //Start at root
 
   if(root == NULL) {
     return NULL;
@@ -240,8 +267,8 @@ TreeNode<T>* BST<T>::getMin() {
 }
 
 template <class T>
-TreeNode<T>* BST<T>::getMax() {
-  TreeNode<T>* curr = root;
+T* BST<T>::getMax() {
+  TreeNode<T> *curr = root;
 
   if(root == NULL) {
     return NULL;
@@ -272,11 +299,6 @@ TreeNode<T>* BST<T>::getSuccessor(TreeNode<T> *d) {
   }
 
   return successor;
-}
-
-template <class T>
-void BST<T>::printTree() {
-  printRecursive(root);
 }
 
 template <class T>
@@ -314,6 +336,12 @@ void BST<T>::printRecursive(TreeNode<T> *node) {
   printRecursive(node->right);
 }
 
+
+template <class T>
+void BST<T>::printTree() {
+  printRecursive(root);
+}
+
 template <class T>
 bool BST<T>::isEmpty() {
   return(root == NULL);
@@ -333,11 +361,12 @@ void BST<T>::serializeRecursive(ofstream &output, TreeNode<T> *node) {
 template <class T>
 void BST<T>::loadFile(string file) {
   ifstream input;
-  string line;
+  string value;
+
   input.open(file.c_str());
 
-  while(getline(input, line)) {
-    T node = T(line);
+  while(getline(input, value)) {
+    T node = T(value);
     put(node);
   }
 

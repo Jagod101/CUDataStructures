@@ -56,30 +56,39 @@ class DoublyLinkedList {
         T removeFront();
         T removeBack();
 
-        void printList(); //Prints Contents of LinkedList
+        T peekFront();
+        T peekBack();
 
-        T deletePos(int pos); //Remove at Specified Position
-        int find(int value); //Find Value within LinkedList
-        int remove(int key);
+        bool find(T d); //Find Value within LinkedList
+        T remove(T d);
 
-        bool inserAfter(int pos, int val);
-        bool isEmpty(); //Checks to see if Empty
+        bool isEmpty();
 
         unsigned int getSize();
 };
 
-DoublyLinkedList::DoublyLinkedList() {
-    size = 0;
+template <class T>
+DoublyLinkedList<T>::DoublyLinkedList() {
     front = NULL;
     back = NULL;
+    size = 0;
 }
 
-DoublyLinkedList::~DoublyLinkedList() {
-    //build some character and research it
+template <class T>
+DoublyLinkedList<T>::~DoublyLinkedList() {
+    ListNode<T> *temp = front;
+    while(front->next != NULL) {
+      temp = front->next;
+      front->next = NULL;
+      temp->prev = NULL;
+      delete front;
+      front = temp;
+    }
 }
 
-void DoublyLinkedList::insertFront(int d) {
-    ListNode *node = new ListNode(d);
+template <class T>
+void DoublyLinkedList<T>::insertFront(T d) {
+    ListNode<T> *node = new ListNode<T>(d);
 
     //Empty
     if(size == 0) {
@@ -92,11 +101,12 @@ void DoublyLinkedList::insertFront(int d) {
     }
 
     front = node;
-    size++;
+    ++size;
 }
 
-void DoublyLinkedList::insertBack(int d) {
-    ListNode *node = new ListNode(d);
+template <class T>
+void DoublyLinkedList<T>::insertBack(T d) {
+    ListNode<T> *node = new ListNode<T>(d);
 
     //Empty
     if(size == 0) {
@@ -112,8 +122,9 @@ void DoublyLinkedList::insertBack(int d) {
     ++size;
 }
 
-int DoublyLinkedList::removeFront() {
-    ListNode *node = front;
+template <class T>
+T DoublyLinkedList<T>::removeFront() {
+    ListNode<T> *node = front;
 
     //Only Node in List
     if(front->next == NULL) {
@@ -122,35 +133,65 @@ int DoublyLinkedList::removeFront() {
     //More than One
     else {
         front->next->prev = NULL;
+        front = front->next;
     }
 
-    front = front->next;
+    T temp = node->data;
     node->next = NULL;
-
-    int temp = node->data;
-
     delete node;
     --size;
     return temp;
 }
 
-int DoublyLinkedList::removeBack() {
+template <class T>
+T DoublyLinkedList<T>::removeBack() {
+  ListNode<T> *node = back;
 
+  //Only Node in List
+  if(back->prev == NULL) {
+      front = NULL;
+  }
+  //More than One
+  else {
+      back->prev->next = NULL;
+      back = back->prev;
+  }
+
+  T temp = node->data;
+  node->prev = NULL;
+  delete node;
+  --size;
+  return temp;
 }
 
-void DoublyLinkedList::printList() {
-
+template<class T>
+T DoublyLinkedList<T>::peekFront() {
+  return front->data;
 }
 
-void DoublyLinkedList::deletePos(int pos) {
-
+template <class T>
+T DoublyLinkedList<T>::peekBack() {
+  return back->data;
 }
 
-void DoublyLinkedList::find(int value) {
+template <class T>
+bool DoublyLinkedList<T>::find(T d) {
+  ListNode<T> *node = front;
 
+  while(node != NULL) {
+    if(node->data == data) {
+      return true;
+    }
+    else {
+      node = node->next;
+    }
+  }
+
+  return false;
 }
 
-int DoublyLinkedList::remove(int key) {
+template <class T>
+T DoublyLinkedList::remove(T d) {
     ListNode *curr = front;
 
     //Looks for Node
@@ -180,8 +221,18 @@ int DoublyLinkedList::remove(int key) {
     curr->next = NULL;
     curr->prev = NULL;
 
-    int temp = curr->data;
+    T temp = curr->data;
     delete curr;
     --size;
     return temp;
+}
+
+template <class T>
+bool DoublyLinkedList<T>::isEmpty() {
+  return(size == 0);
+}
+
+template <class T>
+unsigned int DoublyLinkedList<T>::getSize() {
+  return size;
 }

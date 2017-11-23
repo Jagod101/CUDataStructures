@@ -5,14 +5,22 @@ Student Emails: wood198@mail.chapman.edu jagod101@mail.chapman.edu
 CPSC 350-02
 */
 
+#include "BST.h"
+
 #include <iostream>
 #include <stdlib.h>
-#include "BST.h"
+#include <unistd.h>
+#include <sys/stat.h>
 
 using namespace std;
 
+const string studentTable = "studentTable";
+const string facultyTable = "facultyTable";
+
 class Menu {
   private:
+    sTable studentBST;
+    fTable facultyBST;
 
   public:
     Menu();

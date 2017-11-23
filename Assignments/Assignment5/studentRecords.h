@@ -7,16 +7,17 @@ CPSC 350-02
 
 #include <iostream>
 #include <string>
-
+#include <sstream>
+#include <stdlib.h>
 
 using namespace std;
 
 class StudentRecords {
-
   private:
+    void deserialize(string srSerialized);
 
   public:
-    int id;
+    int srID;
     string name;
     string grade;
     string major;
@@ -26,29 +27,37 @@ class StudentRecords {
     StudentRecords();
     ~StudentRecords();
 
-    StudentRecords(int id);
-    StudentRecords(int id, string name, string level, string grade, double gpa, int advisorID);
+    StudentRecords(int srID_);
+    StudentRecords(int srID_, string name_, string grade_, string major_, double gpa_, int advisorID_);
     StudentRecords(string srSerialized);
     string serialize();
 
-    bool operator == (const StudentRecords &s) {
-      return(this->id == s.id);
+    bool operator == (const StudentRecords &sr) {
+      return(this->srID == sr.srID);
     }
-    bool operator != (const StudentRecords &s) {
-      return(this->id != s.id);
+    bool operator != (const StudentRecords &sr) {
+      return(this->srID != sr.srID);
     }
-    bool operator <= (const StudentRecords &s) {
-      return(this->id <= s.id);
+    bool operator <= (const StudentRecords &sr) {
+      return(this->srID <= sr.srID);
     }
-    bool operator >= (const StudentRecords &s) {
-      return(this->id >= s.id);
+    bool operator >= (const StudentRecords &sr) {
+      return(this->srID >= sr.srID);
     }
-    bool operator < (const StudentRecords &s) {
-      return(this->id < s.id);
+    bool operator < (const StudentRecords &sr) {
+      return(this->srID < sr.srID);
     }
-    bool operator > (const StudentRecords &s) {
-      return(this->id > s.id);
+    bool operator > (const StudentRecords &sr) {
+      return(this->srID > sr.srID);
     }
 
-    //Add Weird friend thing
+    friend ostream& operator << (ostream& output, const StudentRecords &sr) {
+      output << "Student ID: " << sr.srID << endl;
+      output << "Student Name: " << sr.name << endl;
+      output << "Grade: " << sr.grade << endl;
+      output << "Major: " << sr.major << endl;
+      output << "GPA: " << sr.gpa << endl;
+      output << "Advisor ID: " << sr.advisorID << endl;
+      return output;
+    }
 };
