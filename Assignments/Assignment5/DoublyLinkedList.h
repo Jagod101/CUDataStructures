@@ -43,11 +43,11 @@ template <class T>
 class DoublyLinkedList {
     private:
         unsigned int size;
-        ListNode *back;
+        ListNode<T> *back;
 
     public:
-        ListNode *front;
-        
+        ListNode<T> *front;
+
         DoublyLinkedList(); //Constructor
         ~DoublyLinkedList(); //Destructor
 
@@ -193,7 +193,7 @@ bool DoublyLinkedList<T>::find(T d) {
 
 template <class T>
 T DoublyLinkedList::remove(T d) {
-    ListNode *curr = front;
+    ListNode<T> *curr = front;
 
     //Looks for Node
     while(curr->data != key) {
