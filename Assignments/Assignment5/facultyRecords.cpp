@@ -7,9 +7,7 @@ CPSC 350-02
 
 #include "facultyRecords.h"
 
-#include <iostream>
-
-FacultyRecords::FacultyRecords() {
+FacultyRecords() {
   frID = -1;
 	name = "";
 	level = "";
@@ -17,11 +15,11 @@ FacultyRecords::FacultyRecords() {
 	adviseeID = new DoublyLinkedList<int>();
 }
 
-FacultyRecords::~FacultyRecords() {
+~FacultyRecords() {
   delete adviseeID;
 }
 
-FacultyRecords::FacultyRecords(int frID_) {
+FacultyRecords(int frID_) {
   frID = frID_;
   name = "";
   level = "";
@@ -29,7 +27,7 @@ FacultyRecords::FacultyRecords(int frID_) {
   adviseeID = new DoublyLinkedList<int>();
 }
 
-FacultyRecords::FacultyRecords(int frID_, string name_, string level_, string department_) {
+FacultyRecords(int frID_, string name_, string level_, string department_) {
   frID = frID_;
   name = name_;
   level = level_;
@@ -37,12 +35,12 @@ FacultyRecords::FacultyRecords(int frID_, string name_, string level_, string de
   adviseeID = new DoublyLinkedList<int>();
 }
 
-FacultyRecords::FacultyRecords(string frSerialized) {
+FacultyRecords(string frSerialized) {
   adviseeID = new DoublyLinkedList<int>();
   deserialize(frSerialized);
 }
 
-string FacultyRecords::serialize() {
+string serialize() {
   ListNode<int> *node = adviseeID->front;
 
   ostringstream output;
@@ -70,7 +68,7 @@ string FacultyRecords::serialize() {
   return output.str();
 }
 
-void FacultyRecords::deserialize(string frSerialized) {
+void deserialize(string frSerialized) {
     string value;
     int counter = 0;
 
@@ -101,14 +99,14 @@ void FacultyRecords::deserialize(string frSerialized) {
     }
 }
 
-void FacultyRecords::addAdvisee(int frID) {
+void addAdvisee(int frID) {
   adviseeID->insertBack(frID);
 }
 
-int FacultyRecords::removeAdviseeID(int frID) {
+int removeAdviseeID(int frID) {
   adviseeID->remove(frID);
 }
 
-bool FacultyRecords::containsAdvisee(int frID) {
+bool containsAdvisee(int frID) {
   return(adviseeID->find(frID));
 }
