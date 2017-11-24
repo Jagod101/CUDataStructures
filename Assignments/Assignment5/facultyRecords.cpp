@@ -7,6 +7,8 @@ CPSC 350-02
 
 #include "facultyRecords.h"
 
+using namespace std;
+
 FacultyRecords::FacultyRecords() {
   frID = -1;
 	name = "";
