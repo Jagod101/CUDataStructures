@@ -180,7 +180,7 @@ bool DoublyLinkedList<T>::find(T d) {
   ListNode<T> *node = front;
 
   while(node != NULL) {
-    if(node->data == data) {
+    if(node->data == d) {
       return true;
     }
     else {
