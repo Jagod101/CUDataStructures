@@ -5,13 +5,7 @@ Student Emails: wood198@mail.chapman.edu jagod101@mail.chapman.edu
 CPSC 350-02
 */
 
-#include <iostream>
-#include <time.h>
-#include "studentRecords.h"
-#include "facultyRecords.h"
 #include "Menu.h"
-
-using namespace std;
 
 Menu::Menu() {
   struct stat buffer;

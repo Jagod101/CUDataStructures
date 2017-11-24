@@ -7,8 +7,6 @@ CPSC 350-02
 
 #include "studentRecords.h"
 
-using namespace std;
-
 StudentRecords::StudentRecords(){
   srID = -1;
   name = "";

@@ -9,42 +9,7 @@ CPSC 350-02
 #include <fstream>
 #include "studentRecords.h"
 #include "facultyRecords.h"
-
-using namespace std;
-
-//<-----------------------------TreeNode Class------------------------------->
-template <class T>
-class TreeNode {
-  private:
-
-  public:
-    T key;
-    TreeNode<T> *left;
-    TreeNode<T> *right;
-
-    TreeNode();
-    TreeNode(T key);
-    virtual ~TreeNode();
-};
-
-template <class T>
-TreeNode<T>::TreeNode() {
-  left = NULL;
-  right = NULL;
-}
-
-template <class T>
-TreeNode<T>::TreeNode(T k) {
-  key = k;
-  left = NULL;
-  right = NULL;
-}
-
-template <class T>
-TreeNode<T>::~TreeNode() {
-  delete left;
-  delete right;
-}
+#include "TreeNode.h"
 
 //<-------------------------------BST Class-------------------------------->
 template <class T>
