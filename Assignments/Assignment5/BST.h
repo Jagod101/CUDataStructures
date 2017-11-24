@@ -379,3 +379,124 @@ void BST<T>::writeFile(string file) {
   serializeRecursive(output, root);
   output.close();
 }
+
+//<-----------------------------sTable Class------------------------------->
+class sTable : public BST<StudentRecords> {
+  private:
+
+  public:
+    bool replaceAdvisor(StudentRecords value) {
+      if(root == NULL) {
+        return false;
+      }
+      else {
+        TreeNode<StudentRecords> *curr = root;
+
+        while(curr->key != value) {
+          if(value < curr->key) {
+            curr = curr->left;
+          }
+          else {
+            curr = curr->right;
+          }
+
+          if(curr == NULL) {
+            return false;
+          }
+        }
+
+        curr->key.advisorID = value.advisorID;
+        return true;
+      }
+    }
+};
+
+//<-----------------------------fTable Class------------------------------->
+class fTable : public BST<FacultyRecords> {
+  private:
+
+  public:
+    bool removeAdviseeID(FacultyRecords value, int adviseeID) {
+      if(root == NULL) {
+        return false;
+      }
+      else {
+        TreeNode<FacultyRecords> *curr = root;
+
+        while(curr->key != val) {
+          if(value < curr->key) {
+            curr = curr->left;
+          }
+          else {
+            curr = curr->right;
+          }
+
+          if(curr == NULL) {
+            return false;
+          }
+        }
+
+        curr->key.removeAdviseeID(adviseeID);
+        }
+      }
+    }
+
+    bool replaceAdvisee(FacultyRecords oldfrID, FacultyRecords newfrID, int srID) {
+      if(root == NULL) {
+        return false;
+      }
+      else {
+        TreeNode<FacultyRecords> *curr = root;
+
+        while(curr->key != oldfrID) {
+          if(oldfrID < curr->key) {
+            curr = curr->left;
+          }
+          else {
+            curr = curr->right;
+          }
+
+          if(curr == NULL) {
+            return false;
+          }
+        }
+
+        curr->key.removeAdviseeID(srID);
+        curr = root;
+
+        while(curr->key != newfrID) {
+          if(newfrID < curr->key) {
+            curr = curr->left;
+          }
+          else {
+            curr = curr->right;
+          }
+
+          if(curr == NULL) {
+            return false;
+          }
+        }
+        curr->key.addAdvisee(srID);
+      }
+    }
+
+    void removeStudent(TreeNode<FacultyRecords> *node, int srID) {
+      bool running = false;
+
+      if(!running) {
+        if(node == NULL) {
+          return;
+        }
+
+        printRecursive(node->left);
+        if(node->key.containsAdvisee(srID)) {
+          running = true;
+          cout << "Student with ID: " << srID << " is an Advisee (Remove Advisor)" << endl;
+        }
+        printRecursive(node->right);
+      }
+      else {
+        return;
+      }
+    }
+};

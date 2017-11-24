@@ -461,9 +461,9 @@ void Menu::changeAdvisor() {
     FacultyRecords newfrID(frID);
 
     if(facultyBST.contains(newfrID)) {
+      sr.advisorID = frID;
       studentBST.replaceAdvisor(sr);
-      facultyBST.removeAdviseeID(oldfrID, srID);
-      facultyBST.addAdvisee(newfrID, srID);
+      facultyBST.replaceAdvisee(oldfrID, newfrID, srID);
     }
     else {
       cout << "Faculty ID: " << frID << " Does Not Exist" << endl;
@@ -476,6 +476,11 @@ void Menu::removeAdvisee() {
   int srID = 0;
   int frID = 0;
   bool idIsWrong = true;
+
+  if(facultyBST.isEmpty()) {
+    cout << "Faculty Tree is Empty" << endl;
+    return;
+  }
 
   cout << "\nWhat is the ID of the student you would like to remove?: ";
   cin >> srID;
@@ -507,8 +512,9 @@ void Menu::removeAdvisee() {
   FacultyRecords newfrID(frID);
 
   if(facultyBST.contains(newfrID)) {
+    sr.advisorID = frID;
     studentBST.replaceAdvisor(sr);
-    facultyBST.addAdvisee(newfrID, srID);
+    facultyBST.replaceAdvisee(oldfrID, newfrID, srID);
   }
   else {
     cout << "Faculty ID: " << frID << " Does Not Exist" << endl;
