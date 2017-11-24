@@ -14,7 +14,7 @@ CPSC 350-02
 //<-------------------------------BST Class-------------------------------->
 template <class T>
 class BST {
-  private:
+  protected:
     TreeNode<T> *root;
 
   public:
@@ -346,7 +346,7 @@ void BST<T>::writeFile(string file) {
 }
 
 //<-----------------------------sTable Class------------------------------->
-class sTable : public BST<StudentRecords> {
+class StudentTable : public BST<StudentRecords> {
   private:
 
   public:
@@ -377,7 +377,7 @@ class sTable : public BST<StudentRecords> {
 };
 
 //<-----------------------------fTable Class------------------------------->
-class fTable : public BST<FacultyRecords> {
+class FacultyTable : public BST<FacultyRecords> {
   private:
 
   public:
@@ -388,7 +388,7 @@ class fTable : public BST<FacultyRecords> {
       else {
         TreeNode<FacultyRecords> *curr = root;
 
-        while(curr->key != val) {
+        while(curr->key != value) {
           if(value < curr->key) {
             curr = curr->left;
           }

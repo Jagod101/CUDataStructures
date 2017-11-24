@@ -19,8 +19,8 @@ const string facultyTable = "facultyTable";
 
 class Menu {
   private:
-    sTable studentBST;
-    fTable facultyBST;
+    StudentTable studentBST;
+    FacultyTable facultyBST;
 
   public:
     Menu();

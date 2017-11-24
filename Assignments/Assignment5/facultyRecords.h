@@ -33,7 +33,7 @@ class FacultyRecords {
     string serialize();
 
     void addAdvisee(int frID);
-    int removeAdvisee(int frID);
+    int removeAdviseeID(int frID);
     bool containsAdvisee(int frID);
 
     bool operator == (const FacultyRecords &fr) {
