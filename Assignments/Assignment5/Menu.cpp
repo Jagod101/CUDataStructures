@@ -52,12 +52,17 @@ void Menu::printMenu() {
     cout << 14 << ". Exit" << endl;
     cout << "\nPlease Select a Menu Option: ";
 
-    cin >> input;
+    try {
+      cin >> atoi(input);
 
-    //FIX LOOPING ISSUE WITH CHARACTER INPUT
-    if(!cin || input < 0 || input > 14) {
+      if(input < 0 || input > 14) {
+        cout << "Glitch Within the Matrix - Please Enter a Valid Menu Option \n" << endl;
+        input = 15;
+      }
+    }
+    catch(exception e) {
       cout << "Glitch Within the Matrix - Please Enter a Valid Menu Option \n" << endl;
-      continue;
+      input = 15;
     }
 
     switch(input) {
