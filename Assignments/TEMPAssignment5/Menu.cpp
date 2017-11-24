@@ -28,7 +28,7 @@ Menu::~Menu() {
 void Menu::printMenu() {
   string input;
   int numInput;
-  bool triggered = false;
+  bool triggered;
   bool running = true;
 
   while (running) {
@@ -61,6 +61,7 @@ void Menu::printMenu() {
       }
     }
     catch(exception e) {
+      triggered = false;
       numInput = 15;
     }
 
@@ -115,7 +116,6 @@ void Menu::printMenu() {
           cout << "Glitch Within the Matrix - Please Enter a Valid Menu Option \n" << endl;
           continue;
         }
-
     }
   }
 }
