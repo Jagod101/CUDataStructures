@@ -5,6 +5,11 @@ Student Emails: wood198@mail.chapman.edu jagod101@mail.chapman.edu
 CPSC 350-02
 */
 
+#include <iostream>
+#include <string>
+#include <sstream>
+#include <stdlib.h>
+#include "DoublyLinkedList.h"
 #include "facultyRecords.h"
 
 FacultyRecords::FacultyRecords() {
