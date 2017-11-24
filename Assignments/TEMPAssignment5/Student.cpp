@@ -26,6 +26,14 @@ Student::Student(int ID_, string name_, string level_, string major_, double gpa
   advisorID = advisorID_;
 }
 
+string Student::getMajor() {
+  return major;
+}
+
+double Student::getGPA() {
+  return gpa;
+}
+
 void Student::setAdvisor(int advisorID_) {
   advisorID = advisorID_;
 }
@@ -33,6 +41,7 @@ void Student::setAdvisor(int advisorID_) {
 int Student::getAdvisor() {
   return advisorID;
 }
+
 
 void Student::printStudent() {
   cout << "Student ID: " << ID << ", ";

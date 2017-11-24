@@ -22,7 +22,12 @@ class Student : public Member {
     ~Student();
     Student(int ID_, string name_, string level_, string major_, double gpa_, int advisorID_);
 
+    string getMajor();
+    double getGPA();
+    
     void setAdvisor(int advisorID_);
+    int getAdvisor();
+
     void printStudent();
 
     bool operator == (const Student &s) {
