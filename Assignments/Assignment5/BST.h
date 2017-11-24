@@ -8,7 +8,7 @@ CPSC 350-02
 #include <iostream>
 #include <fstream>
 #include "studentRecords.h"
-//#include "facultyRecords.h"
+#include "facultyRecords.h"
 #include "TreeNode.h"
 
 //<-------------------------------BST Class-------------------------------->
@@ -403,8 +403,8 @@ class FacultyTable : public BST<FacultyRecords> {
 
         curr->key.removeAdviseeID(adviseeID);
         }
-      }
     }
+
 
     bool replaceAdvisee(FacultyRecords oldfrID, FacultyRecords newfrID, int srID) {
       if(root == NULL) {
