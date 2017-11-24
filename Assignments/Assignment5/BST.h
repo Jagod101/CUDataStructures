@@ -8,7 +8,7 @@ CPSC 350-02
 #include <iostream>
 #include <fstream>
 #include "studentRecords.h"
-#include "facultyRecords.h"
+//#include "facultyRecords.h"
 #include "TreeNode.h"
 
 //<-------------------------------BST Class-------------------------------->

@@ -46,20 +46,22 @@ void Menu::printMenu() {
     cout << 14 << ". Exit" << endl;
     cout << "\nPlease Select a Menu Option: ";
 
-    try {
-      cin >> atoi(input);
+    cin >> input;
 
-      if(input < 0 || input > 14) {
+    try {
+      int numInput = atoi(input);
+
+      if(numInput < 0 || numInput > 14) {
         cout << "Glitch Within the Matrix - Please Enter a Valid Menu Option \n" << endl;
-        input = 15;
+        numInput = 15;
       }
     }
     catch(exception e) {
       cout << "Glitch Within the Matrix - Please Enter a Valid Menu Option \n" << endl;
-      input = 15;
+      numInput = 15;
     }
 
-    switch(input) {
+    switch(numInput) {
       case 1:
         printAllStudents();
         break;
