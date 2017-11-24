@@ -59,7 +59,6 @@ void Menu::printMenu() {
       }
     }
     catch(exception e) {
-      cout << "Glitch Within the Matrix - Please Enter a Valid Menu Option \n" << endl;
       numInput = 15;
     }
 
@@ -107,6 +106,7 @@ void Menu::printMenu() {
         exit();
         return;
       default:
+        cout << "Glitch Within the Matrix - Please Enter a Valid Menu Option \n" << endl;
         continue;
     }
   }
