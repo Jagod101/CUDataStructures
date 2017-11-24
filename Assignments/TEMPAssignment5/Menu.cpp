@@ -26,7 +26,7 @@ Menu::~Menu() {
 }
 
 void Menu::printMenu() {
-  int input;
+  string input;
   bool running = true;
 
   while (running) {
