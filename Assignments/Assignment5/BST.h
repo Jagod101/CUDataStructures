@@ -41,7 +41,7 @@ TreeNode<T>::TreeNode(T k) {
 }
 
 template <class T>
-virtual TreeNode<T>::~TreeNode() {
+TreeNode<T>::~TreeNode() {
   delete left;
   delete right;
 }
@@ -83,7 +83,7 @@ BST<T>::BST() {
 }
 
 template <class T>
-virtual BST<T>::~BST() {
+BST<T>::~BST() {
   delete root;
 }
 

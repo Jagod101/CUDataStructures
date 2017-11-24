@@ -9,6 +9,7 @@ CPSC 350-02
 
 using namespace std;
 
+//<-----------------------------ListNode Class------------------------------->
 template <class T>
 class ListNode {
     public:
@@ -39,6 +40,7 @@ ListNode<T>::~ListNode() {
 
 }
 
+//<-------------------------DoublyLinkedList Class--------------------------->
 template <class T>
 class DoublyLinkedList {
     private:
