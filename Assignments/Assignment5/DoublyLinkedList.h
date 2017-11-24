@@ -61,7 +61,7 @@ class DoublyLinkedList {
         T peekBack();
 
         bool find(T d); //Find Value within LinkedList
-        T remove(T d);
+        bool remove(T d);
 
         bool isEmpty();
 
@@ -192,40 +192,30 @@ bool DoublyLinkedList<T>::find(T d) {
 }
 
 template <class T>
-T DoublyLinkedList<T>::remove(T d) {
+bool DoublyLinkedList<T>::remove(T d) {
     ListNode<T> *curr = front;
 
-    //Looks for Node
-    while(curr->data != d) {
-        curr = curr->next;
-
-        if(curr == NULL) {
-            return NULL;
+    while (curr != NULL) {
+      if (curr->data == d) {
+        if(curr == front) {
+          removeFront();
+          return true;
         }
+        else if(curr == back) {
+          removeBack();
+          return true;
+        }
+        else {
+          curr->prev->next = curr->next;
+          curr->next->prev = curr->prev;
+          delete curr;
+          --size;
+          return true;
+        }
+      }
+      curr = curr->next;
     }
-
-    //Found Node
-    if(curr == front) {
-        front = curr->next;
-    }
-    else {
-        curr->prev->next = curr->next;
-    }
-
-    if(curr == back) {
-        back = curr->prev;
-    }
-    else {
-        curr->next->prev = curr->prev;
-    }
-
-    curr->next = NULL;
-    curr->prev = NULL;
-
-    T temp = curr->data;
-    delete curr;
-    --size;
-    return temp;
+    return false;
 }
 
 template <class T>

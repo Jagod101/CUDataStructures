@@ -108,5 +108,5 @@ int FacultyRecords::removeAdviseeID(int frID) {
 }
 
 bool FacultyRecords::containsAdvisee(int frID) {
-  return(adviseeID->contains(frID));
+  return(adviseeID->find(frID));
 }
