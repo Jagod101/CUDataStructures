@@ -50,7 +50,7 @@ void Menu::printMenu() {
     cin >> input;
 
     try {
-      int numInput = atoi(input);
+      int numInput = atoi(input.c_str());
 
       if(numInput < 0 || numInput > 14) {
         cout << "Glitch Within the Matrix - Please Enter a Valid Menu Option \n" << endl;
