@@ -5,7 +5,6 @@ Student Emails: wood198@mail.chapman.edu jagod101@mail.chapman.edu
 CPSC 350-02
 */
 
-#include <iostream>
 #include "facultyRecords.h"
 
 FacultyRecords::FacultyRecords() {
@@ -109,5 +108,5 @@ int FacultyRecords::removeAdviseeID(int frID) {
 }
 
 bool FacultyRecords::containsAdvisee(int frID) {
-  return(adviseeID->find(frID));
+  return(adviseeID->contains(frID));
 }
