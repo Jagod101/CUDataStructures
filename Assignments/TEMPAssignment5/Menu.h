@@ -10,7 +10,7 @@ CPSC 350-02
 #include <stdlib.h>
 #include <unistd.h>
 #include <sys/stat.h>
-#include "BST.h"
+//#include "BST.h"
 
 using namespace std;
 
