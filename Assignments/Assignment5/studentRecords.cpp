@@ -5,9 +5,8 @@ Student Emails: wood198@mail.chapman.edu jagod101@mail.chapman.edu
 CPSC 350-02
 */
 
-#include "studentRecords.h"
-
 #include <iostream>
+#include "studentRecords.h"
 
 StudentRecords::StudentRecords(){
   srID = -1;

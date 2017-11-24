@@ -5,12 +5,11 @@ Student Emails: wood198@mail.chapman.edu jagod101@mail.chapman.edu
 CPSC 350-02
 */
 
+#include <iostream>
+#include <time.h>
 #include "studentRecords.h"
 #include "facultyRecords.h"
 #include "Menu.h"
-
-#include <iostream>
-#include <time.h>
 
 using namespace std;
 
@@ -142,7 +141,7 @@ void Menu::printStudent() {
 
     StudentRecords sr(srID);
 
-    if(studentBST.find(sr)) {
+    if(studentBST.contains(sr)) {
       studentBST.printNode(sr);
     }
     else {
@@ -163,7 +162,7 @@ void Menu::printFaculty() {
 
     FacultyRecords fr(frID);
 
-    if(facultyBST.find(fr)) {
+    if(facultyBST.contains(fr)) {
       facultyBST.printNode(fr);
     }
     else {
@@ -250,7 +249,7 @@ void Menu::addStudent() {
   int srID = rand() % 4000 + 1000; // will generate a number between 1000 and 4999
 
   while(goodID == false){
-    if (studentBST.find(srID) == false){
+    if (studentBST.contains(srID) == false){
         goodID = true;
     } else {
         int srID = rand() % 4000 + 1000;
@@ -297,7 +296,7 @@ void Menu::addStudent() {
       cin >> advisorID;
       FacultyRecords fr(advisorID);
     }
-    else if(!facultyBST.find(fr)) {
+    else if(!facultyBST.contains(fr)) {
       cout << "\nFaculty ID: " << advisorID << " Does Not Exist" << endl;
       cout << "What is this student's advisor's ID? ";
       cin >> advisorID;
@@ -332,7 +331,7 @@ void Menu::deleteStudent() {
 
       StudentRecords sr(srID);
 
-      if(studentBST.find(sr)) {
+      if(studentBST.contains(sr)) {
 
         FacultyRecords fr;
 
@@ -362,7 +361,7 @@ void Menu::addFaculty() {
   int frID = rand() % 5000 + 5000; // will generate a number between 5000 and 9999
 
   while(goodID == false){
-    if (facultyBST.find(frID) == false){
+    if (facultyBST.contains(frID) == false){
         goodID = true;
     } else {
         int frID = rand() % 5000 + 5000;
@@ -456,7 +455,7 @@ void Menu::changeAdvisor() {
 
     FacultyRecords newfrID(frID);
 
-    if(facultyBST.find(newfrID)) {
+    if(facultyBST.contains(newfrID)) {
       studentBST.replaceAdvisor(sr);
       facultyBST.removeAdviseeID(oldfrID, srID);
       facultyBST.addAdvisee(newfrID, srID);
@@ -502,7 +501,7 @@ void Menu::removeAdvisee() {
 
   FacultyRecords newfrID(frID);
 
-  if(facultyBST.find(newfrID)) {
+  if(facultyBST.contains(newfrID)) {
     studentBST.replaceAdvisor(sr);
     facultyBST.addAdvisee(newfrID, srID);
   }

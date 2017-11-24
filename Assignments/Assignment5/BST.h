@@ -5,11 +5,10 @@ Student Emails: wood198@mail.chapman.edu jagod101@mail.chapman.edu
 CPSC 350-02
 */
 
-#include "studentRecords.h"
-#include "facultyRecords.h"
-
 #include <iostream>
 #include <fstream>
+#include "studentRecords.h"
+#include "facultyRecords.h"
 
 using namespace std;
 
