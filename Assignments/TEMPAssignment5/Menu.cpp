@@ -896,6 +896,7 @@ void Menu::changeAdvisor() {
               cout << "\nPlease Provide Valid Input" << endl;
             }
           }
+          break;
         }
         else {
           cout << "\nStudent ID: " << srID << " Does Not Exist Within Database" << endl;
