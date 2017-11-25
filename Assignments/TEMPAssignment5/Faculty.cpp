@@ -109,7 +109,7 @@ void Faculty::addAdvisee(int ID) {
       adviseeArray[++numAdvisee] = ID;
     }
     else {
-      break;
+      return NULL;
     }
   }
 }
