@@ -37,6 +37,7 @@ void Faculty::printFaculty() {
   cout << "Faculty Name: " << name << ", ";
   cout << "Level: " << level << ", ";
   cout << "Department: " << department << ", ";
+  cout << "Advisee IDs: ";
   printAdvisee();
   cout << endl;
 }
@@ -46,8 +47,16 @@ void Faculty::printAdvisee() {
     cout << "None";
   }
   else {
-
+    for(int i = 0; i < maxSize; ++i) {
+      if(adviseeArray[i] != -1) {
+        cout << adviseeArray[i];
+        if(i < numAdvisee - 1) {
+          cout  << ", ";
+        }
+      }
+    }
   }
+  cout << endl;
 }
 
 string Faculty::getDepartment() {
@@ -59,11 +68,68 @@ int Faculty::getAdviseeID() {
 }
 
 void Faculty::addAdvisee(int ID) {
+  if(numAdvisee != maxSize) {
+    int temp = 0;
 
+    for(int i = 0; i < maxSize; ++i) {
+      if(adviseeArray[i] == ID) {
+        temp = maxSize;
+      }
+    }
+
+    while(temp < maxSize) {
+      if(adviseeArray[temp] == -1) {
+        adviseeArray[temp] = ID;
+        ++numAdvisee;
+        break;
+      }
+
+      ++temp;
+    }
+  }
+  else {
+    if(numAdvisee == maxSize) {
+      int *tempArray = new int[numAdvisee];
+
+      for(int i = 0; i < numAdvisee; ++i) {
+        tempArray[i] = adviseeArray[i];
+      }
+
+      adviseeArray = new int[numAdvisee + 1];
+      maxSize = numAdvisee + 1;
+
+      for(int i = 0; i < numAdvisee; ++i) {
+        adviseeArray[i] = tempArray[i];
+      }
+
+      for(int i = numAdvisee; i < numAdvisee + 1; ++i) {
+        adviseeArray[i] = -1;
+      }
+
+      adviseeArray[++numAdvisee] = ID;
+    }
+    else {
+      break;
+    }
+  }
 }
 
 bool Faculty::removeAdvisee(int adviseeID) {
+  bool removed = false;
 
+  for(int i = 0; i < maxSize; ++i) {
+    if(adviseeArray[i] == adviseeID) {
+      adviseeArray[i] = -1;
+      --numAdvisee;
+      removed = true;
+    }
+
+    if(!removed) {
+      cout << "Not Found" << endl;
+    }
+
+    return removed;
+  }
 }
 
 int Faculty::getSizeArray() {

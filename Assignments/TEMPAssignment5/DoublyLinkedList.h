@@ -166,7 +166,6 @@ template <class T>
 void DoublyLinkedList<T>::printList() {
   if(front == NULL) {
     cout << "No Data To Print" << endl;
-    break;
   }
 
   ListNode<T> *curr = front;
