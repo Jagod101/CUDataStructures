@@ -14,7 +14,7 @@ CPSC 350-02
 
 using namespace std;
 
-class Menu : public FileProcessing {
+class Menu {
   private:
 
   public:

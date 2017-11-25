@@ -8,17 +8,7 @@ CPSC 350-02
 #include "Menu.h"
 
 Menu::Menu() {
-  /*struct stat buffer;
 
-  //Check for studentTable, if the file exists load it
-  if(stat(studentTable.c_str(), &buffer) == 0) {
-    studentBST.loadFile(studentTable);
-  }
-  //Check for facultyTable, if the file exists load it
-  if(stat(facultyTable.c_str(), &buffer) == 0) {
-    facultyBST.loadFile(facultyTable);
-  }
-  */
 }
 
 Menu::~Menu() {
@@ -141,49 +131,63 @@ void Menu::printAllFaculty() {
 }
 
 void Menu::printStudent() {
-/*
-  int srID = 0;
+  string input;
+  int srID;
 
-  if(studentBST.isEmpty()) {
-    cout << "Student Tree is Empty" << endl;
+  if(masterStudent.isEmpty()) {
+    cout << "Student Database is Empty" << endl;
   }
   else {
-    cout << "What student would you like to look for? (Give an ID number)" << endl;
-    cin >> srID;
+    while(true) {
+      cout << "What student would you like to look for? (Give a Student ID number) ";
+      cin >> input;
 
-    StudentRecords sr(srID);
+      try {
+        srID = atoi(input.c_str());
 
-    if(studentBST.contains(sr)) {
-      studentBST.printNode(sr);
-    }
-    else {
-      cout << "Student Tree Does NOT Contain Student ID: " << srID << endl;
+        if(masterStudent.contains(srID)) {
+          masterStudent.find(srID);
+          break;
+        }
+        else {
+          cout << "Student Does Not Exist Within Database" << endl;
+        }
+      }
+      catch(exception e) {
+        cout << "Please Enter Valid Input" << endl;
+      }
     }
   }
-  */
 }
 
 void Menu::printFaculty() {
-/*
-  int frID = 0;
+  string input;
+  int frID;
 
-  if(facultyBST.isEmpty()) {
-    cout << "Faculty Tree is Empty" << endl;
+  if(masterFaculty.isEmpty()) {
+    cout << "Faculty Database is Empty" << endl;
   }
   else {
-    cout << "What faculty member would you like to look for? (Give an id number)" << endl;
-    cin >> frID;
+    while(true) {
+      cout << "What faculty member would you like to look for? (Give a Faculty ID number) ";
+      cin >> input;
 
-    FacultyRecords fr(frID);
+      try {
+        frID = atoi(input.c_str());
 
-    if(facultyBST.contains(fr)) {
-      facultyBST.printNode(fr);
-    }
-    else {
-      cout << "Faculty Tree Does NOT Contain Faculty ID: " << frID << endl;
+        if(masterFaculty.contains(frID)) {
+          masterFaculty.find(frID);
+          break;
+        }
+        else {
+          cout << "Faculty Does Not Exist Within Database" << endl;
+        }
+      }
+      catch(exception e) {
+        cout << "Please Enter Valid Input" << endl;
+      }
     }
   }
-  */
 }
 
 void Menu::printAdvisor() {
