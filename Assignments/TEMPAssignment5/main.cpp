@@ -6,7 +6,7 @@ CPSC 350-02
 */
 
 #include <iostream>
-#include "Menu.h"
+#include "Menu.cpp"
 
 using namespace std;
 
@@ -16,6 +16,6 @@ int main(int argc, char** argv) {
   m.readFile();
   m.printMenu();
   m.writeFile();
-  
+
   return 0;
 }
