@@ -189,7 +189,7 @@ void Menu::readFile() {
             faculty->addAdvisee(adviseeID);
           }
 
-          TreeNode<Faculty> *facultyNode = new TreeNode<Faculty>(facultyNode, frID);
+          TreeNode<Faculty> *facultyNode = new TreeNode<Faculty>(*facultyNode, frID);
           masterFaculty.put(facultyNode);
           break;
         }
