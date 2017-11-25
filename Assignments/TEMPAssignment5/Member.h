@@ -6,6 +6,8 @@ CPSC 350-02
 */
 
 #include <iostream>
+#ifndef included
+#define included
 
 using namespace std;
 
@@ -25,3 +27,5 @@ class Member
         string getName();
         string getLevel();
 };
+
+#endif
