@@ -7,6 +7,8 @@ CPSC 350-02
 
 #include <iostream>
 #include "BST.h"
+#ifndef included
+#define included
 
 using namespace std;
 
@@ -29,3 +31,5 @@ class FileProcessing {
     void outputMS(TreeNode<Student> *s, string student);
     void outputMF(TreeNode<Faculty> *f, string faculty);
 };
+
+#endif
