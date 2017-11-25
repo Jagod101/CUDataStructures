@@ -129,7 +129,7 @@ void Menu::readFile() {
   }
 
   MFFile.close();
-  
+
   //Student Import
   MSFile.open("studentTable.txt");
 
@@ -473,8 +473,7 @@ void Menu::printStudent() {
         srID = atoi(input.c_str());
 
         if(masterStudent.contains(srID)) {
-          int print = masterStudent.find(srID);
-          cout << print;
+          masterStudent.find(srID)->printStudent();
           break;
         }
         else {
