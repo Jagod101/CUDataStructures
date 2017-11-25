@@ -22,7 +22,7 @@ class TreeNode {
     TreeNode<T> *right;
 
     TreeNode();
-    TreeNode<T>* (T* d, int k);
+    TreeNode<T>(T* d, int k);
     virtual ~TreeNode();
 };
 
@@ -35,7 +35,7 @@ TreeNode<T>::TreeNode() {
 }
 
 template <class T>
-TreeNode<T>::TreeNode<T>(T* d, int k) {
+TreeNode<T>::TreeNode(T* d, int k) {
   key = k;
   data = d;
   left = NULL;
