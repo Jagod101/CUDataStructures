@@ -440,7 +440,7 @@ void Menu::printMenu() {
 //go through the tree printing all the students IN ORDER
 void Menu::printAllStudents() {
   if(masterStudent.isEmpty()) {
-    cout << "\n Database is Empty" << endl;
+    cout << "\nStudent Database is Empty" << endl;
   }
   else {
     printMS(masterStudent.getRoot());
@@ -614,17 +614,17 @@ void Menu::addStudent() {
   cin >> name;
 
   string level;
-  cout << "\nNew Student Grade: ";
+  cout << "New Student Grade: ";
   cin >> level;
 
   string major;
-  cout << "\nNew Student Major: ";
+  cout << "New Student Major: ";
   cin >> major;
 
   double gpa;
   while(true) {
     input = "";
-    cout << "\nNew Student GPA: ";
+    cout << "New Student GPA: ";
     cin >> input;
 
     try {
@@ -645,13 +645,13 @@ void Menu::addStudent() {
   int advisorID;
   while(true) {
     input = "";
-    cout << "\nNew Student Advisor ID: ";
+    cout << "New Student Advisor ID: ";
     cin >> input;
 
     try {
       advisorID = atoi(input.c_str());
 
-      if(masterFaculty.contains(advisorID)) {
+      if(masterFaculty.contains(advisorID) || advisorID = -1) {
         Faculty *faculty = masterFaculty.find(advisorID);
         faculty->addAdvisee(srID);
         break;
@@ -742,18 +742,18 @@ void Menu::addFaculty() {
   cin >> name;
 
   string level;
-  cout << "\nNew Faculty Level: ";
+  cout << "New Faculty Level: ";
   cin >> level;
 
   string department;
-  cout << "\nNew Faculty Department: ";
+  cout << "New Faculty Department: ";
   cin >> department;
 
   Faculty *faculty = new Faculty(frID, name, level, department);
 
   if(!masterStudent.isEmpty()) {
     while(true) {
-      cout << "\nHow Many Advisees Does New Faculty Have: ";
+      cout << "How Many Advisees Does New Faculty Have: ";
       cin >> input;
 
       try {
