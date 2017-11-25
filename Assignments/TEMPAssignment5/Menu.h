@@ -10,7 +10,9 @@ CPSC 350-02
 #include <stdlib.h>
 #include <unistd.h>
 #include <sys/stat.h>
-#include "assign5.cpp"
+#include <string>
+#include <fstream>
+#include "BST.h"
 
 using namespace std;
 
@@ -18,8 +20,23 @@ class Menu {
   private:
 
   public:
+    BST<Student> masterStudent;
+    BST<Faculty> masterFaculty;
+
     Menu();
     ~Menu();
+
+    void readFile();
+    void writeFile();
+
+    void printMS(TreeNode<Student> *s);
+    void printMF(TreeNode<Faculty> *f);
+
+    void outputMS(TreeNode<Student> *s, string student);
+    void outputMF(TreeNode<Faculty> *f, string faculty);
+
+    TreeNode<Student>* getMSRoot();
+    TreeNode<Faculty>* getMFRoot();
 
     void printMenu();
     void printAllStudents();

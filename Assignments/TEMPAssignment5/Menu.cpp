@@ -14,6 +14,333 @@ Menu::Menu() {
 Menu::~Menu() {
 
 }
+void Menu::readFile() {
+  ifstream MSFile;
+  ifstream MFFile;
+
+  string input;
+  int numStudent = 0;
+  int numFaculty = 0;
+  int totalFaculty = 0;
+  int totalAdvisee = 0;
+  int numLine = 1;
+
+  //Student
+  int srID = 0;
+  string sname = "";
+  string slevel = "";
+  string smajor = "";
+  double gpa = 0;
+  int advisorID = 0;
+
+  //Faculty
+  int frID = 0;
+  string fname = "";
+  string flevel = "";
+  string department = "";
+  int adviseeID = 0;
+
+  //Student Import
+  MSFile.open("studentTable.txt");
+
+  if(MSFile.is_open()) {
+    try {
+      getline(MSFile, input);
+
+      if(input != "") {
+        numStudent = atoi(input.c_str());
+      }
+    }
+    catch(exception e) {
+      cout << "\nIncorrect File Format" << endl;
+    }
+
+    for(int i = 0; i < (7 * numStudent); ++i) {
+      getline(MSFile, input);
+
+      switch(numLine) {
+        case 1: {
+          if(input != "--") {
+            cout << "\nIncorrect File Format" << endl;
+          }
+          break;
+        }
+        case 2: {
+          try {
+            srID = atoi(input.c_str());
+          }
+          catch(exception e) {
+            cout << "\nIncorrect File Format" << endl;
+          }
+          break;
+        }
+        case 3: {
+          sname = input;
+          break;
+        }
+        case 4: {
+          slevel = input;
+          break;
+        }
+        case 5: {
+          smajor = input;
+        }
+        case 6: {
+          try {
+            gpa = atof(input.c_str());
+          }
+          catch(exception e) {
+            cout << "\nIncorrect File Format" << endl;
+          }
+          break;
+        }
+        case 7: {
+          try {
+            advisorID = atoi(input.c_str());
+
+            Student *student = new Student(srID, sname, slevel, smajor, gpa, advisorID);
+            TreeNode<Student> *studentNode = new TreeNode<Student>(student, srID);
+            masterStudent.put(studentNode);
+          }
+          catch(exception e) {
+            cout << "\nIncorrect File Format" << endl;
+          }
+          break;
+        }
+        default:
+          break;
+      }
+
+      ++numLine;
+      if(numLine > 7) {
+        numLine = 1;
+      }
+    }
+  }
+  else {
+    cout << "\nNo File Found For Student Table - Program Starting With Blank File" << endl;
+  }
+
+  MSFile.close();
+
+  //Faculty Import
+  MFFile.open("facultyTable.txt");
+
+  if(MFFile.is_open()) {
+    try {
+      getline(MFFile, input);
+
+      if(input != "") {
+        numFaculty = atoi(input.c_str());
+      }
+    }
+    catch(exception e) {
+      cout << "\nIncorrect File Format" << endl;
+    }
+
+    while(getline(MFFile, input)) {
+      switch(numLine) {
+        case 1: {
+          if(input != "--") {
+            cout << "\nIncorrect File Format" << endl;
+          }
+          break;
+        }
+        case 2: {
+          try {
+            frID = atoi(input.c_str());
+          }
+          catch(exception e) {
+            cout << "\nIncorrect File Format" << endl;
+          }
+          break;
+        }
+        case 3: {
+          fname = input;
+          break;
+        }
+        case 4: {
+          flevel = input;
+          break;
+        }
+        case 5: {
+          department = input;
+          break;
+        }
+        case 6: {
+          try {
+            numAdvisee = atoi(input.c_str());
+          }
+          catch(exception e) {
+            cout << "\nIncorrect File Format" << endl;
+          }
+
+          Faculty *faculty = new Faculty(frID, fname, flevel, department);
+          totalFaculty++;
+
+          for(int j = 0; j < numAdvisee; ++j) {
+            getline(MFFile, input);
+            try {
+              adviseeID = atoi(input.c_str());
+            }
+            catch(exception e) {
+              cout << "\nIncorrect File Format" << endl;
+            }
+            faculty->addAdvisee(adviseeID);
+          }
+
+          TreeNode<Faculty> *facultyNode = new TreeNode<Faculty>(facultyNode, frID);
+          masterFaculty.put(facultyNode);
+          break;
+        }
+        default:
+          break;
+      }
+
+      ++numLine;
+
+      if(totalFaculty == numFaculty) {
+        break;
+      }
+      if(numLine > 6) {
+        numLine = 1;
+      }
+    }
+  }
+  else {
+    cout << "\nNo File Found For Faculty Table - Program Starting With Blank File" << endl;
+  }
+
+  MFFile.close();
+}
+
+void Menu::writeFile() {
+  ofstream MSFile;
+  ofstream MFFile;
+
+  //Student
+  MSFile.open("studentTable.txt");
+  if(MSFile.is_open()) {
+    MSFile << masterStudent.getSize() << endl;
+    TreeNode<Student> *s = masterStudent.getRoot();
+    outputMS(s, "studentTable.txt");
+  }
+
+  MSFile.close();
+
+  //Faculty
+  MFFile.open("facultyTable.txt");
+  if(MFFile.is_open()) {
+    MFFile << masterFaculty.getSize() << endl;
+    TreeNode<Faculty> *f = masterFaculty.getRoot();
+    outputMF(f, "facultyTable.txt");
+  }
+
+  MFFile.close();
+}
+
+void printMS(TreeNode<Student> *s) {
+  if(s != NULL) {
+    if(s->left != NULL) {
+      printMS(s->left);
+    }
+    s->data->printStudent();
+
+    if(s->right != NULL) {
+      printMS(s->right);
+    }
+  }
+
+  else {
+    cout << "Student Database is Empty" << endl;
+  }
+}
+
+void printMF(TreeNode<Faculty> *f) {
+  if(f != NULL) {
+    if(f->left != NULL) {
+      printMF(f->left);
+    }
+    f->data->printFaculty();
+
+    if(f->right != NULL) {
+      printMF(f->right);
+    }
+  }
+
+  else {
+    cout << "Faculty Database is Empty" << endl;
+  }
+}
+
+void outputMS(TreeNode<Student> *s, string student) {
+  ofstream out;
+  out.open(student, true);
+
+  if(s != NULL) {
+    out << "--" << endl;
+    out << s->data->getID() << endl;
+    out << s->data->getName() << endl;
+    out << s->data->getLevel() << endl;
+    out << s->data->getMajor() << endl;
+    out << s->data->getGPA() << endl;
+    out << s->data->getAdvisor() << endl;
+
+    if(s->left != NULL) {
+      outputMS(s->left, student);
+    }
+    if(s->right != NULL) {
+      outputMS(s->right, student);
+    }
+  }
+  else {
+    cout << "Student Database is Empty" << endl;
+  }
+
+  out.close();
+}
+
+void outputMF(TreeNode<Faculty> *f, string faculty) {
+  ofstream out;
+  out.open(faculty, true);
+
+  if(f != NULL) {
+    out << "--" << endl;
+    out << f->data->getID() << endl;
+    out << f->data->getName() << endl;
+    out << f->data->getLevel() << endl;
+    out << f->data->getDepartment() << endl;
+    out << f->data->getAdviseeID() << endl;
+
+    if(f->data->getAdviseeID() > 0) {
+      for(int i = 0; i < f->data->maxSize; ++i) {
+        if(f->data->adviseeArray[i] != -1) {
+          out << f->data->adviseeArray[i] << endl;
+        }
+      }
+    }
+
+    if(f->left != NULL) {
+      outputMF(f->left, faculty);
+    }
+    if(f->right != NULL) {
+      outputMF(f->right, faculty);
+    }
+  }
+  else {
+    cout << "Faculty Database is Empty" << endl;
+  }
+
+  out.close();
+}
+
+TreeNode<Student>* Menu::getMSRoot() {
+  return masterStudent.getRoot();
+}
+
+TreeNode<Faculty>* Menu::getMFRoot() {
+  return masterFaculty.getRoot();
+}
 
 void Menu::printMenu() {
   string input;
