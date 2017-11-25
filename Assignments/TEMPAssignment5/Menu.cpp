@@ -239,7 +239,7 @@ void Menu::writeFile() {
   MFFile.close();
 }
 
-void printMS(TreeNode<Student> *s) {
+void Menu::printMS(TreeNode<Student> *s) {
   if(s != NULL) {
     if(s->left != NULL) {
       printMS(s->left);
@@ -256,7 +256,7 @@ void printMS(TreeNode<Student> *s) {
   }
 }
 
-void printMF(TreeNode<Faculty> *f) {
+void Menu::printMF(TreeNode<Faculty> *f) {
   if(f != NULL) {
     if(f->left != NULL) {
       printMF(f->left);
@@ -273,7 +273,7 @@ void printMF(TreeNode<Faculty> *f) {
   }
 }
 
-void outputMS(TreeNode<Student> *s, string student) {
+void Menu::outputMS(TreeNode<Student> *s, string student) {
   ofstream out;
   out.open(student.c_str());
 
@@ -300,7 +300,7 @@ void outputMS(TreeNode<Student> *s, string student) {
   out.close();
 }
 
-void outputMF(TreeNode<Faculty> *f, string faculty) {
+void Menu::outputMF(TreeNode<Faculty> *f, string faculty) {
   ofstream out;
   out.open(faculty.c_str());
 
