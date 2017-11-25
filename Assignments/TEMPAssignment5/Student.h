@@ -7,8 +7,6 @@ CPSC 350-02
 
 #include <iostream>
 #include "Member.h"
-#ifndef included
-#define included
 
 using namespace std;
 
@@ -61,5 +59,3 @@ class Student : public Member {
       return output;
     }
 };
-
-#endif

@@ -6,8 +6,6 @@ CPSC 350-02
 */
 
 #include <iostream>
-#ifndef included
-#define included
 
 using namespace std;
 
@@ -192,5 +190,3 @@ template <class T>
 unsigned int DoublyLinkedList<T>::getSize() {
   return size;
 }
-
-#endif
