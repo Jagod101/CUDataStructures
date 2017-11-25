@@ -17,7 +17,7 @@ class TreeNode {
 
   public:
     int key;
-    T* data
+    T* data;
     TreeNode<T> *left;
     TreeNode<T> *right;
 
@@ -76,8 +76,7 @@ class BST {
     TreeNode<T>* getRoot();
     int getSize();
     bool isEmpty();
-  }
-
+  };
 
   template <class T>
   BST<T>::BST() {
