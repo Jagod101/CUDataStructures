@@ -113,7 +113,7 @@ void Menu::printMenu() {
 //go through the tree printing all the students IN ORDER
 void Menu::printAllStudents() {
   if(masterStudent.isEmpty()) {
-    cout << "Student Database is Empty" << endl;
+    cout << "\n Database is Empty" << endl;
   }
   else {
     printMS(masterStudent.getRoot());
@@ -123,7 +123,7 @@ void Menu::printAllStudents() {
 //go through the tree printing all the faculty IN ORDER
 void Menu::printAllFaculty() {
   if(masterFaculty.isEmpty()) {
-    cout << "Faculty Database is Empty" << endl;
+    cout << "\nFaculty Database is Empty" << endl;
   }
   else {
     printMF(masterFaculty.getRoot());
@@ -135,11 +135,11 @@ void Menu::printStudent() {
   int srID;
 
   if(masterStudent.isEmpty()) {
-    cout << "Student Database is Empty" << endl;
+    cout << "\nStudent Database is Empty" << endl;
   }
   else {
     while(true) {
-      cout << "Please Provide a Student ID: ";
+      cout << "\nPlease Provide a Student ID: ";
       cin >> input;
 
       try {
@@ -150,11 +150,11 @@ void Menu::printStudent() {
           break;
         }
         else {
-          cout << "Student ID: " << srID << "Does Not Exist Within Database" << endl;
+          cout << "\nStudent ID: " << srID << "Does Not Exist Within Database" << endl;
         }
       }
       catch(exception e) {
-        cout << "Please Enter Valid Input" << endl;
+        cout << "\nPlease Enter Valid Input" << endl;
       }
     }
   }
@@ -165,11 +165,11 @@ void Menu::printFaculty() {
   int frID;
 
   if(masterFaculty.isEmpty()) {
-    cout << "Faculty Database is Empty" << endl;
+    cout << "\nFaculty Database is Empty" << endl;
   }
   else {
     while(true) {
-      cout << "Please Provide a Faculty ID: ";
+      cout << "\nPlease Provide a Faculty ID: ";
       cin >> input;
 
       try {
@@ -180,11 +180,11 @@ void Menu::printFaculty() {
           break;
         }
         else {
-          cout << "Faculty ID: " << frID << " Does Not Exist Within Database" << endl;
+          cout << "\nFaculty ID: " << frID << " Does Not Exist Within Database" << endl;
         }
       }
       catch(exception e) {
-        cout << "Please Enter Valid Input" << endl;
+        cout << "\nPlease Enter Valid Input" << endl;
       }
     }
   }
@@ -195,14 +195,14 @@ void Menu::printAdvisor() {
   int srID;
 
   if(masterStudent.isEmpty()) {
-    cout << "Student Database is Empty" << endl;
+    cout << "\nStudent Database is Empty" << endl;
   }
   else {
-    cout << "List of Students Within Database: " << endl;
+    cout << "\nList of Students Within Database: ";
     printMS(masterStudent.getRoot());
 
     while(true) {
-      cout << "Please Provide a Student ID: ";
+      cout << "\nPlease Provide a Student ID: ";
       cin >> input;
 
       try {
@@ -213,11 +213,11 @@ void Menu::printAdvisor() {
           break;
         }
         else {
-          cout << "Student ID: " << srID << " Does Not Exist Within Database" << endl;
+          cout << "\nStudent ID: " << srID << " Does Not Exist Within Database" << endl;
         }
       }
       catch(exception e) {
-        cout << "Please Enter Valid Input" << endl;
+        cout << "\nPlease Enter Valid Input" << endl;
       }
     }
   }
@@ -228,14 +228,14 @@ void Menu::printAdvisee() {
   int frID;
 
   if(masterFaculty.isEmpty()) {
-    cout << "Faculty Database is Empty" << endl;
+    cout << "\nFaculty Database is Empty" << endl;
   }
   else {
-    cout << "List of Faculty Within Database: " << endl;
+    cout << "\nList of Faculty Within Database: ";
     printMF(masterFaculty.getRoot());
 
     while(true) {
-      cout << "Please Provide a Faculty ID: ";
+      cout << "\nPlease Provide a Faculty ID: ";
       cin >> input;
 
       try {
@@ -252,11 +252,11 @@ void Menu::printAdvisee() {
           break;
         }
         else {
-          cout << "Faculty ID: " << frID << " Does Not Exist Within Database" << endl;
+          cout << "\nFaculty ID: " << frID << " Does Not Exist Within Database" << endl;
         }
       }
       catch(exception e) {
-        cout << "Please Enter Valid Input" << endl;
+        cout << "\nPlease Enter Valid Input" << endl;
       }
     }
   }
@@ -280,7 +280,7 @@ void Menu::addStudent() {
     }
   }
 
-  cout << "New Students Generated ID: " << srID << endl;
+  cout << "\nNew Students Generated ID: " << srID << endl;
 
   string name;
   cout << "New Student Name: ";
@@ -311,7 +311,7 @@ void Menu::addStudent() {
       }
     }
     catch(exception e) {
-      cout << "Please Enter Valid Input" << endl;
+      cout << "\nPlease Enter Valid Input" << endl;
     }
   }
 
@@ -344,7 +344,7 @@ void Menu::addStudent() {
       }
     }
     catch(exception e) {
-      cout << "Please Enter Valid Input" << endl;
+      cout << "\nPlease Enter Valid Input" << endl;
     }
   }
 
@@ -354,42 +354,44 @@ void Menu::addStudent() {
 }
 
 void Menu::deleteStudent() {
-/*
+  string input;
   int srID = 0;
-  foundStudent = false;
 
-  while(foundStudent == false){
-    if(studentBST.isEmpty()) {
-      cout << "Student Tree is Empty" << endl;
-      return;
-    }
-    else {
-      cout << "What student would you like to look for? (Give an ID number) ";
-      cin >> srID;
-
-      StudentRecords sr(srID);
-
-      if(studentBST.contains(sr)) {
-
-        FacultyRecords fr;
-
-        foundStudent = true;
-
-      }
-      else {
-        cout << "Student ID: " << srID << " Does Not Exist. Try a new ID." << endl;
-      }
-    }
-
-    studentBST.erase(id);
-
-    //delete the student from the facultyRecords
+  if(masterStudent.isEmpty()) {
+    cout << "\nStudent Database is Empty" << endl;
   }
-  */
+  else {
+    cout << "\nList of Students Within Database: ";
+    printMS(masterStudent.getRoot());
+
+    while(true) {
+      input = "";
+      cout << "\nPlease Provide a Student ID: ";
+      cin >> input;
+
+      try {
+        srID = atoi(input.c_str());
+
+        if(masterStudent.contains(srID)) {
+          masterFaculty.find(masterStudent.find(srID)->getAdvisor())->removeAdvisee(srID);
+          masterStudent.erase(srID);
+          break;
+        }
+        else {
+          cout << "\nStudent ID: " << srID << " Does Not Exist Within Database" << endl;
+        }
+      }
+      catch(exception e) {
+        cout << "\nPlease Provide Valid Input" << endl;
+      }
+    }
+  }
 }
 
 void Menu::addFaculty() {
   string input;
+  int newAdviseeTotal = 0;
+  int srID = 0;
 
   //Generate Faculty ID
   bool goodID = false;
@@ -422,7 +424,50 @@ void Menu::addFaculty() {
 
   Faculty *faculty = new Faculty(frID, name, level, department);
 
-  //ADD ADVISEE SECTION
+  if(!masterStudent.isEmpty()) {
+    while(true) {
+      cout << "\nHow Many Advisees Does New Faculty Have: ";
+      cin >> input;
+
+      try {
+        newAdviseeTotal = atoi(input.c_str());
+        break;
+      }
+      catch(exception e) {
+        cout << "Please Provide Valid Input" << endl;
+      }
+    }
+
+    cout << "\nList of Students Within Database: ";
+    printAllStudents();
+
+    for(int i = 0; i < newAdviseeTotal; ++i) {
+      while(true) {
+        input = "";
+        cout << "[" << newAdviseeTotal << " Remaining] Please Provide a Student ID: ";
+        cin >> input;
+
+        try {
+          srID = atoi(input.c_str());
+
+          if(masterStudent.contains(srID)) {
+            faculty->addAdvisee(srID);
+            masterStudent.find(srID)->setAdvisor(frID);
+            break;
+          }
+          else {
+            cout << "Student ID: " << srID << " Does Not Exist Within Database" << endl;
+          }
+        }
+        catch(exception e) {
+          cout << "\nPlease Provide Valid Input" << endl;
+        }
+      }
+    }
+  }
+
+  TreeNode<Faculty> *facultyNode = new TreeNode<Faculty>(faculty, frID);
+  masterFaculty.put(facultyNode);
 }
 
 void Menu::deleteFaculty() {
@@ -434,12 +479,12 @@ void Menu::deleteFaculty() {
     cout << "\nFaculty Database is Empty" << endl;
   }
   else {
-    cout << "List of Faculty Within Database: ";
+    cout << "\nList of Faculty Within Database: ";
     printMF(masterFaculty.getRoot());
 
     while(true) {
       input = "";
-      cout << "Please Provide a Faculty ID: ";
+      cout << "\nPlease Provide a Faculty ID: ";
       cin >> input;
 
       try {
@@ -449,7 +494,7 @@ void Menu::deleteFaculty() {
           if(masterFaculty.find(frID)->numAdvisee > 0) {
             while(true) {
               input = "";
-              cout << "Please Provide a Faculty ID to Transfer Advisees To: ";
+              cout << "\nPlease Provide a Faculty ID to Transfer Advisees To: ";
               cin >> input;
 
               try {
@@ -471,6 +516,7 @@ void Menu::deleteFaculty() {
               }
             }
           }
+          masterFaculty.delete(frID);
         }
         else {
           cout << "\nFaculty ID: " << frID << " Does Not Exist Within Database" << endl;
@@ -489,10 +535,10 @@ void Menu::changeAdvisor() {
   int frID = 0;
 
   if(masterFaculty.isEmpty() || masterStudent.isEmpty()) {
-    cout << "Student and/or Faculty Database is Empty" << endl;
+    cout << "\nStudent and/or Faculty Database is Empty" << endl;
   }
   else {
-    cout << "List of Students Within Database: ";
+    cout << "\nList of Students Within Database: ";
     printMS(masterStudent.getRoot());
 
     while(true) {
@@ -516,20 +562,20 @@ void Menu::changeAdvisor() {
                 break;
               }
               else {
-                cout << "Faculty ID: " << frID << " Does Not Exist Within Database" << endl;
+                cout << "\nFaculty ID: " << frID << " Does Not Exist Within Database" << endl;
               }
             }
             catch(exception e) {
-              cout << "Please Provide Valid Input" << endl;
+              cout << "\nPlease Provide Valid Input" << endl;
             }
           }
         }
         else {
-          cout << "Student ID: " << srID << " Does Not Exist Within Database" << endl;
+          cout << "\nStudent ID: " << srID << " Does Not Exist Within Database" << endl;
         }
       }
       catch(exception e) {
-        cout << "Please Enter Valid Input" << endl;
+        cout << "\nPlease Enter Valid Input" << endl;
       }
     }
     masterStudent.find(srID)->setAdvisor(frID);
@@ -543,7 +589,7 @@ void Menu::removeAdvisee() {
   int frID = 0;
 
   if(masterFaculty.isEmpty() || masterStudent.isEmpty()) {
-    cout << "Student and/or Faculty Database is Empty" << endl;
+    cout << "\nStudent and/or Faculty Database is Empty" << endl;
   }
   else {
     cout << "List of Faculty Within Database: ";
@@ -573,21 +619,21 @@ void Menu::removeAdvisee() {
                 break;
               }
               else {
-                cout << "Student ID: " << srID << " Does Not Exist Within Database" << endl;
+                cout << "\nStudent ID: " << srID << " Does Not Exist Within Database" << endl;
               }
             }
             catch(exception e) {
-              cout << "Please Provide Valid Input" << endl;
+              cout << "\nPlease Provide Valid Input" << endl;
             }
           }
           break;
         }
         else {
-          cout << "Faculty ID: " << frID << " Does Not Exist Within Database" << endl;
+          cout << "\nFaculty ID: " << frID << " Does Not Exist Within Database" << endl;
         }
       }
       catch(exception e) {
-        cout << "Please Enter Valid Input" << endl;
+        cout << "\nPlease Enter Valid Input" << endl;
       }
     }
 
