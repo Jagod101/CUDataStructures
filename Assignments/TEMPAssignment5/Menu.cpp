@@ -503,7 +503,7 @@ void Menu::printFaculty() {
         frID = atoi(input.c_str());
 
         if(masterFaculty.contains(frID)) {
-          masterFaculty.find(frID);
+          masterFaculty.find(frID)->printFaculty();
           break;
         }
         else {
@@ -536,7 +536,7 @@ void Menu::printAdvisor() {
         srID = atoi(input.c_str());
 
         if(masterStudent.contains(srID)) {
-          masterFaculty.find(masterStudent.find(srID)->getAdvisor());
+          masterFaculty.find(masterStudent.find(srID)->getAdvisor())->printFaculty();
           break;
         }
         else {
@@ -573,7 +573,7 @@ void Menu::printAdvisee() {
 
           for(int i = 0; i < faculty->getSizeArray(); ++i) {
             if(faculty->adviseeArray[i] != -1) {
-              masterStudent.find(faculty->adviseeArray[i]);
+              masterStudent.find(faculty->adviseeArray[i])->printStudent();
             }
           }
           break;
