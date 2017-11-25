@@ -651,7 +651,7 @@ void Menu::addStudent() {
     try {
       advisorID = atoi(input.c_str());
 
-      if(masterFaculty.contains(advisorID) || advisorID = -1) {
+      if(masterFaculty.contains(advisorID) || advisorID == -1) {
         Faculty *faculty = masterFaculty.find(advisorID);
         faculty->addAdvisee(srID);
         break;
