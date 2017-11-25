@@ -473,7 +473,7 @@ void Menu::printStudent() {
         srID = atoi(input.c_str());
 
         if(masterStudent.contains(srID)) {
-          masterStudent.find(srID);
+          cout << masterStudent.find(srID);
           break;
         }
         else {
