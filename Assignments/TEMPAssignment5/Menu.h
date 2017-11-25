@@ -12,8 +12,6 @@ CPSC 350-02
 #include <sys/stat.h>
 #include "BST.h"
 //#include "assign5.cpp"
-#ifndef included
-#define included
 
 using namespace std;
 
@@ -43,5 +41,3 @@ class Menu {
 
     void exit();
 };
-
-#endif
