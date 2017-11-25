@@ -22,7 +22,7 @@ class TreeNode {
     TreeNode<T> *right;
 
     TreeNode();
-    TreeNode(T d, int k);
+    TreeNode(T* d, int k);
     virtual ~TreeNode();
 };
 
