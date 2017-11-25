@@ -8,6 +8,8 @@ CPSC 350-02
 #include <iostream>
 #include "DoublyLinkedList.h"
 #include "Member.h"
+#ifndef included
+#define included
 
 using namespace std;
 
@@ -82,3 +84,5 @@ class Faculty : public Member {
       return output;
     }
 };
+
+#endif
