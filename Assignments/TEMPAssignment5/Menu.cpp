@@ -297,7 +297,7 @@ void Menu::addStudent() {
   double gpa;
   while(true) {
     input = "";
-    cout << "New Student GPA: ";
+    cout << "\nNew Student GPA: ";
     cin >> input;
 
     try {
@@ -318,7 +318,7 @@ void Menu::addStudent() {
   int advisorID;
   while(true) {
     input = "";
-    cout << "New Student Advisor ID: ";
+    cout << "\nNew Student Advisor ID: ";
     cin >> input;
 
     try {
@@ -426,20 +426,61 @@ void Menu::addFaculty() {
 }
 
 void Menu::deleteFaculty() {
-/*
-  int id = 0;
+  string input;
+  int frID = 0;
+  int transferID = 0;
 
-  cout << "What student would you like to look for? (Give an id number)" << endl;
-  cin >> id;
+  if(masterFaculty.isEmpty()) {
+    cout << "\nFaculty Database is Empty" << endl;
+  }
+  else {
+    cout << "List of Faculty Within Database: ";
+    printMF(masterFaculty.getRoot());
 
-  facultyBST.erase(id);
+    while(true) {
+      input = "";
+      cout << "Please Provide a Faculty ID: ";
+      cin >> input;
 
-  //this might have to change bc we might have to create a copy of their records before
-  //they are deleted so that we can have all their advisee's to shift
+      try {
+        frID = atoi(input.c_str());
 
-  //shift the students to new advisers
-  //record changes in studentRecords
-*/
+        if(masterFaculty.contains(frID)) {
+          if(masterFaculty.find(frID)->numAdvisee > 0) {
+            while(true) {
+              input = "";
+              cout << "Please Provide a Faculty ID to Transfer Advisees To: ";
+              cin >> input;
+
+              try {
+                transferID = atoi(input.c_str());
+
+                if(masterFaculty.contains(transferID)) {
+                  for(int i = 0; i < masterFaculty.find(frID)->maxSize; ++i) {
+                    if(masterFaculty.find(frID)->adviseeArray[i] != -1) {
+                      masterStudent.find(masterFaculty.find(frID)->adviseeArray[i])->setAdvisor(transferID);
+                    }
+                  }
+                }
+                else {
+                  cout << "\nFaculty Transfer ID: " << transferID << " Does Not Exist Within Database" << endl;
+                }
+              }
+              catch(exception e) {
+                cout << "\nPlease Provide Valid Input" << endl;
+              }
+            }
+          }
+        }
+        else {
+          cout << "\nFaculty ID: " << frID << " Does Not Exist Within Database" << endl;
+        }
+      }
+      catch(exception e) {
+        cout << "\nPlease Provide Valid Input" << endl;
+      }
+    }
+  }
 }
 
 void Menu::changeAdvisor() {
@@ -456,7 +497,7 @@ void Menu::changeAdvisor() {
 
     while(true) {
       input = "";
-      cout << "Please Provide a Student ID: ";
+      cout << "\nPlease Provide a Student ID: ";
       cin >> input;
 
       try {
@@ -465,7 +506,7 @@ void Menu::changeAdvisor() {
         if(masterStudent.contains(srID)) {
           while(true) {
             input = "";
-            cout << "Please Provide a Faculty ID: ";
+            cout << "\nPlease Provide a Faculty ID: ";
             cin >> input;
 
             try {
@@ -497,53 +538,86 @@ void Menu::changeAdvisor() {
 }
 
 void Menu::removeAdvisee() {
-  /*int srID = 0;
+  string input;
+  int srID = 0;
   int frID = 0;
-  bool idIsWrong = true;
 
-  if(facultyBST.isEmpty()) {
-    cout << "Faculty Tree is Empty" << endl;
-    return;
-  }
-
-  cout << "\nWhat is the ID of the student you would like to remove?: ";
-  cin >> srID;
-
-  cout << "\nWhat is the ID of that students advisor?: ";
-  cin >> frID;
-
-  while(idIsWrong == true){
-    StudentRecords sr(srID);
-    studentRecords s_value = studentBST.find(sr);
-    FacultyRecords f_value(s_value.advisorID);
-
-    if (frID != f_value){
-      cout << "\nThat advisor is not the advisor to the student you entered. Enter a different ID number: ";
-      cin >> frID;
-    } else {
-      idIsWrong = false;
-    }
-  }
-
-  facultyBST.removeAdviseeID(frID, srID);
-
-  cout << "Choose a new Advisor for this student" << endl;
-  printAllFaculty();
-
-  cout << "What is the new Advisor's ID: ";
-  cin >> frID;
-
-  FacultyRecords newfrID(frID);
-
-  if(facultyBST.contains(newfrID)) {
-    sr.advisorID = frID;
-    studentBST.replaceAdvisor(sr);
-    facultyBST.replaceAdvisee(oldfrID, newfrID, srID);
+  if(masterFaculty.isEmpty() || masterStudent.isEmpty()) {
+    cout << "Student and/or Faculty Database is Empty" << endl;
   }
   else {
-    cout << "Faculty ID: " << frID << " Does Not Exist" << endl;
+    cout << "List of Faculty Within Database: ";
+    printMF(masterFaculty.getRoot());
+
+    while(true) {
+      input = "";
+      cout << "\nPlease Provide a Faculty ID: ";
+      cin >> input;
+
+      try {
+        frID = atoi(input.c_str());
+
+        if(masterFaculty.contains(frID)) {
+          cout << "\nList of Advisees for Faculty ID: " << frID << endl;
+          masterFaculty.find(frID)->printAdvisee();
+
+          while(true) {
+            input = "";
+            cout << "\nPlease Provide a Student ID: ";
+            cin >> input;
+
+            try {
+              srID = atoi(input.c_str());
+
+              if(masterStudent.contains(srID)) {
+                break;
+              }
+              else {
+                cout << "Student ID: " << srID << " Does Not Exist Within Database" << endl;
+              }
+            }
+            catch(exception e) {
+              cout << "Please Provide Valid Input" << endl;
+            }
+          }
+          break;
+        }
+        else {
+          cout << "Faculty ID: " << frID << " Does Not Exist Within Database" << endl;
+        }
+      }
+      catch(exception e) {
+        cout << "Please Enter Valid Input" << endl;
+      }
+    }
+
+    masterFaculty.find(frID)->removeAdviseeID(srID);
+
+    cout << "\nBefore Process Completes, Assign NEW Faculty Advisor For Student" << endl;
+    printAllFaculty();
+
+    while(true) {
+      input = "";
+      cout << "Please Provide a Faculty ID: ";
+      cin >> input;
+
+      try {
+        frID = atoi(input.c_str());
+
+        if(masterFaculty.contains(frID)) {
+          break;
+        }
+        else {
+          cout << "Faculty ID: " << frID << " Does Not Exist Within Database" << endl;
+        }
+      }
+      catch(exception e) {
+        cout << "Please Provide Valid Input" << endl;
+      }
+    }
+
+    masterStudent.find(srID)->setAdvisor(frID);
   }
-  */
 }
 
 void Menu::rollback() {
