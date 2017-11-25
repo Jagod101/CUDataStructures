@@ -40,89 +40,6 @@ void Menu::readFile() {
   string department = "";
   int adviseeID = 0;
 
-  //Student Import
-  MSFile.open("studentTable.txt");
-
-  if(MSFile.is_open()) {
-    try {
-      getline(MSFile, input);
-
-      if(input != "") {
-        numStudent = atoi(input.c_str());
-      }
-    }
-    catch(exception e) {
-      cout << "\nIncorrect File Format" << endl;
-    }
-
-    for(int i = 0; i < (7 * numStudent); ++i) {
-      getline(MSFile, input);
-
-      switch(numLine) {
-        case 1: {
-          if(input != "--") {
-            cout << "\nIncorrect File Format" << endl;
-          }
-          break;
-        }
-        case 2: {
-          try {
-            srID = atoi(input.c_str());
-          }
-          catch(exception e) {
-            cout << "\nIncorrect File Format" << endl;
-          }
-          break;
-        }
-        case 3: {
-          sname = input;
-          break;
-        }
-        case 4: {
-          slevel = input;
-          break;
-        }
-        case 5: {
-          smajor = input;
-        }
-        case 6: {
-          try {
-            gpa = atof(input.c_str());
-          }
-          catch(exception e) {
-            cout << "\nIncorrect File Format" << endl;
-          }
-          break;
-        }
-        case 7: {
-          try {
-            advisorID = atoi(input.c_str());
-
-            Student *student = new Student(srID, sname, slevel, smajor, gpa, advisorID);
-            TreeNode<Student> *studentNode = new TreeNode<Student>(student, srID);
-            masterStudent.put(studentNode);
-          }
-          catch(exception e) {
-            cout << "\nIncorrect File Format" << endl;
-          }
-          break;
-        }
-        default:
-          break;
-      }
-
-      ++numLine;
-      if(numLine > 7) {
-        numLine = 1;
-      }
-    }
-  }
-  else {
-    cout << "\nNo File Found For Student Table - Program Starting With Blank File" << endl;
-  }
-
-  MSFile.close();
-
   //Faculty Import
   MFFile.open("facultyTable.txt");
 
@@ -212,6 +129,89 @@ void Menu::readFile() {
   }
 
   MFFile.close();
+  
+  //Student Import
+  MSFile.open("studentTable.txt");
+
+  if(MSFile.is_open()) {
+    try {
+      getline(MSFile, input);
+
+      if(input != "") {
+        numStudent = atoi(input.c_str());
+      }
+    }
+    catch(exception e) {
+      cout << "\nIncorrect File Format" << endl;
+    }
+
+    for(int i = 0; i < (7 * numStudent); ++i) {
+      getline(MSFile, input);
+
+      switch(numLine) {
+        case 1: {
+          if(input != "--") {
+            cout << "\nIncorrect File Format" << endl;
+          }
+          break;
+        }
+        case 2: {
+          try {
+            srID = atoi(input.c_str());
+          }
+          catch(exception e) {
+            cout << "\nIncorrect File Format" << endl;
+          }
+          break;
+        }
+        case 3: {
+          sname = input;
+          break;
+        }
+        case 4: {
+          slevel = input;
+          break;
+        }
+        case 5: {
+          smajor = input;
+        }
+        case 6: {
+          try {
+            gpa = atof(input.c_str());
+          }
+          catch(exception e) {
+            cout << "\nIncorrect File Format" << endl;
+          }
+          break;
+        }
+        case 7: {
+          try {
+            advisorID = atoi(input.c_str());
+
+            Student *student = new Student(srID, sname, slevel, smajor, gpa, advisorID);
+            TreeNode<Student> *studentNode = new TreeNode<Student>(student, srID);
+            masterStudent.put(studentNode);
+          }
+          catch(exception e) {
+            cout << "\nIncorrect File Format" << endl;
+          }
+          break;
+        }
+        default:
+          break;
+      }
+
+      ++numLine;
+      if(numLine > 7) {
+        numLine = 1;
+      }
+    }
+  }
+  else {
+    cout << "\nNo File Found For Student Table - Program Starting With Blank File" << endl;
+  }
+
+  MSFile.close();
 }
 
 void Menu::writeFile() {
@@ -473,7 +473,8 @@ void Menu::printStudent() {
         srID = atoi(input.c_str());
 
         if(masterStudent.contains(srID)) {
-          cout << masterStudent.find(srID);
+          int print = masterStudent.find(srID);
+          cout << print;
           break;
         }
         else {
