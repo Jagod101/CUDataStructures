@@ -6,7 +6,7 @@ CPSC 350-02
 */
 
 #include <iostream>
-#include "Menu.cpp"
+#include "Menu.h"
 
 using namespace std;
 
