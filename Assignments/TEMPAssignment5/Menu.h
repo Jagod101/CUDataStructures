@@ -10,12 +10,11 @@ CPSC 350-02
 #include <stdlib.h>
 #include <unistd.h>
 #include <sys/stat.h>
-//#include "BST.h"
 #include "assign5.cpp"
 
 using namespace std;
 
-class Menu {
+class Menu : public FileProcessing {
   private:
 
   public:
