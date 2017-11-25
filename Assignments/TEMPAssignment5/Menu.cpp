@@ -843,7 +843,7 @@ void Menu::deleteFaculty() {
               }
             }
           }
-          masterFaculty.delete(frID);
+          masterFaculty.erase(frID);
         }
         else {
           cout << "\nFaculty ID: " << frID << " Does Not Exist Within Database" << endl;
@@ -964,7 +964,7 @@ void Menu::removeAdvisee() {
       }
     }
 
-    masterFaculty.find(frID)->removeAdviseeID(srID);
+    masterFaculty.find(frID)->removeAdvisee(srID);
 
     cout << "\nBefore Process Completes, Assign NEW Faculty Advisor For Student" << endl;
     printAllFaculty();

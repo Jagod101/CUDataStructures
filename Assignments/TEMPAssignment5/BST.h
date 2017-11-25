@@ -130,7 +130,7 @@ class BST {
         }
 
         if(curr == NULL) {
-          return T();
+          return NULL;
         }
       }
       return curr->data;
