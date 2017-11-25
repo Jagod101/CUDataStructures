@@ -62,7 +62,7 @@ class Faculty : public Member {
       output << "Level: " << f.level << endl;
       output << "Department: " << f.department << endl;
       output << "Advisee IDs: ";
-      if(f == NULL) {
+      /*if(f == NULL) {
         //All Advisors Have Advisee's, Error Catch Implementation if things mess up
         output << "None" << endl;
       }
@@ -77,7 +77,7 @@ class Faculty : public Member {
             break;
           }
         }
-      }
+      }*/
 
       return output;
     }
