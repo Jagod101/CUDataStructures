@@ -12,6 +12,7 @@ CPSC 350-02
 #include <sys/stat.h>
 #include <string>
 #include <fstream>
+#include <array>
 #include "BST.h"
 
 using namespace std;
