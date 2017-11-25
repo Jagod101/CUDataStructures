@@ -7,7 +7,7 @@ CPSC 350-02
 
 #include <iostream>
 #include "Student.h"
-//#include "Faculty.h"
+#include "Faculty.h"
 
 using namespace std;
 
