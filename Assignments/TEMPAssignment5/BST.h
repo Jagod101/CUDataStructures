@@ -60,12 +60,12 @@ class BST {
     BST();
     virtual ~BST();
 
-    bool contains(T k); //Checks if Contains
-    T* find(T k); //Find (same as Contain but different return type)
+    bool contains(int k); //Checks if Contains
+    T* find(int k); //Find (same as Contain but different return type)
     void put(TreeNode<T> *node); //Insert
 
     TreeNode<T>* getSuccessor(TreeNode<T> *d); //TreeNode *d represents the node we are deleting
-    bool erase(T k); //Delete
+    bool erase(int k); //Delete
 
     T* getMin();
     T* getMax();
@@ -90,7 +90,7 @@ class BST {
   }
 
   template <class T>
-  bool BST<T>::contains(T k) {
+  bool BST<T>::contains(int k) {
     if(root == NULL) {
       return false;
     }
@@ -113,7 +113,7 @@ class BST {
   }
 
   template <class T>
-  T* BST<T>::find(T k) {
+  T* BST<T>::find(int k) {
     if(root == NULL) {
       return NULL;
     }
@@ -193,7 +193,7 @@ class BST {
   }
 
   template <class T>
-  bool BST<T>::erase(T k) {
+  bool BST<T>::erase(int k) {
     if(root == NULL) {
         return false;
     }
