@@ -169,7 +169,7 @@ void Menu::readFile() {
         }
         case 6: {
           try {
-            numAdvisee = atoi(input.c_str());
+            totalAdvisee = atoi(input.c_str());
           }
           catch(exception e) {
             cout << "\nIncorrect File Format" << endl;
@@ -178,7 +178,7 @@ void Menu::readFile() {
           Faculty *faculty = new Faculty(frID, fname, flevel, department);
           totalFaculty++;
 
-          for(int j = 0; j < numAdvisee; ++j) {
+          for(int j = 0; j < totalAdvisee; ++j) {
             getline(MFFile, input);
             try {
               adviseeID = atoi(input.c_str());
@@ -275,7 +275,7 @@ void printMF(TreeNode<Faculty> *f) {
 
 void outputMS(TreeNode<Student> *s, string student) {
   ofstream out;
-  out.open(student, true);
+  out.open(student);
 
   if(s != NULL) {
     out << "--" << endl;
@@ -302,7 +302,7 @@ void outputMS(TreeNode<Student> *s, string student) {
 
 void outputMF(TreeNode<Faculty> *f, string faculty) {
   ofstream out;
-  out.open(faculty, true);
+  out.open(faculty);
 
   if(f != NULL) {
     out << "--" << endl;
