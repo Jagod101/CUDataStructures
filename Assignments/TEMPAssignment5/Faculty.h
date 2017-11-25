@@ -6,7 +6,6 @@ CPSC 350-02
 */
 
 #include <iostream>
-#include <array>
 #include "DoublyLinkedList.h"
 #include "Member.h"
 

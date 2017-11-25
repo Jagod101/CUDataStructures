@@ -12,6 +12,8 @@ CPSC 350-02
 #include <sys/stat.h>
 #include <string>
 #include <fstream>
+#include <algorithm>
+#include <sstream>
 #include "BST.h"
 
 using namespace std;
