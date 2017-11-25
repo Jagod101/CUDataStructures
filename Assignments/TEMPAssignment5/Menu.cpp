@@ -265,7 +265,8 @@ void Menu::printAdvisee() {
 void Menu::addStudent() {
   string input;
 
-  goodID = false;
+  //Generate Student ID
+  string goodID = false;
   srand(time(NULL));
   int srID = rand() % 4000 + 1000; // will generate a number between 1000 and 4999
 
@@ -300,7 +301,7 @@ void Menu::addStudent() {
     cin >> input;
 
     try {
-      gpa = atod(input);
+      gpa = atod(input.c_str());
 
       if(gpa > 5 || gpa < 0) {
         cout << "\nEnter GPA From 0-5" << endl;
@@ -321,7 +322,7 @@ void Menu::addStudent() {
     cin >> input;
 
     try {
-      advisorID = atoi(input);
+      advisorID = atoi(input.c_str());
 
       if(masterFaculty.contains(advisorID)) {
         Faculty *faculty = masterFaculty.find(advisorID);
@@ -334,7 +335,7 @@ void Menu::addStudent() {
         cout << "(Y/N) Would You Like a List of Faculty? ";
         cin >> input;
 
-        if(input == "Y" || in[ut] == "Yes") {
+        if(input == "Y" || input == "Yes") {
           printAllFaculty();
         }
         else {
@@ -347,7 +348,7 @@ void Menu::addStudent() {
     }
   }
 
-  Student *student = new Student(srID, name, level, major, grade, advisorID);
+  Student *student = new Student(srID, name, level, major, advisorID);
   TreeNode<Student> *studentNode = new TreeNode<Student>(student, srID);
   masterStudent.put(studentNode);
 }
@@ -391,7 +392,7 @@ void Menu::addFaculty() {
   string input;
 
   //Generate Faculty ID
-  goodID = false;
+  string goodID = false;
   srand(time(NULL));
   int frID = rand() % 5000 + 5000; // will generate a number between 5000 and 9999
 
@@ -459,7 +460,7 @@ void Menu::changeAdvisor() {
       cin >> input;
 
       try {
-        srID = atoi(input);
+        srID = atoi(input.c_str());
 
         if(masterStudent.contains(srID)) {
           while(true) {
@@ -468,7 +469,7 @@ void Menu::changeAdvisor() {
             cin >> input;
 
             try {
-              frID = atoi(input);
+              frID = atoi(input.c_str());
 
               if(masterFaculty.contains(frID)) {
                 break;
