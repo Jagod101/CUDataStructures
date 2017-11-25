@@ -8,6 +8,8 @@ CPSC 350-02
 #include <iostream>
 #include "Student.h"
 #include "Faculty.h"
+#ifndef included
+#define included
 
 using namespace std;
 
@@ -336,3 +338,5 @@ class BST {
   bool BST<T>::isEmpty() {
     return(size == 0);
   }
+
+#endif
