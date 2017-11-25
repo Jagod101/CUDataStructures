@@ -266,7 +266,7 @@ void Menu::addStudent() {
   string input;
 
   //Generate Student ID
-  string goodID = false;
+  bool goodID = false;
   srand(time(NULL));
   int srID = rand() % 4000 + 1000; // will generate a number between 1000 and 4999
 
@@ -392,7 +392,7 @@ void Menu::addFaculty() {
   string input;
 
   //Generate Faculty ID
-  string goodID = false;
+  bool goodID = false;
   srand(time(NULL));
   int frID = rand() % 5000 + 5000; // will generate a number between 5000 and 9999
 
