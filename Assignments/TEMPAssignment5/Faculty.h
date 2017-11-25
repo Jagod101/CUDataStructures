@@ -62,23 +62,23 @@ class Faculty : public Member {
       output << "Level: " << f.level << endl;
       output << "Department: " << f.department << endl;
       output << "Advisee IDs: ";
-      if(node == NULL) {
+      if(f == NULL) {
         //All Advisors Have Advisee's, Error Catch Implementation if things mess up
         output << "None" << endl;
       }
       else {
         while(true) {
-          output << node->data;
-          if(node->next != NULL) {
+          output << f->data;
+          if(f->next != NULL) {
             output << ", ";
-            node = node->next;
+            f = f->next;
           }
           else {
             break;
           }
         }
       }
-      
+
       return output;
     }
 };

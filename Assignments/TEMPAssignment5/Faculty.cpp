@@ -33,7 +33,7 @@ Faculty::Faculty(int ID_, string name_, string level_, string department_) {
 }
 
 void Faculty::printFaculty() {
-  cout << "Faculty ID:  " << id << ", ";
+  cout << "Faculty ID:  " << ID << ", ";
   cout << "Faculty Name: " << name << ", ";
   cout << "Level: " << level << ", ";
   cout << "Department: " << department << ", ";
@@ -46,7 +46,7 @@ void Faculty::printAdvisee() {
     cout << "None";
   }
   else {
-    
+
   }
 }
 
@@ -54,7 +54,7 @@ string Faculty::getDepartment() {
   return department;
 }
 
-void Faculty::getAdviseeID() {
+int Faculty::getAdviseeID() {
   return numAdvisee;
 }
 
