@@ -877,8 +877,6 @@ void Menu::changeAdvisor() {
         srID = atoi(input.c_str());
 
         if(masterStudent.contains(srID)) {
-          masterStudent.find(srID)->getAdvisor()->removeAdvisee(srID);
-
           while(true) {
             input = "";
             cout << "\nPlease Provide a Faculty ID: ";
