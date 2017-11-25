@@ -275,7 +275,7 @@ void printMF(TreeNode<Faculty> *f) {
 
 void outputMS(TreeNode<Student> *s, string student) {
   ofstream out;
-  out.open(s, student);
+  out.open(student.c_str(), true);
 
   if(s != NULL) {
     out << "--" << endl;
@@ -302,7 +302,7 @@ void outputMS(TreeNode<Student> *s, string student) {
 
 void outputMF(TreeNode<Faculty> *f, string faculty) {
   ofstream out;
-  out.open(f, faculty);
+  out.open(faculty.c_str(), true);
 
   if(f != NULL) {
     out << "--" << endl;
