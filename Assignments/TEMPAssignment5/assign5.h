@@ -6,19 +6,26 @@ CPSC 350-02
 */
 
 #include <iostream>
-//#include "BST.h"
+#include "BST.h"
 
 using namespace std;
 
 class FileProcessing {
   private:
+
   public:
-    BST<StudentRecords> masterStudent;
-    BST<FacultyRecords> masterFaculty;
+    BST<Student> masterStudent;
+    BST<Faculty> masterFaculty;
 
     FileProcessing();
     ~FileProcessing();
 
     void readFile();
     void writeFile();
-}
+
+    void printMS(TreeNode<Student> *s);
+    void printMF(TreeNode<Faculty> *f);
+
+    void outputMS(TreeNode<Student> *s, string student);
+    void outputMF(TreeNode<Faculty> *f, string faculty);
+};

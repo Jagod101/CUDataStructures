@@ -10,17 +10,13 @@ CPSC 350-02
 #include <stdlib.h>
 #include <unistd.h>
 #include <sys/stat.h>
-//#include "BST.h"
+#include "BST.h"
+#include "assign5.cpp"
 
 using namespace std;
 
-const string studentTable = "studentTable";
-const string facultyTable = "facultyTable";
-
 class Menu {
   private:
-    //StudentTable studentBST;
-    //FacultyTable facultyBST;
 
   public:
     Menu();

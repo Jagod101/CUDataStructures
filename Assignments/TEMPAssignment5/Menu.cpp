@@ -120,26 +120,24 @@ void Menu::printMenu() {
   }
 }
 
+//go through the tree printing all the students IN ORDER
 void Menu::printAllStudents() {
-/*  //go through the tree printing all the students IN ORDER
-  if(studentBST.isEmpty()) {
-    cout << "Student Tree is Empty" << endl;
+  if(masterStudent.isEmpty()) {
+    cout << "Student Database is Empty" << endl;
   }
   else {
-    studentBST.printTree();
+    printMS(masterStudent.getRoot());
   }
-  */
 }
 
+//go through the tree printing all the faculty IN ORDER
 void Menu::printAllFaculty() {
-/*  //go through the tree printing all the faculty IN ORDER
-  if(facultyBST.isEmpty()) {
-    cout << "Faculty Tree is Empty" << endl;
+  if(masterFaculty.isEmpty()) {
+    cout << "Faculty Database is Empty" << endl;
   }
   else {
-    facultyBST.printTree();
+    printMF(masterFaculty.getRoot());
   }
-  */
 }
 
 void Menu::printStudent() {
