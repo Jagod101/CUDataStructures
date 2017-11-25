@@ -301,7 +301,7 @@ void Menu::addStudent() {
     cin >> input;
 
     try {
-      gpa = atod(input.c_str());
+      gpa = atof(input.c_str());
 
       if(gpa > 5 || gpa < 0) {
         cout << "\nEnter GPA From 0-5" << endl;
@@ -348,7 +348,7 @@ void Menu::addStudent() {
     }
   }
 
-  Student *student = new Student(srID, name, level, major, advisorID);
+  Student *student = new Student(srID, name, level, major, gpa, advisorID);
   TreeNode<Student> *studentNode = new TreeNode<Student>(student, srID);
   masterStudent.put(studentNode);
 }
