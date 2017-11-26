@@ -281,17 +281,17 @@ void Menu::outputMS(TreeNode<Student> *s, string student) {
   }
 
   if(s != NULL) {
+    out << "--" << endl;
+    out << s->getID() << endl;
+    out << s->getName() << endl;
+    out << s->getLevel() << endl;
+    out << s->getMajor() << endl;
+    out << s->getGPA() << endl;
+    out << s->getAdvisor() << endl;
+
     if(s->left != NULL) {
       outputMS(s->left, student);
     }
-
-    out << "--" << endl;
-    out << s->data->getID() << endl;
-    out << s->data->getName() << endl;
-    out << s->data->getLevel() << endl;
-    out << s->data->getMajor() << endl;
-    out << s->data->getGPA() << endl;
-    out << s->data->getAdvisor() << endl;
 
     if(s->right != NULL) {
       outputMS(s->right, student);

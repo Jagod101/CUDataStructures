@@ -52,7 +52,7 @@ TreeNode<T>::~TreeNode() {
 //<-------------------------------BST Class-------------------------------->
 template <class T>
 class BST {
-  private:
+  protected:
     TreeNode<T> *root;
     int size;
 
