@@ -274,14 +274,16 @@ void Menu::printMF(TreeNode<Faculty> *f) {
 }
 
 void Menu::outputMS(TreeNode<Student> *s, string student) {
-  ofstream out;
-  out.open(student.c_str());
+  if(!out.is_open()) {
+    ofstream out;
+    out.open(student.c_str());
+  }
 
   if(s != NULL) {
     if(s->left != NULL) {
       outputMS(s->left, student);
     }
-    
+
     out << "--" << endl;
     out << s->data->getID() << endl;
     out << s->data->getName() << endl;
