@@ -42,7 +42,6 @@ int Student::getAdvisor() {
   return advisorID;
 }
 
-
 void Student::printStudent() {
   cout << "Student ID: " << ID << ", ";
   cout << "Student Name: " << name << ", ";

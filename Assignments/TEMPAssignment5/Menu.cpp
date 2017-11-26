@@ -558,7 +558,7 @@ void Menu::printAdvisee() {
     cout << "\nFaculty Database is Empty" << endl;
   }
   else {
-    cout << "\nList of Faculty Within Database: ";
+    cout << "\nList of Faculty Within Database: " << endl;
     printMF(masterFaculty.getRoot());
 
     while(true) {
@@ -574,6 +574,10 @@ void Menu::printAdvisee() {
           for(int i = 0; i < faculty->getSizeArray(); ++i) {
             if(faculty->adviseeArray[i] != -1) {
               masterStudent.find(faculty->adviseeArray[i])->printStudent();
+              break;
+            }
+            else {
+              cout << "\nFaculty Member Has No Advisees" << endl;
             }
           }
           break;
@@ -642,36 +646,38 @@ void Menu::addStudent() {
     }
   }
 
-  int advisorID;
-  while(true) {
-    input = "";
-    cout << "New Student Advisor ID: ";
-    cin >> input;
+  if(!masterFaculty.isEmpty()) {
+    int advisorID;
+    while(true) {
+      input = "";
+      cout << "New Student Advisor ID: ";
+      cin >> input;
 
-    try {
-      advisorID = atoi(input.c_str());
+      try {
+        advisorID = atoi(input.c_str());
 
-      if(masterFaculty.contains(advisorID) || advisorID == -1) {
-        Faculty *faculty = masterFaculty.find(advisorID);
-        faculty->addAdvisee(srID);
-        break;
-      }
-      else {
-        input = "";
-        cout << "\nFaculty ID: " << advisorID << " Does Not Exist Within Database" << endl;
-        cout << "(Y/N) Would You Like a List of Faculty? ";
-        cin >> input;
-
-        if(input == "Y" || input == "Yes") {
-          printAllFaculty();
+        if(masterFaculty.contains(advisorID) || advisorID == -1) {
+          Faculty *faculty = masterFaculty.find(advisorID);
+          faculty->addAdvisee(srID);
+          break;
         }
         else {
-          continue;
+          input = "";
+          cout << "\nFaculty ID: " << advisorID << " Does Not Exist Within Database" << endl;
+          cout << "(Y/N) Would You Like a List of Faculty? ";
+          cin >> input;
+
+          if(input == "Y" || input == "Yes") {
+            printAllFaculty();
+          }
+          else {
+            continue;
+          }
         }
       }
-    }
-    catch(exception e) {
-      cout << "\nPlease Enter Valid Input" << endl;
+      catch(exception e) {
+        cout << "\nPlease Enter Valid Input" << endl;
+      }
     }
   }
 
@@ -780,6 +786,7 @@ void Menu::addFaculty() {
           if(masterStudent.contains(srID)) {
             faculty->addAdvisee(srID);
             masterStudent.find(srID)->setAdvisor(frID);
+            --newAdviseeTotal;
             break;
           }
           else {
@@ -829,9 +836,7 @@ void Menu::deleteFaculty() {
 
                 if(masterFaculty.contains(transferID)) {
                   for(int i = 0; i < masterFaculty.find(frID)->maxSize; ++i) {
-                    if(masterFaculty.find(frID)->adviseeArray[i] != -1) {
                       masterStudent.find(masterFaculty.find(frID)->adviseeArray[i])->setAdvisor(transferID);
-                    }
                   }
                 }
                 else {

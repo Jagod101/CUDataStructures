@@ -39,7 +39,6 @@ void Faculty::printFaculty() {
   cout << "Department: " << department << ", ";
   cout << "Advisee IDs: ";
   printAdvisee();
-  cout << endl;
 }
 
 void Faculty::printAdvisee() {
@@ -122,7 +121,7 @@ bool Faculty::removeAdvisee(int adviseeID) {
     }
 
     if(!removed) {
-      cout << "Not Found" << endl;
+      cout << "Advisee Succesfully Removed" << endl;
     }
 
     return removed;
