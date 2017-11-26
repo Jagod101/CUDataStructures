@@ -1008,9 +1008,6 @@ void Menu::removeAdvisee() {
 
       masterStudent.find(srID)->setAdvisor(frID);
     }
-    else {
-      continue;
-    }
   }
 }
 
