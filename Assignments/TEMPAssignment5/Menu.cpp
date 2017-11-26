@@ -596,8 +596,8 @@ void Menu::printAdvisee() {
 
 void Menu::addStudent() {
   //Rollback Implementation
-  GenStack<Student> *studentStack = studentStack->push(masterStudent);
-  GenStack<Faculty> *facultyStack = facultyStack->push(masterFaculty);
+  //studentStack.push(masterStudent);
+  //facultyStack.push(masterFaculty);
   //---------------------->
 
   string input;
@@ -1050,11 +1050,8 @@ void Menu::removeAdvisee() {
 
 void Menu::rollback() {
   try {
-    GenStack<Student> *studentStack;
-    GenStack<Faculty> *facultyStack;
-
-    masterStudent = studentStack->pop();
-    masterFaculty = facultyStack->pop();
+    masterStudent = studentStack.pop();
+    masterFaculty = facultyStack.pop();
   }
   catch(exception e) {
     cout << "Undo Function is Unavailable" << endl;
