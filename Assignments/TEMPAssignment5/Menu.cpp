@@ -596,8 +596,8 @@ void Menu::printAdvisee() {
 
 void Menu::addStudent() {
   //Rollback Implementation
-  studentStack.push(masterStudent);
-  facultyStack.push(masterFaculty);
+  GenStack<Student> *studentStack = studentStack.push(masterStudent);
+  GenStack<Faculty> *facultyStack = facultyStack.push(masterFaculty);
   //---------------------->
 
   string input;
