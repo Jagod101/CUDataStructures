@@ -802,8 +802,10 @@ void Menu::addFaculty() {
       }
     }
 
-    cout << "\nList of Students Within Database: ";
-    printAllStudents();
+    if(newAdviseeTotal != 0) {
+      cout << "\nList of Students Within Database: " << endl;
+      printAllStudents();
+    }
 
     for(int i = 0; i < newAdviseeTotal; ++i) {
       while(true) {
