@@ -596,8 +596,8 @@ void Menu::printAdvisee() {
 
 void Menu::addStudent() {
   //Rollback Implementation
-  //studentStack.push(masterStudent);
-  //facultyStack.push(masterFaculty);
+  studentStack.push(masterStudent);
+  facultyStack.push(masterFaculty);
   //---------------------->
 
   string input;
@@ -1049,14 +1049,14 @@ void Menu::removeAdvisee() {
 }
 
 void Menu::rollback() {
-  /*try {
+  try {
     masterStudent = studentStack.pop();
     masterFaculty = facultyStack.pop();
   }
   catch(exception e) {
     cout << "Undo Function is Unavailable" << endl;
   }
-*/
+
 }
 
 void Menu::exit() {
