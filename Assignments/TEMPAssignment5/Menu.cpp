@@ -598,6 +598,11 @@ void Menu::printAdvisee() {
 }
 
 void Menu::addStudent() {
+  //Rollback Implementation
+  studentStack.push(masterStudent);
+  facultyStack.push(masterFaculty);
+  //---------------------->
+
   string input;
 
   //Generate Student ID
@@ -695,6 +700,11 @@ void Menu::addStudent() {
 }
 
 void Menu::deleteStudent() {
+  //Rollback Implementation
+  studentStack.push(masterStudent);
+  facultyStack.push(masterFaculty);
+  //---------------------->
+
   string input;
   int srID = 0;
 
@@ -730,6 +740,11 @@ void Menu::deleteStudent() {
 }
 
 void Menu::addFaculty() {
+  //Rollback Implementation
+  studentStack.push(masterStudent);
+  facultyStack.push(masterFaculty);
+  //---------------------->
+
   string input;
   int newAdviseeTotal = 0;
   int srID = 0;
@@ -813,6 +828,11 @@ void Menu::addFaculty() {
 }
 
 void Menu::deleteFaculty() {
+  //Rollback Implementation
+  studentStack.push(masterStudent);
+  facultyStack.push(masterFaculty);
+  //---------------------->
+
   string input;
   int frID = 0;
   int transferID = 0;
@@ -870,6 +890,11 @@ void Menu::deleteFaculty() {
 }
 
 void Menu::changeAdvisor() {
+  //Rollback Implementation
+  studentStack.push(masterStudent);
+  facultyStack.push(masterFaculty);
+  //---------------------->
+
   string input;
   int srID = 0;
   int frID = 0;
@@ -925,6 +950,11 @@ void Menu::changeAdvisor() {
 }
 
 void Menu::removeAdvisee() {
+  //Rollback Implementation
+  studentStack.push(masterStudent);
+  facultyStack.push(masterFaculty);
+  //---------------------->
+
   string input;
   int srID = 0;
   int frID = 0;
@@ -1016,12 +1046,13 @@ void Menu::removeAdvisee() {
 }
 
 void Menu::rollback() {
-
-  //this will apply to undoing the following methods:
-  //addStudent, addFaculty, deleteStudent, deleteFaculty, changeAdvisor, removeAdvisee
-  //STACK no greater than 5 (5 versions of previous trees, ALL trees)
-  //All five times within Rollback
-  //Clear the stack after fifth time
+  try {
+    masterStudent = studentStack.pop();
+    masterFaculty = facultyStack.pop();
+  }
+  catch(exception e) {
+    cout << "Undo Function is Unavailable" << endl;
+  }
 
 }
 
