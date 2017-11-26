@@ -622,17 +622,20 @@ void Menu::addStudent() {
 
   cout << "\nNew Students Generated ID: " << srID << endl;
   cin.fail();
-  
+
   string name;
   cout << "New Student Name: ";
+  cin.ignore();
   getline(cin, name);
 
   string level;
   cout << "New Student Grade: ";
+  cin.ignore();
   getline(cin, level);
 
   string major;
   cout << "New Student Major: ";
+  cin.ignore();
   getline(cin, major);
 
   double gpa;
@@ -770,14 +773,17 @@ void Menu::addFaculty() {
 
   string name;
   cout << "New Faculty Name: ";
+  cin.ignore();
   getline(cin, name);
 
   string level;
   cout << "New Faculty Level: ";
+  cin.ignore();
   getline(cin, level);
 
   string department;
   cout << "New Faculty Department: ";
+  cin.ignore();
   getline(cin, department);
 
   Faculty *faculty = new Faculty(frID, name, level, department);
