@@ -974,32 +974,43 @@ void Menu::removeAdvisee() {
       }
     }
 
-    masterFaculty.find(frID)->removeAdvisee(srID);
-
-    cout << "\nBefore Process Completes, Assign NEW Faculty Advisor For Student" << endl;
-    printAllFaculty();
-
-    while(true) {
-      input = "";
-      cout << "Please Provide a Faculty ID: ";
-      cin >> input;
-
-      try {
-        frID = atoi(input.c_str());
-
-        if(masterFaculty.contains(frID)) {
-          break;
-        }
-        else {
-          cout << "Faculty ID: " << frID << " Does Not Exist Within Database" << endl;
-        }
-      }
-      catch(exception e) {
-        cout << "Please Provide Valid Input" << endl;
-      }
+    if(masterFaculty.find(frID)->removeAdvisee(srID)) {
+      masterStudent.find(srID)->setAdvisor(-1);
     }
 
-    masterStudent.find(srID)->setAdvisor(frID);
+    input = "";
+    cout << "\n(Y/N) Would You Like To Set a New Advisor? ";
+    cin >> input;
+
+    if(input == "Y" || input == "y" ) {
+      cout << "\nHere is List of All Faculty: ";
+      printAllFaculty();
+
+      while(true) {
+        input = "";
+        cout << "Please Provide a Faculty ID: ";
+        cin >> input;
+
+        try {
+          frID = atoi(input.c_str());
+
+          if(masterFaculty.contains(frID)) {
+            break;
+          }
+          else {
+            cout << "Faculty ID: " << frID << " Does Not Exist Within Database" << endl;
+          }
+        }
+        catch(exception e) {
+          cout << "Please Provide Valid Input" << endl;
+        }
+      }
+
+      masterStudent.find(srID)->setAdvisor(frID);
+    }
+    else {
+      continue;
+    }
   }
 }
 
