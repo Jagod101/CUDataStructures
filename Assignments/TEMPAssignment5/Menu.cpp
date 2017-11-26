@@ -1049,6 +1049,7 @@ void Menu::removeAdvisee() {
 }
 
 void Menu::rollback() {
+/*
   try {
     masterStudent = studentStack.pop();
     masterFaculty = facultyStack.pop();
@@ -1056,7 +1057,7 @@ void Menu::rollback() {
   catch(exception e) {
     cout << "Undo Function is Unavailable" << endl;
   }
-
+*/
 }
 
 void Menu::exit() {
