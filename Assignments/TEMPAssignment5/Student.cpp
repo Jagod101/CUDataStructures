@@ -50,3 +50,7 @@ void Student::printStudent() {
   cout << "GPA: " << gpa << ", ";
   cout << "Advisor ID: " << advisorID << endl;
 }
+
+void Student::outputStudent() {
+  return "--" << "\n" << ID << "\n" << name << "\n" << level << "\n" << major << "\n" << gpa << "\n" << advisorID << "\n";
+}

@@ -275,12 +275,10 @@ void Menu::printMF(TreeNode<Faculty> *f) {
 
 void Menu::outputMS(TreeNode<Student> *s, string student) {
   ofstream out;
-
-  if(!out.is_open()) {
-    out.open(student.c_str());
-  }
+  out.open(student.c_str());
 
   if(s != NULL) {
+    /*
     out << "--" << endl;
     out << s->data->getID() << endl;
     out << s->data->getName() << endl;
@@ -288,10 +286,12 @@ void Menu::outputMS(TreeNode<Student> *s, string student) {
     out << s->data->getMajor() << endl;
     out << s->data->getGPA() << endl;
     out << s->data->getAdvisor() << endl;
-
+    */
     if(s->left != NULL) {
       outputMS(s->left, student);
     }
+
+    out << s->data->outputStudent();
 
     if(s->right != NULL) {
       outputMS(s->right, student);
@@ -630,13 +630,11 @@ void Menu::addStudent() {
 
   string level;
   cout << "New Student Grade: ";
-  cin.ignore();
-  getline(cin, level);
+  cin >> level;
 
   string major;
   cout << "New Student Major: ";
-  cin.ignore();
-  getline(cin, major);
+  cin >> major;
 
   double gpa;
   while(true) {
@@ -778,13 +776,11 @@ void Menu::addFaculty() {
 
   string level;
   cout << "New Faculty Level: ";
-  cin.ignore();
-  getline(cin, level);
+  cin >> level;
 
   string department;
   cout << "New Faculty Department: ";
-  cin.ignore();
-  getline(cin, department);
+  cin >> department;
 
   Faculty *faculty = new Faculty(frID, name, level, department);
 
