@@ -621,7 +621,8 @@ void Menu::addStudent() {
   }
 
   cout << "\nNew Students Generated ID: " << srID << endl;
-
+  cin.fail();
+  
   string name;
   cout << "New Student Name: ";
   getline(cin, name);
@@ -765,6 +766,7 @@ void Menu::addFaculty() {
   }
 
   cout << "New Faculty ID: " << frID << endl;
+  cin.clear();
 
   string name;
   cout << "New Faculty Name: ";
