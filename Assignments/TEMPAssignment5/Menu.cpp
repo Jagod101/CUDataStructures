@@ -599,8 +599,8 @@ void Menu::printAdvisee() {
 
 void Menu::addStudent() {
   //Rollback Implementation
-  studentStack.push(masterStudent);
-  facultyStack.push(masterFaculty);
+  //studentStack.push(masterStudent);
+  //facultyStack.push(masterFaculty);
   //---------------------->
 
   string input;
@@ -624,15 +624,15 @@ void Menu::addStudent() {
 
   string name;
   cout << "New Student Name: ";
-  cin >> name;
+  getline(cin, name);
 
   string level;
   cout << "New Student Grade: ";
-  cin >> level;
+  getline(cin, level);
 
   string major;
   cout << "New Student Major: ";
-  cin >> major;
+  getline(cin, major);
 
   double gpa;
   while(true) {
@@ -701,8 +701,8 @@ void Menu::addStudent() {
 
 void Menu::deleteStudent() {
   //Rollback Implementation
-  studentStack.push(masterStudent);
-  facultyStack.push(masterFaculty);
+  //studentStack.push(masterStudent);
+  //facultyStack.push(masterFaculty);
   //---------------------->
 
   string input;
@@ -741,8 +741,8 @@ void Menu::deleteStudent() {
 
 void Menu::addFaculty() {
   //Rollback Implementation
-  studentStack.push(masterStudent);
-  facultyStack.push(masterFaculty);
+  //studentStack.push(masterStudent);
+  //facultyStack.push(masterFaculty);
   //---------------------->
 
   string input;
@@ -768,15 +768,15 @@ void Menu::addFaculty() {
 
   string name;
   cout << "New Faculty Name: ";
-  cin >> name;
+  getline(cin, name);
 
   string level;
   cout << "New Faculty Level: ";
-  cin >> level;
+  getline(cin, level);
 
   string department;
   cout << "New Faculty Department: ";
-  cin >> department;
+  getline(cin, department);
 
   Faculty *faculty = new Faculty(frID, name, level, department);
 
@@ -829,8 +829,8 @@ void Menu::addFaculty() {
 
 void Menu::deleteFaculty() {
   //Rollback Implementation
-  studentStack.push(masterStudent);
-  facultyStack.push(masterFaculty);
+  //studentStack.push(masterStudent);
+  //facultyStack.push(masterFaculty);
   //---------------------->
 
   string input;
@@ -891,8 +891,8 @@ void Menu::deleteFaculty() {
 
 void Menu::changeAdvisor() {
   //Rollback Implementation
-  studentStack.push(masterStudent);
-  facultyStack.push(masterFaculty);
+  //studentStack.push(masterStudent);
+  //facultyStack.push(masterFaculty);
   //---------------------->
 
   string input;
@@ -951,8 +951,8 @@ void Menu::changeAdvisor() {
 
 void Menu::removeAdvisee() {
   //Rollback Implementation
-  studentStack.push(masterStudent);
-  facultyStack.push(masterFaculty);
+  //studentStack.push(masterStudent);
+  //facultyStack.push(masterFaculty);
   //---------------------->
 
   string input;
@@ -1046,14 +1046,14 @@ void Menu::removeAdvisee() {
 }
 
 void Menu::rollback() {
-  try {
+  /*try {
     masterStudent = studentStack.pop();
     masterFaculty = facultyStack.pop();
   }
   catch(exception e) {
     cout << "Undo Function is Unavailable" << endl;
   }
-
+*/
 }
 
 void Menu::exit() {
