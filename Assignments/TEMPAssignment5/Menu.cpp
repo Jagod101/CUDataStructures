@@ -646,8 +646,9 @@ void Menu::addStudent() {
     }
   }
 
+  int advisorID;
+
   if(!masterFaculty.isEmpty()) {
-    int advisorID;
     while(true) {
       input = "";
       cout << "New Student Advisor ID: ";
@@ -671,7 +672,7 @@ void Menu::addStudent() {
             printAllFaculty();
           }
           else {
-            continue;
+            break;
           }
         }
       }
@@ -679,6 +680,9 @@ void Menu::addStudent() {
         cout << "\nPlease Enter Valid Input" << endl;
       }
     }
+  }
+  else {
+    advisorID = -1;
   }
 
   Student *student = new Student(srID, name, level, major, gpa, advisorID);
