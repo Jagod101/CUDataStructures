@@ -864,11 +864,13 @@ void Menu::deleteFaculty() {
     cout << "\nList of Faculty Within Database: " << endl;
     printMF(masterFaculty.getRoot());
 
-    input = "";
-    cout << "\nPlease Provide a Faculty ID: ";
-    cin >> input;
+
 
     while(true) {
+
+      input = "";
+      cout << "\nPlease Provide a Faculty ID: ";
+      cin >> input;
 
       try {
         frID = atoi(input.c_str());
@@ -880,6 +882,7 @@ void Menu::deleteFaculty() {
               input = "";
               cout << "\nPlease Provide a Faculty ID to Transfer Advisees To: ";
               cin >> input;
+              cout << "hello" << endl;
 
               try {
                 transferID = atoi(input.c_str());
@@ -908,7 +911,6 @@ void Menu::deleteFaculty() {
       }
       catch(exception e) {
         cout << "\nPlease Provide Valid Input" << endl;
-        cin << input;
       }
     }
   }
