@@ -278,7 +278,6 @@ void Menu::outputMS(TreeNode<Student> *s, string student) {
   out.open(student.c_str());
 
   if(s != NULL) {
-    /*
     out << "--" << endl;
     out << s->data->getID() << endl;
     out << s->data->getName() << endl;
@@ -286,12 +285,10 @@ void Menu::outputMS(TreeNode<Student> *s, string student) {
     out << s->data->getMajor() << endl;
     out << s->data->getGPA() << endl;
     out << s->data->getAdvisor() << endl;
-    */
+
     if(s->left != NULL) {
       outputMS(s->left, student);
     }
-
-    out << s->data->outputStudent();
 
     if(s->right != NULL) {
       outputMS(s->right, student);
@@ -599,8 +596,8 @@ void Menu::printAdvisee() {
 
 void Menu::addStudent() {
   //Rollback Implementation
-  //studentStack.push(masterStudent);
-  //facultyStack.push(masterFaculty);
+  studentStack.push(masterStudent);
+  facultyStack.push(masterFaculty);
   //---------------------->
 
   string input;
@@ -1052,14 +1049,13 @@ void Menu::removeAdvisee() {
 }
 
 void Menu::rollback() {
-  /*try {
+  try {
     masterStudent = studentStack.pop();
     masterFaculty = facultyStack.pop();
   }
   catch(exception e) {
     cout << "Undo Function is Unavailable" << endl;
   }
-*/
 }
 
 void Menu::exit() {

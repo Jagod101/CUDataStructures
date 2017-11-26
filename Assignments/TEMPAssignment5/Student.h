@@ -29,8 +29,7 @@ class Student : public Member {
     int getAdvisor();
 
     void printStudent();
-    void outputStudent();
-    
+
     bool operator == (const Student &s) {
       return(this->ID == s.ID);
     }
