@@ -25,9 +25,6 @@ class Menu {
     BST<Student> masterStudent;
     BST<Faculty> masterFaculty;
 
-    GenStack<Student> studentStack(5);
-    GenStack<Faculty> facultyStack(5);
-
     Menu();
     ~Menu();
 

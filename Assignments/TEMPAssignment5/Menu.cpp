@@ -8,7 +8,8 @@ CPSC 350-02
 #include "Menu.h"
 
 Menu::Menu() {
-
+  GenStack<Student> studentStack(5);
+  GenStack<Faculty> facultyStack(5);
 }
 
 Menu::~Menu() {
