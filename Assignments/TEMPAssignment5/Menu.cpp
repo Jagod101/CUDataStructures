@@ -55,6 +55,7 @@ void Menu::readFile() {
       cout << "\nIncorrect File Format" << endl;
     }
 
+    //Reads the imported file and distributes the lines to their correct variables
     while(getline(MFFile, input)) {
       switch(numLine) {
         case 1: {
@@ -239,6 +240,7 @@ void Menu::writeFile() {
   MFFile.close();
 }
 
+//traverses the tree to print the students
 void Menu::printMS(TreeNode<Student> *s) {
   if(s != NULL) {
     if(s->left != NULL) {
@@ -256,6 +258,7 @@ void Menu::printMS(TreeNode<Student> *s) {
   }
 }
 
+//traveses the tree to print the faculty
 void Menu::printMF(TreeNode<Faculty> *f) {
   if(f != NULL) {
     if(f->left != NULL) {
@@ -273,6 +276,7 @@ void Menu::printMF(TreeNode<Faculty> *f) {
   }
 }
 
+//outputs the students to the file to be used when opening the program again
 void Menu::outputMS(TreeNode<Student> *s, string student) {
   ofstream out;
   out.open(student.c_str());
@@ -301,6 +305,7 @@ void Menu::outputMS(TreeNode<Student> *s, string student) {
   out.close();
 }
 
+//outputs the faculty to the file to be used when opening the program again
 void Menu::outputMF(TreeNode<Faculty> *f, string faculty) {
   ofstream out;
   out.open(faculty.c_str());
@@ -343,6 +348,7 @@ TreeNode<Faculty>* Menu::getMFRoot() {
   return masterFaculty.getRoot();
 }
 
+//print the menu to the user and sends them to the option they choose
 void Menu::printMenu() {
   string input;
   int numInput;
@@ -488,6 +494,7 @@ void Menu::printStudent() {
   }
 }
 
+//Prints a single faculty member and their information that the user chooses
 void Menu::printFaculty() {
   string input;
   int frID;
@@ -518,6 +525,7 @@ void Menu::printFaculty() {
   }
 }
 
+//prints an advisor given a student ID number from the user
 void Menu::printAdvisor() {
   string input;
   int srID;
@@ -526,7 +534,7 @@ void Menu::printAdvisor() {
     cout << "\nStudent Database is Empty" << endl;
   }
   else {
-    cout << "\nList of Students Within Database: ";
+    cout << "\nList of Students Within Database: " << endl;
     printMS(masterStudent.getRoot());
 
     while(true) {
@@ -537,7 +545,9 @@ void Menu::printAdvisor() {
         srID = atoi(input.c_str());
 
         if(masterStudent.contains(srID)) {
-          masterFaculty.find(masterStudent.find(srID)->getAdvisor())->printFaculty();
+          Student *student = masterStudent.find(srID);
+
+          masterFaculty.find(student->getAdvisor())->printFaculty();
           break;
         }
         else {
@@ -551,6 +561,7 @@ void Menu::printAdvisor() {
   }
 }
 
+//prints an advisee information given the faculty ID user provides
 void Menu::printAdvisee() {
   string input;
   int frID;
@@ -594,6 +605,7 @@ void Menu::printAdvisee() {
   }
 }
 
+//allows the user to add a student to the records
 void Menu::addStudent() {
   //Rollback Implementation
   //studentStack.push(masterStudent);
@@ -698,6 +710,7 @@ void Menu::addStudent() {
   masterStudent.put(studentNode);
 }
 
+//allows the user to input a student ID number and delete that student from the records
 void Menu::deleteStudent() {
   //Rollback Implementation
   //studentStack.push(masterStudent);
@@ -711,7 +724,7 @@ void Menu::deleteStudent() {
     cout << "\nStudent Database is Empty" << endl;
   }
   else {
-    cout << "\nList of Students Within Database: ";
+    cout << "\nList of Students Within Database: " << endl;
     printMS(masterStudent.getRoot());
 
     while(true) {
@@ -723,7 +736,9 @@ void Menu::deleteStudent() {
         srID = atoi(input.c_str());
 
         if(masterStudent.contains(srID)) {
-          masterFaculty.find(masterStudent.find(srID)->getAdvisor())->removeAdvisee(srID);
+          if(masterStudent.find(srID)->getAdvisor() != -1) {
+            masterFaculty.find(masterStudent.find(srID)->getAdvisor())->removeAdvisee(srID);
+          }
           masterStudent.erase(srID);
           break;
         }
@@ -738,6 +753,7 @@ void Menu::deleteStudent() {
   }
 }
 
+//allows the user to add a faculty member to the records
 void Menu::addFaculty() {
   //Rollback Implementation
   //studentStack.push(masterStudent);
@@ -830,6 +846,7 @@ void Menu::addFaculty() {
   masterFaculty.put(facultyNode);
 }
 
+//allows the user to delete a faculty member from the records given an ID number and transfer their advisees to a new advisor
 void Menu::deleteFaculty() {
   //Rollback Implementation
   //studentStack.push(masterStudent);
@@ -844,19 +861,21 @@ void Menu::deleteFaculty() {
     cout << "\nFaculty Database is Empty" << endl;
   }
   else {
-    cout << "\nList of Faculty Within Database: ";
+    cout << "\nList of Faculty Within Database: " << endl;
     printMF(masterFaculty.getRoot());
 
+    input = "";
+    cout << "\nPlease Provide a Faculty ID: ";
+    cin >> input;
+
     while(true) {
-      input = "";
-      cout << "\nPlease Provide a Faculty ID: ";
-      cin >> input;
 
       try {
         frID = atoi(input.c_str());
-
+        cout << "hi" << endl;
         if(masterFaculty.contains(frID)) {
           if(masterFaculty.find(frID)->numAdvisee > 0) {
+            cout << "yo" << endl;
             while(true) {
               input = "";
               cout << "\nPlease Provide a Faculty ID to Transfer Advisees To: ";
@@ -867,7 +886,9 @@ void Menu::deleteFaculty() {
 
                 if(masterFaculty.contains(transferID)) {
                   for(int i = 0; i < masterFaculty.find(frID)->maxSize; ++i) {
+                    if(masterFaculty.find(frID)->adviseeArray[i] != -1) {
                       masterStudent.find(masterFaculty.find(frID)->adviseeArray[i])->setAdvisor(transferID);
+                    }
                   }
                 }
                 else {
@@ -887,11 +908,14 @@ void Menu::deleteFaculty() {
       }
       catch(exception e) {
         cout << "\nPlease Provide Valid Input" << endl;
+        cin << input;
       }
     }
   }
 }
 
+//allows the user to change the advisor of a student from one faculty member
+// to another given all the IDs neccessary
 void Menu::changeAdvisor() {
   //Rollback Implementation
   //studentStack.push(masterStudent);
@@ -952,6 +976,7 @@ void Menu::changeAdvisor() {
   }
 }
 
+//allows the user to remove an advisee from an advisor given the ID numbers of both
 void Menu::removeAdvisee() {
   //Rollback Implementation
   //studentStack.push(masterStudent);
@@ -1048,6 +1073,7 @@ void Menu::removeAdvisee() {
   }
 }
 
+//allows the user to undo the last five commands they did
 void Menu::rollback() {
 /*
   try {
@@ -1060,6 +1086,7 @@ void Menu::rollback() {
 */
 }
 
+//exits the program
 void Menu::exit() {
   cout << "EXITING PROGRAM..." << endl;
 }
