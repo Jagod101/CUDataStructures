@@ -22,9 +22,9 @@ class GenStack {
 		GenStack(int maxSize);
 		~GenStack();
 
-		void push(T data);
-		T pop();
-		T peek();
+		void push(int data);
+		T* pop();
+		T* peek();
 
 		int getSize();
 		int isEmpty();
@@ -53,7 +53,7 @@ GenStack<T>::~GenStack()
 }
 
 template<class T>
-void GenStack<T>::push(T data)
+void GenStack<T>::push(int data)
 {
 	if(isFull() == 1)
 	{
@@ -67,7 +67,7 @@ void GenStack<T>::push(T data)
 }
 
 template<class T>
-T GenStack<T>::pop()
+T* GenStack<T>::pop()
 {
 	if(isEmpty() == 1)
 	{
@@ -80,7 +80,7 @@ T GenStack<T>::pop()
 }
 
 template<class T>
-T GenStack<T>::peek()	//checks a value at a specific point
+T* GenStack<T>::peek()	//checks a value at a specific point
 {
 	if(top == -1)
 	{
