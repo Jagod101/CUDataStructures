@@ -14,7 +14,7 @@ CPSC 350-02
 #include <fstream>
 #include <sstream>
 #include "BST.h"
-#include "GenStack.h"
+//#include "GenStack.h"
 
 using namespace std;
 
@@ -25,8 +25,8 @@ class Menu {
     BST<Student> masterStudent;
     BST<Faculty> masterFaculty;
 
-    GenStack<Student> *studentStack;
-    GenStack<Faculty> *facultyStack;
+    //GenStack<Student> *studentStack;
+    //GenStack<Faculty> *facultyStack;
 
     Menu();
     ~Menu();
