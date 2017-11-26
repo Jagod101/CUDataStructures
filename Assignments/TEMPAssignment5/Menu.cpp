@@ -874,45 +874,40 @@ void Menu::deleteFaculty() {
         frID = atoi(input.c_str());
         if(masterFaculty.contains(frID)) {
           if(masterFaculty.find(frID)->numAdvisee > 0) {
-            cout << "yo" << endl;
             while(true) {
               input = "";
               cout << "\nPlease Provide a Faculty ID to Transfer Advisees To: ";
               cin >> input;
-              cout << "hello" << endl;
 
               try {
                 transferID = atoi(input.c_str());
 
                 if(masterFaculty.contains(transferID)) {
-                  cout << "this" << endl;
                   for(int i = 0; i < masterFaculty.find(frID)->maxSize; ++i) {
-                    cout << "girl" << endl;
                     if(masterFaculty.find(frID)->adviseeArray[i] != -1) {
-                      cout << "is" << endl;
                       masterStudent.find(masterFaculty.find(frID)->adviseeArray[i])->setAdvisor(transferID);
                     }
                   }
                 }
                 else {
-                  cout << "on" << endl;
                   cout << "\nFaculty Transfer ID: " << transferID << " Does Not Exist Within Database" << endl;
                 }
+                break;
               }
               catch(exception e) {
-                cout << "fire" << endl;
                 cout << "\nPlease Provide Valid Input" << endl;
               }
             }
           }
           else {
             masterFaculty.erase(frID);
-            cout << "there" << endl;
+            break;
           }
         }
         else {
           cout << "\nFaculty ID: " << frID << " Does Not Exist Within Database" << endl;
         }
+        break;
       }
       catch(exception e) {
         cout << "\nPlease Provide Valid Input" << endl;
