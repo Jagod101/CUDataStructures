@@ -35,3 +35,142 @@ Graph Terminology
 - If every edge connects a distinct pair of vertices, then we sat that the graph is a SIMPLE GRAPH
 - A graph is a CONNECTED GRAPH if there is a path from every vertex to every other vertex. A graph that is not connected consists of a set of connected components, which are maximal connected subgraphs
 - A CYCLE is a path for which the first and last vertices are adjacent
+
+Graphs
+** Refer to book for image
+- End Vertices (or Endpoints) of an Edge
+  - U and V are the Endpoints of a
+- Edges Incident on a Vertex
+  - a, d, and b are Incident on V
+- Adjacent Vertices
+  - U and V are adjacent
+- Degree of a Vertex
+  - X has Degree 5
+- Parallel Edges
+  - h and i are parallel edges
+- Self Loop
+  - j is a self loop
+- Path
+  - Sequence of alternating vertices and edges
+  - begins with a vertex
+  - ends with a vertex
+  - each edge is preceded and followed by its endpoints
+- Simple Path
+  - path such that all its vertices and edges are distinct
+- Examples
+  - P1 = (V, b, X, h, Z) is a simple path
+
+- Property: An undirected simple graph with V vertices has at most V(V-1)/2 Edges
+
+Directed Graphs
+- DEFINITION: is a set of vertices and a collection of directed edges that each connects an ordered pair of vertices
+  - Also known as Digraphs
+- We say that a DIRECTED edge points from the first vertex in the pair and points to the second vertex in the pair
+- Applications
+  - One-Way Streets
+  - Flights
+  - Task Scheduling
+
+  Weighted Graphs
+  - Definition: Is a graph with a weight attached to each edge
+    - Directed
+    - Undirected
+
+  Naïve Graph
+  - Suppose we wanted to represent a vertex
+  - A few things we have to keep track of:
+    - A label of the vertex:
+      - string, an int id, etc...
+      - data that we need to associate with each vertex (we can ignore for now)
+  - Because there is a chance that a graph contains cycles, we need a way to know if we have visited a vertex before doing a search
+    - We can fix this by adding an extra Boolean flag to our vertex implementation
+
+  class Vertex {
+    string label;
+    boolean wasVisited;
+    Vertex(string l) {
+      label = l;
+      wasVisited = false;
+    }
+  }
+
+Edges
+- Adjacency List
+  - For each Vetrex, keep a Linked List of all the vertices adjacent to it
+  - Often implemented using a list of lists
+  - Makes better use of memory
+  - Fast iteration over all edges, but slow lookups of specific edges
+- Adjacency Matrix
+  - Keep a V*V array (matrix), call it m
+    - O(V*V) space complexity
+  - If there is an edge between a vertex l and J, set m[l][j] = 1 and m[j][l]
+  - If no edge, set to 0
+  - Quick lookups, slow to iterate over all edges
+    - O(n^2)
+
+
+Simple Graph Operations
+  - A common operation with a graph is:
+    - given a starting vertex, determine all the vertices that can be reached
+    - this is called a search problem
+  - Search problems are an integral part of game theory, AI, networks, etc...
+  - Techniques for searching a graph
+    - Depth-First Search (DFS)
+    - Breadth-First Search (BFS)
+
+DFS
+- We search/traverse down the tree (graph) one path at a time
+  - Recursive
+  - Useful in cycle detection
+  - Requires less memory
+- Implemented using a Stack using a few simple rules
+  1. Begin at the starting vertex, mark it as visited, push it on the stack
+  2. If possible, visit an unvisited adjacent vertex, mark it, and push on stack
+  3. If you can't do 2, pop an item off the stack
+  4. If you can't do 2 or 3, quit
+
+BFS
+- We examine all nodes at the same level of the tree before moving on to the next level
+  - Finding shortest paths
+  - Used for discovering spanning trees
+  - Requires more memory than DFS
+- Implemented using a queue and 3 rules
+  1. Visit the next unvisited vertex (if one exists) that's adjacent to the current vertex, mark it, and insert into the queue
+  2. If you can't do 1 because there are no more unvisited vertices, remove a vertex from the queue, make it the current vertex, and try to do 1
+  3. If you can't carry out rule 2 because the queue is empty, you're done
+
+Minimum Spanning Tree
+- Given a graph, connected or unconnected, a spanning tree of graph G, is a subgraph that is a tree and connects all the vertices together
+  - Kruskal's
+    - Sparse Graphs
+    - Weighted and Directed
+    - Rather than adding one vertex to the tree at a time, it finds the best edge for connecting 2 trees in a spreading forest of growing MST subtrees
+      1. Start with V single-vertex trees (graphs)
+      2. Repeatedly combine 2 trees using the shortestedge possible, as long as that edge does not create a cycle
+      3. Stop when all the vertices are connected
+  - Primm's
+    - Undirected and Weighted
+    - No Cycles
+      1. Start: 2 sets, VisitedVertex() and NonVisitedVertex() = empty
+      2. Pick an arbitrary vertex and add it to the tree (add to VisitedVertex)
+      3. Find the Edge of the last weight that connects a vertex not in the tree (in NonVisitedVertex) to the tree. Add this vertex to the tree (and to TreeVertex)
+      4. Repeat until all vertices are in the tree
+- Greedy Algorithms
+  - Always tries to select the edge with the best (lowest) cost
+
+Shortest Path Algorithms
+- Warshall's Algorithm finds the shortest path for all the vertices in a graph
+   - The starting vertex can be any vertex in the graph
+   - All pairs
+   - Transitive closure
+- Dijkstra's Algorithm finds the optimal path from  a source vertex to an end point
+  - Single Source
+  - Assign to every vertex a distance value
+    - Set it to Zero for our initial node and to infinity for all other nodes
+  - Set the start vertex as current. Mark all other vertices as unvisited. Create a list of all the unvisited nodes called the unvisited list
+  - For the current node, consider all of its unvisited neighbors and calculate their distance
+  - Compare the calculated distance to the current assigned value and assign the smaller one
+  - When we are done considering all of the neighbors of the current node, mark the current node as visited and remove it from the unvisited list
+    - A visited node will never be checked again
+  - If the destination vertex has been marked visited or if the smallest distance among the vertices in the unvisited set is infinity then stop, you are done
+  - Otherwise, select the unvisited vertex that is marked with the smallest distance, set it as the new current vertex, and go back to step 3
