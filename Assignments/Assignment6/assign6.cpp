@@ -40,7 +40,7 @@ void Sorting::setFile(string file) {
     numLine++;
 
     getline(inputFile, line);
-    
+
     try {
       size = atof(line.c_str());
     }
@@ -107,8 +107,8 @@ void Sorting::insertSort(double array[]) {
     int k = j;
 
     //While the thing to the left is larger, shift
-    while(k > 0 && arr[k-1] >= temp) {
-      array[] = array[k-1];
+    while(k > 0 && array[k-1] >= temp) {
+      array[k] = array[k-1];
       --k;
     }
     //Puts Marked Item in Right Spot
