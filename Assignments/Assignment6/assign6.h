@@ -18,7 +18,7 @@ class Sorting {
     int numElements;
 
     double *quickSortArray;
-    double *insertSortArray
+    double *insertSortArray;
     //INCLUDE ANOTHER TYPE OF ARRAY
 
   public:

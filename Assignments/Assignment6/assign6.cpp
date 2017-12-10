@@ -36,9 +36,11 @@ void Sorting::setFile(string file) {
   insertSortArray = new double[numElements];
   // = new double[numElements];
 
-  while(getline(inputFile, line)) {
+  for(int i = 0; i < numElements; ++i) {
     numLine++;
 
+    getline(inputFile, line);
+    
     try {
       size = atof(line.c_str());
     }
@@ -100,17 +102,17 @@ void Sorting::insertSort(double array[]) {
   //Marker
   for(int j = 1; j < 10; ++j) {
     //Store Marked Item
-    double temp = arr[j];
+    double temp = array[j];
     //Where to start Shifting
     int k = j;
 
     //While the thing to the left is larger, shift
     while(k > 0 && arr[k-1] >= temp) {
-      arr[] = arr[k-1];
+      array[] = array[k-1];
       --k;
     }
     //Puts Marked Item in Right Spot
-    arr[k] = temp;
+    array[k] = temp;
   }
 }
 
@@ -139,7 +141,7 @@ void Sorting::sortAll() {
   clockEnd = clock();
 
   calculatedTime = (float(clockEnd - clockStart)/CLOCKS_PER_SEC) * 1000;
-  cout << "\Insert Sort took " << calculatedTime << "ms to sort " << numElements << "numbers\n";
+  cout << "\nInsert Sort took " << calculatedTime << "ms to sort " << numElements << "numbers\n";
 
   //Other Sort
   /*
