@@ -32,7 +32,6 @@ void Sorting::setFile(string file) {
 
   numElements = atoi(nElements.c_str());
 
-
   quickSortArray = new double[numElements];
   insertSortArray = new double[numElements];
   gnomeSortArray = new double[numElements];
@@ -60,15 +59,13 @@ void Sorting::setFile(string file) {
 }
 
 void Sorting::quickSort(double array[], int left, int right) {
-  int idx;
-
-  idx = partition(array, left, right);
+  int idx = partition(array, left, right);
 
   if(left < idx - 1) {
     quickSort(array, left, idx - 1);
   }
   if(right > idx) {
-    quickSort(array, right, idx);
+    quickSort(array, idx, right);
   }
 }
 
@@ -101,7 +98,7 @@ int Sorting::partition(double array[], int left, int right) {
 
 void Sorting::insertSort(double array[]) {
   //Marker
-  for(int j = 1; j < 10; ++j) {
+  for(int j = 1; j < numElements; ++j) {
     //Store Marked Item
     double temp = array[j];
     //Where to start Shifting
