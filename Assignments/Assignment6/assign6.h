@@ -19,7 +19,7 @@ class Sorting {
 
     double *quickSortArray;
     double *insertSortArray;
-    //INCLUDE ANOTHER TYPE OF ARRAY
+    double *gnomeSortArray;
 
   public:
     Sorting();
@@ -30,7 +30,7 @@ class Sorting {
     void quickSort(double array[], int left, int right);
     int partition(double array[], int left, int right);
     void insertSort(double array[]);
-    //void <INSERT OTHER METHOD>();
+    void gnomeSort(double array[]);
 
     void sortAll();
     void swap(double array[], int a, int b);

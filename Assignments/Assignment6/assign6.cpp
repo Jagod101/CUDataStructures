@@ -16,7 +16,7 @@ Sorting::Sorting() {
 Sorting::~Sorting() {
   delete[] quickSortArray;
   delete[] insertSortArray;
-  //delete[] ;
+  delete [] gnomeSortArray;
 }
 
 void Sorting::setFile(string file) {
@@ -28,13 +28,14 @@ void Sorting::setFile(string file) {
   ifstream inputFile;
   inputFile.open(file.c_str());
 
-  while(getline(inputFile, nElements)) {
-    numElements += atoi(nElements.c_str());
-  }
+  getline(inputFile, nElements);
+
+  numElements = atoi(nElements.c_str());
+
 
   quickSortArray = new double[numElements];
   insertSortArray = new double[numElements];
-  // = new double[numElements];
+  gnomeSortArray = new double[numElements];
 
   for(int i = 0; i < numElements; ++i) {
     numLine++;
@@ -51,7 +52,7 @@ void Sorting::setFile(string file) {
 
     quickSortArray[i] = size;
     insertSortArray[i] = size;
-    // [i] = size
+    gnomeSortArray[i] = value;
   }
 
   inputFile.close();
@@ -116,9 +117,21 @@ void Sorting::insertSort(double array[]) {
   }
 }
 
-/*
-INSERT ANOTHER SORTING METHOD
-*/
+void Sorting::gnomeSort(double array[]) {
+  int i = 0;
+
+  while (i < numElements) {
+    if (i == 0 || array[i-1] <= array[i]) {
+      ++i;
+    }
+
+    else {
+      double temp = array[i];
+      array[i] = array[i-1];
+      array[--i] = temp;
+    }
+  }
+}
 
 void Sorting::sortAll() {
   clock_t clockStart;
@@ -143,15 +156,15 @@ void Sorting::sortAll() {
   calculatedTime = (float(clockEnd - clockStart)/CLOCKS_PER_SEC) * 1000;
   cout << "\nInsert Sort took " << calculatedTime << "ms to sort " << numElements << "numbers\n";
 
-  //Other Sort
-  /*
+  //Gnome Sort
   clockStart = clock();
-  insertSort(insertSortArray);
+  gnomeSort(gnomeSortArray);
   clockEnd = clock();
 
   calculatedTime = (float(clockEnd - clockStart)/CLOCKS_PER_SEC) * 1000;
-  cout << "\Insert Sort took " << calculatedTime << "ms to sort " << nElements << "numbers\n";
-  */
+  cout << "\nGnome Sort took " << calculatedTime << "ms to sort " << nElements << "numbers\n";
+
+  cout <<"\n...SORTING COMPLETED\n";
 }
 
 void Sorting::swap(double array[], int a, int b) {
