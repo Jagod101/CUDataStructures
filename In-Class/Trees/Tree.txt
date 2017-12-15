@@ -9,7 +9,7 @@ Tree Terminology
 - Height: max depth of any node
 
 Binary Search Tree (BST)
-- a tree that allows for efficent sorting and searching
+- a tree that allows for efficient sorting and searching
     1) insert
 
 Rules of BST
@@ -38,7 +38,7 @@ In Order Traversal
 - A node is visited after it's left subtree and before it's right subtree
 - Print the nodes of a tree
 
-- Example Code: 
+- Example Code:
     inOrder(TreeNode* n) {
         if(n != NULL) {
             inOrder(n->left);
@@ -49,9 +49,9 @@ In Order Traversal
 
 Pre Order Traversal
 - A node is visited BEFORE it's descendants or children
-- Print some structured document 
+- Print some structured document
 
-- Example Code: 
+- Example Code:
     preOrder(TreeNode* n) {
         if(n != NULL) {
             cout << n->key << n->data << endl;
@@ -64,7 +64,7 @@ Post Order Traversal
 - A node is visited AFTER it's descendants or children
 - Print some directories/sub-directories
 
-- Example Code: 
+- Example Code:
     postOrder(TreeNode* n) {
         if(n != NULL) {
             postOrder(n->left);
@@ -74,7 +74,7 @@ Post Order Traversal
     }
 
 
-Psuedo Code Examples for Tree Traversal: 
+Psuedo Code Examples for Tree Traversal:
 
 Get Minimum Value in a Tree
     getMin() {
