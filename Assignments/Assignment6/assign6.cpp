@@ -118,17 +118,17 @@ void Sorting::insertSort(double array[]) {
 }
 
 void Sorting::gnomeSort(double array[]) {
-  int i = 0;
+  int idx = 0;
 
-  while (i < numElements) {
-    if (i == 0 || array[i-1] <= array[i]) {
-      ++i;
+  while (idx < numElements) {
+    if (idx == 0 || array[idx-1] <= array[idx]) {
+      ++idx;
     }
 
     else {
-      double temp = array[i];
-      array[i] = array[i-1];
-      array[--i] = temp;
+      double temp = array[idx];
+      array[idx] = array[idx-1];
+      array[--idx] = temp;
     }
   }
 }
@@ -146,7 +146,7 @@ void Sorting::sortAll() {
   clockEnd = clock();
 
   calculatedTime = (float(clockEnd - clockStart)/CLOCKS_PER_SEC) * 1000;
-  cout << "\nQuick Sort took " << calculatedTime << "ms to sort " << numElements << "numbers\n";
+  cout << "+ Quick Sort took " << calculatedTime << "ms to sort " << numElements << " numbers\n";
 
   //Insert Sort
   clockStart = clock();
@@ -154,7 +154,7 @@ void Sorting::sortAll() {
   clockEnd = clock();
 
   calculatedTime = (float(clockEnd - clockStart)/CLOCKS_PER_SEC) * 1000;
-  cout << "\nInsert Sort took " << calculatedTime << "ms to sort " << numElements << "numbers\n";
+  cout << "+ Insert Sort took " << calculatedTime << "ms to sort " << numElements << " numbers\n";
 
   //Gnome Sort
   clockStart = clock();
@@ -162,9 +162,9 @@ void Sorting::sortAll() {
   clockEnd = clock();
 
   calculatedTime = (float(clockEnd - clockStart)/CLOCKS_PER_SEC) * 1000;
-  cout << "\nGnome Sort took " << calculatedTime << "ms to sort " << numElements << "numbers\n";
+  cout << "+ Gnome Sort took " << calculatedTime << "ms to sort " << numElements << " numbers\n";
 
-  cout <<"\n...SORTING COMPLETED\n";
+  cout <<"\n\n...SORTING COMPLETED\n";
 }
 
 void Sorting::swap(double array[], int a, int b) {
