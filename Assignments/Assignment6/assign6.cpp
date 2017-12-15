@@ -161,7 +161,7 @@ void Sorting::sortAll() {
   calculatedTime = (float(clockEnd - clockStart)/CLOCKS_PER_SEC) * 1000;
   cout << "+ Gnome Sort took " << calculatedTime << "ms to sort " << numElements << " numbers\n";
 
-  cout <<"...SORTING COMPLETED\n";
+  cout <<"\n...SORTING COMPLETED\n";
 }
 
 void Sorting::swap(double array[], int a, int b) {
