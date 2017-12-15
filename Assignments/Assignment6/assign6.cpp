@@ -52,7 +52,7 @@ void Sorting::setFile(string file) {
 
     quickSortArray[i] = size;
     insertSortArray[i] = size;
-    gnomeSortArray[i] = value;
+    gnomeSortArray[i] = size;
   }
 
   inputFile.close();
@@ -162,7 +162,7 @@ void Sorting::sortAll() {
   clockEnd = clock();
 
   calculatedTime = (float(clockEnd - clockStart)/CLOCKS_PER_SEC) * 1000;
-  cout << "\nGnome Sort took " << calculatedTime << "ms to sort " << nElements << "numbers\n";
+  cout << "\nGnome Sort took " << calculatedTime << "ms to sort " << numElements << "numbers\n";
 
   cout <<"\n...SORTING COMPLETED\n";
 }
