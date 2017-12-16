@@ -9,7 +9,7 @@ SOURCE FILES:
 main.cpp
 assign6.cpp
 assign6.h
-assign6.tex
+SortingAlgorithms.pdf
 
 RUNTIME ERRORS:
 No known runtime errors
