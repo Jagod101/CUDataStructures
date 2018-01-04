@@ -85,13 +85,15 @@ git push						[Push Local Changes to Repo]
 
 5. [Building a Database with Binary Search Trees](Assignments/Assignment5/)
 	- Collaborative Project
-	- Partner: 
+	- Partner: Ashley Wood
 	- [Assignment 5 Instructions](Assignments/Assignment5/assign5specb.pdf)
 
-6. **TBA**
+6. [Sorting](Assignments/Assignment6/)
+	- Individual Project
+	- [Assignment 6 Instructions](Assignments/Assignment6/assign6.pdf)
 
 ## License
-Students (and other persons) are allowed to refer to and use the code contained within this repository, however, plagirism will not be tolerated. Please refer to the [Chapman Coding Standards](CourseInfo/ChapmanCodingStandards.pdf) for proper format in using for youw project.
+Students (and other persons) are allowed to refer to and use the code contained within this repository, however, plagiarism will not be tolerated. Please refer to the [Chapman Coding Standards](CourseInfo/ChapmanCodingStandards.pdf) for proper format in using for your project.
 
-You may review the Full License on the Creative Commons Website http://creativecommons.org/licenses/by-nc-sa/3.0/ 
+You may review the Full License on the Creative Commons Website http://creativecommons.org/licenses/by-nc-sa/3.0/
 Or you can review the following document for proper use of the material [LICENSE.md](LICENSE.md)
