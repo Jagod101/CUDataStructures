@@ -10,21 +10,38 @@ CPSC 350-02
 #include <stdlib.h>
 #include <unistd.h>
 #include <sys/stat.h>
+#include <string>
+#include <fstream>
+#include <sstream>
 #include "BST.h"
+//#include "GenStack.h"
 
 using namespace std;
 
-const string studentTable = "studentTable";
-const string facultyTable = "facultyTable";
-
 class Menu {
   private:
-    StudentTable studentBST;
-    FacultyTable facultyBST;
 
   public:
+    BST<Student> masterStudent;
+    BST<Faculty> masterFaculty;
+
+    //GenStack<Student> *studentStack;
+    //GenStack<Faculty> *facultyStack;
+
     Menu();
     ~Menu();
+
+    void readFile();
+    void writeFile();
+
+    void printMS(TreeNode<Student> *s);
+    void printMF(TreeNode<Faculty> *f);
+
+    void outputMS(TreeNode<Student> *s, string student);
+    void outputMF(TreeNode<Faculty> *f, string faculty);
+
+    TreeNode<Student>* getMSRoot();
+    TreeNode<Faculty>* getMFRoot();
 
     void printMenu();
     void printAllStudents();
